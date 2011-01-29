@@ -1,0 +1,164 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1038\cocoasubrtf350
+{\fonttbl\f0\fnil\fcharset0 Monaco;\f1\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red170\green13\blue145;\red63\green110\blue116;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural\pardirnatural
+
+\f0\fs20 \cf0 0.8.2.1 v96:\
+ - Bug fix: fixed sync and restore.\
+0.8.2 v95:\
+ - New feature: no longer log to the system log except in case of error (new logging system). \
+0.8.1 v92:\
+ - Bug fix: bluetooth scanner dropped phones after scan timeout.\
+0.8.0 v91:\
+ - No longer a preference pane. Now a standalone app.\
+ - Lots of little bug fixes.\
+0.6.4 v87:\
+ - Bug fix: remember correct calendars for events/tasks.\
+0.6.4 v86:\
+ - Added plugin backend.\
+0.6.4 v85:\
+ - Bug fix: don't delete relations the phone doesn't support.\
+0.6.4 v84:\
+ - Bug fix: correctly identify contacts that shouldn't be synced.\
+ - Updated preferences and internal data structures to simplify code.\
+ - Bug fix: error when trying to merge sync contacts fixed.\
+ - Bug fix: fixed contact notes on VX-5600.\
+ - Bug fix: "deleted" addresses.\
+0.6.4 v81:\
+ - Bug fix: fixed remove button.\
+ - Bug fix: fixed backup filenames.\
+0.6.4 v81:\
+ - Code cleanup. Added vxPhone class to handle the jobs of BREWefs and various options fields.\
+ - Bug fix: really fixed VX-5600 groups.\
+ - Bug fix: bluetooth works better now.\
+0.6.3 v80:\
+ - Bug fix: fixed VX-5600 groups.\
+0.6.3 v79:\
+ - Bug fix: sync client included fields that were not defined in the schema.\
+0.6.3 v78:\
+ - Added support for VX-5600 (Accolade). Temporarily missing support for contact memos and calendar tasks.\
+ - Bug fix: calendars were not deleted properly.\
+ - Bug fix: double release of calendar object in LGCalendars.\
+0.6.2 v75:\
+ - Fix original date field.\
+0.6.2 v74:\
+ - Try to unsuspend the phone just in case it is suspended.\
+0.6.2 v72:\
+ - Use Core Graphics instead of NSImage to create picture IDs. This will avoid issues surrounding using NSImage from outside an NSApplication.\
+0.6.2 v71:\
+ - Fixed a bug in commitEvents.\
+ - Handle detached events. -- In testing --\
+0.6.2 v68:\
+ - Don't sync new events calendar during refresh sync.\
+ - Show status per phone.\
+ - Hide "Sync only contacts with phone numbers" option when contact syncing is disabled.\
+ - Fixed a bug where empty relations are sometimes added to records. Not a big problem, just annoying.\
+ - Fixed a bug in reading street addresses from the VX-9200/VX-11000.\
+0.6.2 v67:\
+ - Fixed a crash in commitEvents that was accidentally introduced in v65.\
+0.6.2 v66:\
+ - Renamed default calendars. Check order: storeInCalendar, @"Name - vxSync", @"Unique ID - vxSync".\
+ - Use unsigned location for IOUSBPhone.\
+0.6.2 v65:\
+ - Fixed bug where calendars that were previously synced to the phone are deleted if there are no events on the phone.\
+ - Disable the bluetooth, add device, and remove device buttons while vxSync scans for phones.\
+ - Fixed a bug where calendar settings are not remembered.\
+ - Do not set last sync date unless the sync was successful.\
+ - Extended NSArray with mapSelector: and mapSelector:withObject: . These functions call the selector on each item in the array and return the result.\
+ - New event calendar must be a read-write calendar. Changed the calendar settings to account for this.\
+ - Sync new events to a new calendar if a new event calendar isn't available.\
+0.6.1 v62:\
+ - 10.5.x support fixed\
+0.6.1 v61:\
+ - Add autorelease pool to all threads in VX_SyncPref.m\
+ - Fixed build issue with PPC version.\
+0.6.1 v60:\
+ - Format number not allows numbers up to 49 bytes long (fixed a typo).\
+ - Fixed a typo in the CT phonebook structure. County offset was wrong.\
+0.6.1 v59:\
+ - Cleanup dead picture ids.\
+ - Reordering on relationships is not a change. Fixed!\
+0.6.1 v58:\
+ - More bluetooth VIDs.\
+ - Use [IOBluetoothDevice pairedDevices] to scan for phones.\
+ - Updated (and compressed) some phone icons. Added an icon for the VX5600 (unsupported).\
+0.6.1 v56:\
+ - Added limit to how fast bluetooth can be scanned (without turning bluetooth on and off).\
+ - Added more vendor prefixes to IOBluetoothPhone.\
+ - Changed IOBluetooth phone to use pairedDevices instead of search through the IORegistry.\
+0.5.1 beta 010:\
+ - Added event sync threshold entry for manual control of how full the phone's memory is allowed to get.\
+ - Updated recurrence code to handle all iCal recurrences. TODO -- spit recurrences the phone doesn't support.\
+ - Removed identifier from calendar dictionary. It is no longer needed.\
+ - Added support for reading/writing group picture ids.\
+ - Fixed a bug in computing group membership for phones with single parent groups.\
+ - Readded missing line in format image.\
+ - Corrected chocolate touch wallpaper settings.\
+ - Fixed a problem with backups on some phones (there appears to be a bug with having multiple directories open at the same time-- investigate).\
+ - Code cleanup.\
+ - Some visual tweaks.\
+0.5.0 beta 038:\
+ - Delete command should (and now does) only send 4 bytes to be successfull.\
+ - Fixed a typo in getOccurrences.\
+0.5.0 beta 037:\
+ - Fixed phone images to all be the same size.\
+0.5.0 beta 035:\
+ - Fixed a small bug in recurrence calculation that caused events to get the wrong occurrence dates.\
+ - Added a workaround for bad bydayfreq in monthly recurrences.\
+0.5.0 beta 032:\
+ - Fixed (null) name contacts when set as company was not set properly.\
+ - Fixed bugs in phonebook support.\
+ - Configure the USB device if no interfaces are available.\
+0.5.0 beta 027:\
+ - LGPBEntryFile class cleanup.\
+ - Setting the picture/ringtone id should no longer need a reboot.\
+ - Add the phone contact index to the CRC of the image to avoid multiple contacts pointing at the same image.\
+0.5.0 beta 001:\
+ - Fixed chocolate touch support.\
+ - Added support for IMs.\
+ - Added support for setting the primary street address, phone number, and IM.\
+0.4.5 beta 005:\
+ - Phone calendar events no longer get properties copied from the persistent store.\
+ - No longer set all day flag from phone. This flag may be causing problems with some phones.\
+ - Data sources no longer to set VXKeyOnPhone.\
+ - Print a message when syncing is disabled in iSync.\
+ - Removed enabledEntities (was always identical to supportedEntities).\
+ - Tweaked the UI a little. Sync to calendar pulldown is only enabled if vxSync is set to merge records.\
+0.4.5 beta 004:\
+ - Changed contact lookup to use keys defined by Address Book as identity keys: first name, last name, and middle name.\
+ - Reboot phone only when phonebook changes require a reboot.\
+ - Fixed bug in 
+\f1 \CocoaLigature0 getIdentifierForRecord
+\f0 \CocoaLigature1 . Check if keys are the same (nil == nil).\
+ - Todo: Split name into 3 parts (first middle last) only if address book suports setting the middle name.\
+ - Fixed bug in getOccurrences that caused the start date to be represented twice in some cases.\
+ - Fixed infinite loop for events that are like: yearly on the 4th day of the month.\
+   - Known Issues:\
+     1) Recurrences like: yearly on the 4th weekend day or 4th weekday do not work properly. Can this be supported by the phone?\
+ - Fixed typo in 
+\f1 \CocoaLigature0 - (\cf2 int\cf0 ) setupDataSource: (\cf2 id\cf0  <\cf3 LGData\cf0 >) dataSource wipeEntities: (\cf2 BOOL\cf0 ) wipeEntities;
+\f0 \CocoaLigature1 \
+0.4.5 beta 003:\
+ - Fixed typo in getOccurrences.\
+ - Fixed infinite loop in getOccurrences caused by a daily recurrence.\
+0.4.5 beta 002:\
+ - Cleaned up address data from LGPhonebook.\
+ - Fixed potential release problem with groups is LGPhonebook. Changed class of groups to NSMutableArray.\
+0.4.5 beta 001:\
+ - LGMemos now internally stores records instead of raw data.\
+0.4.4 beta 014:\
+ - Notes are now flattened if their content is text/html or if they start with <html>.\
+0.4.4 beta 013:\
+ - Fixed bug in modifyGroup which could cause groups to get out of order. This might cause a future add to give a group the wrong group id.\
+0.4.4 beta 012:\
+ - Fixed 2 endianness related bugs:\
+    1. 0x01fa was set without an OSSwap...\
+    2. Recurrence endianness was flipped by setRecurrence\
+ - Fixed crash in getOccurrences. occurenceDate was used when not set.\
+0.4.4 beta 010:\
+ - Fixed bug in searching for new event calendar and moved code to LGCalendar class.\
+ - Added a crude hack in an attempt to fix bug 1. The fix is to modify all outgoing record keys to MAKE SURE they are NSCalendarDate if they need to be.\
+0.4.4 beta 007:\
+ - First history release for changelog. Several known bugs in this release:\
+    1. Crash due to until property of some recurrences (under investigation)\
+    2. Bug in code determining new events calendar.}

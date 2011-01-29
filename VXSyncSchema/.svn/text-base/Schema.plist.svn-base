@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Entities</key>
+	<array>
+		<dict>
+			<key>Attributes</key>
+			<array>
+				<dict>
+					<key>Name</key>
+					<string>com.mysoft.vxSync.ice index</string>
+					<key>Type</key>
+					<string>number</string>
+				</dict>
+				<dict>
+					<key>Name</key>
+					<string>com.mysoft.vxSync.picture path</string>
+					<key>Type</key>
+					<string>string</string>
+				</dict>
+				<dict>
+					<key>Name</key>
+					<string>com.mysoft.vxSync.ringtone path</string>
+					<key>Type</key>
+					<string>string</string>
+				</dict>
+				<dict>
+					<key>Name</key>
+					<string>com.mysoft.vxSync.index</string>
+					<key>Type</key>
+					<string>number</string>
+				</dict>
+				<dict>
+					<key>Name</key>
+					<string>com.mysoft.vxSync.identifier</string>
+					<key>Type</key>
+					<string>number</string>
+				</dict>
+			</array>
+			<key>ExtensionName</key>
+			<string>com.mycompany.myschema.dataclass</string>
+			<key>Name</key>
+			<string>com.apple.contacts.Contact</string>
+		</dict>
+		<dict>
+			<key>Attributes</key>
+			<array>
+				<dict>
+					<key>Name</key>
+					<string>com.mysoft.vxSync.deletable</string>
+					<key>Type</key>
+					<string>boolean</string>
+				</dict>
+				<dict>
+					<key>Name</key>
+					<string>com.mysoft.vxSync.groupID</string>
+					<key>Type</key>
+					<string>number</string>
+				</dict>
+			</array>
+			<key>ExtensionName</key>
+			<string>com.mycompany.myschema.groupex</string>
+			<key>Name</key>
+			<string>com.apple.contacts.Group</string>
+		</dict>
+		<dict>
+			<key>Attributes</key>
+			<array>
+				<dict>
+					<key>Name</key>
+					<string>com.mysoft.vxSync.event id</string>
+					<key>Type</key>
+					<string>number</string>
+				</dict>
+			</array>
+			<key>ExtensionName</key>
+			<string>com.mycompany.myschema.eventex</string>
+			<key>Name</key>
+			<string>com.apple.calendars.Event</string>
+		</dict>
+	</array>
+	<key>Name</key>
+	<string>com.mycompany.myschema</string>
+</dict>
+</plist>

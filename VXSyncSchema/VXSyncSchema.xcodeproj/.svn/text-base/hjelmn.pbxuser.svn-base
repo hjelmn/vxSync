@@ -1,0 +1,104 @@
+// !$*UTF8*$!
+{
+	089C1669FE841209C02AAC07 /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeTarget = 8D5B49AC048680CD000E48DA /* VXSyncSchema */;
+		codeSenseManager = 69421C7D103E559D006AC2F5 /* Code sense */;
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					478,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 276497318;
+			PBXWorkspaceStateSaveDate = 276497318;
+		};
+		perUserProjectItems = {
+			6930D41C10533A910096829E = 6930D41C10533A910096829E /* PBXTextBookmark */;
+			6930D41D10533A910096829E = 6930D41D10533A910096829E /* PBXTextBookmark */;
+			6930D41E10533A910096829E = 6930D41E10533A910096829E /* PBXTextBookmark */;
+		};
+		sourceControlManager = 69421C7C103E559D006AC2F5 /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	5AA81A60067145AD002E4978 /* Schema.plist */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {726, 1131}}";
+			sepNavSelRange = "{1990, 0}";
+			sepNavVisRange = "{644, 839}";
+			sepNavWindowFrame = "{{15, 41}, {842, 832}}";
+		};
+	};
+	6930D41C10533A910096829E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 69421FD5104F68F8006AC2F5 /* AppControllerSyncing-annotated.m */;
+		name = "AppControllerSyncing-annotated.m: 490";
+		rLen = 0;
+		rLoc = 20638;
+		rType = 0;
+		vrLen = 1353;
+		vrLoc = 20238;
+	};
+	6930D41D10533A910096829E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5AA81A60067145AD002E4978 /* Schema.plist */;
+		name = "Schema.plist: 93";
+		rLen = 0;
+		rLoc = 1990;
+		rType = 0;
+		vrLen = 558;
+		vrLoc = 1517;
+	};
+	6930D41E10533A910096829E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5AA81A60067145AD002E4978 /* Schema.plist */;
+		name = "Schema.plist: 82";
+		rLen = 0;
+		rLoc = 1990;
+		rType = 0;
+		vrLen = 839;
+		vrLoc = 644;
+	};
+	69421C7C103E559D006AC2F5 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryNamesForRoots = {
+				.. = "";
+			};
+		};
+	};
+	69421C7D103E559D006AC2F5 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	69421FD5104F68F8006AC2F5 /* AppControllerSyncing-annotated.m */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.objc;
+		name = "AppControllerSyncing-annotated.m";
+		path = "/Users/hjelmn/People 2/AppControllerSyncing-annotated.m";
+		sourceTree = "<absolute>";
+	};
+	8D5B49AC048680CD000E48DA /* VXSyncSchema */ = {
+		activeExec = 0;
+	};
+}

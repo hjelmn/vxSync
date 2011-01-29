@@ -1,0 +1,1187 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
+		69589C6612E953F300A993A6 /* NSDictionaryNoEmpty.m in Sources */ = {isa = PBXBuildFile; fileRef = 69589C6512E953F300A993A6 /* NSDictionaryNoEmpty.m */; };
+		698595D312AF3F9600F89660 /* vxAvailableTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 698595D212AF3F9600F89660 /* vxAvailableTransformer.m */; };
+		698595D612AF3FF200F89660 /* util.m in Sources */ = {isa = PBXBuildFile; fileRef = 698595D512AF3FF200F89660 /* util.m */; };
+		6985960E12AF447800F89660 /* unavailable.tif in Resources */ = {isa = PBXBuildFile; fileRef = 698595FA12AF447800F89660 /* unavailable.tif */; };
+		6985960F12AF447800F89660 /* available.tif in Resources */ = {isa = PBXBuildFile; fileRef = 698595FB12AF447800F89660 /* available.tif */; };
+		69859A2C12B1DEB500F89660 /* IOBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69859A2B12B1DEB500F89660 /* IOBluetooth.framework */; };
+		69859A2E12B1DEB500F89660 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69859A2D12B1DEB500F89660 /* IOKit.framework */; };
+		69859AAF12B1F39000F89660 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69859AAE12B1F39000F89660 /* AddressBook.framework */; };
+		69859AB112B1F39000F89660 /* CalendarStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69859AB012B1F39000F89660 /* CalendarStore.framework */; };
+		69859C3E12B4305300F89660 /* SyncServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69859C3D12B4305300F89660 /* SyncServices.framework */; };
+		69859D7112B438C200F89660 /* vx5400.vxphone in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 69859CB612B438BB00F89660 /* vx5400.vxphone */; };
+		69859D7212B438C200F89660 /* vx5500.vxphone in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 69859CC012B438BB00F89660 /* vx5500.vxphone */; };
+		69859D7312B438C200F89660 /* vx5600.vxphone in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 69859CCA12B438BB00F89660 /* vx5600.vxphone */; };
+		69859D7412B438C200F89660 /* vx7100.vxphone in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 69859CD412B438BB00F89660 /* vx7100.vxphone */; };
+		69859D7512B438C200F89660 /* vx8350.vxphone in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 69859CDE12B438BB00F89660 /* vx8350.vxphone */; };
+		69859D7612B438C200F89660 /* vx8360.vxphone in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 69859CE812B438BB00F89660 /* vx8360.vxphone */; };
+		69859D7712B438C200F89660 /* vx8550.vxphone in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 69859CF212B438BB00F89660 /* vx8550.vxphone */; };
+		69859D7812B438C200F89660 /* vx8560.vxphone in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 69859CFC12B438BB00F89660 /* vx8560.vxphone */; };
+		69859D7912B438C200F89660 /* vx8575.vxphone in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 69859D0612B438BB00F89660 /* vx8575.vxphone */; };
+		69859D7A12B438C200F89660 /* vx8610.vxphone in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 69859D1012B438BB00F89660 /* vx8610.vxphone */; };
+		69859D7B12B438C200F89660 /* vx8800.vxphone in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 69859D1A12B438BB00F89660 /* vx8800.vxphone */; };
+		69859D7C12B438C200F89660 /* vx9100.vxphone in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 69859D2412B438BB00F89660 /* vx9100.vxphone */; };
+		69859D7D12B438C200F89660 /* vx9200.vxphone in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 69859D2E12B438BB00F89660 /* vx9200.vxphone */; };
+		69859D7E12B438C200F89660 /* vx9600.vxphone in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 69859D3812B438BB00F89660 /* vx9600.vxphone */; };
+		69859D7F12B438C200F89660 /* vx9700.vxphone in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 69859D4212B438BB00F89660 /* vx9700.vxphone */; };
+		69859D8012B438C200F89660 /* vx10000.vxphone in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 69859D4C12B438BB00F89660 /* vx10000.vxphone */; };
+		69859D8112B438C200F89660 /* vx11000.vxphone in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 69859D5612B438BB00F89660 /* vx11000.vxphone */; };
+		69B9D93112BC3F42003C32DE /* add.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 69B9D92A12BC3F42003C32DE /* add.tiff */; };
+		69B9D93212BC3F42003C32DE /* addBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = 69B9D92B12BC3F42003C32DE /* addBlue.png */; };
+		69B9D93312BC3F42003C32DE /* bluetooth.png in Resources */ = {isa = PBXBuildFile; fileRef = 69B9D92C12BC3F42003C32DE /* bluetooth.png */; };
+		69B9D93412BC3F42003C32DE /* bluetoothBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = 69B9D92D12BC3F42003C32DE /* bluetoothBlue.png */; };
+		69B9D93512BC3F42003C32DE /* item_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 69B9D92E12BC3F42003C32DE /* item_background.png */; };
+		69B9D93612BC3F42003C32DE /* remove.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 69B9D92F12BC3F42003C32DE /* remove.tiff */; };
+		69B9D93712BC3F42003C32DE /* removeBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = 69B9D93012BC3F42003C32DE /* removeBlue.png */; };
+		69B9D96412BC42DB003C32DE /* restore.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9D93E12BC423D003C32DE /* restore.m */; };
+		69B9D96512BC42E2003C32DE /* syncdevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9D93F12BC423D003C32DE /* syncdevice.m */; };
+		69B9D96612BC42E7003C32DE /* backup.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9D93D12BC423D003C32DE /* backup.m */; };
+		69B9DA3712BC4342003C32DE /* util.m in Sources */ = {isa = PBXBuildFile; fileRef = 698595D512AF3FF200F89660 /* util.m */; };
+		69B9DA3F12BC4365003C32DE /* util.m in Sources */ = {isa = PBXBuildFile; fileRef = 698595D512AF3FF200F89660 /* util.m */; };
+		69B9DA5A12BC43E2003C32DE /* VXSyncDataDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DA5612BC43E2003C32DE /* VXSyncDataDelegate.m */; };
+		69B9DA5B12BC43E2003C32DE /* VXSyncDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DA5712BC43E2003C32DE /* VXSyncDataSource.m */; };
+		69B9DA6012BC440A003C32DE /* vxSyncCalendarFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DA5C12BC440A003C32DE /* vxSyncCalendarFilter.m */; };
+		69B9DA6112BC440A003C32DE /* vxSyncGroupFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DA5D12BC440A003C32DE /* vxSyncGroupFilter.m */; };
+		69B9DA6212BC4430003C32DE /* LGCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DA4412BC43B5003C32DE /* LGCalendar.m */; };
+		69B9DA6312BC4430003C32DE /* LGExceptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DA4512BC43B5003C32DE /* LGExceptions.m */; };
+		69B9DA6412BC4430003C32DE /* LGMemos.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DA4612BC43B5003C32DE /* LGMemos.m */; };
+		69B9DA6512BC4430003C32DE /* LGPBAddressFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DA4712BC43B5003C32DE /* LGPBAddressFile.m */; };
+		69B9DA6612BC4430003C32DE /* LGPBEntryFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DA4812BC43B5003C32DE /* LGPBEntryFile.m */; };
+		69B9DA6712BC4430003C32DE /* LGPBFavorites.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DA4912BC43B5003C32DE /* LGPBFavorites.m */; };
+		69B9DA6812BC4430003C32DE /* LGPBGroupFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DA4A12BC43B5003C32DE /* LGPBGroupFile.m */; };
+		69B9DA6912BC4430003C32DE /* LGPBSpeedFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DA4B12BC43B5003C32DE /* LGPBSpeedFile.m */; };
+		69B9DA7312BC4430003C32DE /* util.m in Sources */ = {isa = PBXBuildFile; fileRef = 698595D512AF3FF200F89660 /* util.m */; };
+		69B9DA7F12BC44D8003C32DE /* vxSyncDevice in Resources */ = {isa = PBXBuildFile; fileRef = 69B9D95212BC42A6003C32DE /* vxSyncDevice */; };
+		69B9DAAD12BC4693003C32DE /* BREWefs.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DAA312BC4693003C32DE /* BREWefs.m */; };
+		69B9DAAE12BC4693003C32DE /* IOBluetoothPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DAA412BC4693003C32DE /* IOBluetoothPhone.m */; };
+		69B9DAAF12BC4693003C32DE /* IOUSBPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DAA512BC4693003C32DE /* IOUSBPhone.m */; };
+		69B9DAB012BC4693003C32DE /* vxPhone_plugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DAA612BC4693003C32DE /* vxPhone_plugin.m */; };
+		69B9DAB112BC4693003C32DE /* vxPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DAA712BC4693003C32DE /* vxPhone.m */; };
+		69B9DAB212BC4693003C32DE /* VXSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DAA812BC4693003C32DE /* VXSelectionView.m */; };
+		69B9DAB312BC4693003C32DE /* vxSyncAppDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DAA912BC4693003C32DE /* vxSyncAppDefaults.m */; };
+		69B9DAB412BC4693003C32DE /* vxSyncAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DAAA12BC4693003C32DE /* vxSyncAppDelegate.m */; };
+		69B9DAB512BC4693003C32DE /* vxSyncAppDelegateBluetooth.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DAAB12BC4693003C32DE /* vxSyncAppDelegateBluetooth.m */; };
+		69B9DAB612BC4693003C32DE /* vxSyncAppDelegateDeviceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DAAC12BC4693003C32DE /* vxSyncAppDelegateDeviceManager.m */; };
+		69B9DAB712BC4693003C32DE /* BREWefs.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DAA312BC4693003C32DE /* BREWefs.m */; };
+		69B9DAB812BC4693003C32DE /* IOBluetoothPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DAA412BC4693003C32DE /* IOBluetoothPhone.m */; };
+		69B9DAB912BC4693003C32DE /* IOUSBPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DAA512BC4693003C32DE /* IOUSBPhone.m */; };
+		69B9DABA12BC4693003C32DE /* vxPhone_plugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DAA612BC4693003C32DE /* vxPhone_plugin.m */; };
+		69B9DABB12BC4693003C32DE /* vxPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DAA712BC4693003C32DE /* vxPhone.m */; };
+		69B9DABC12BC4693003C32DE /* VXSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DAA812BC4693003C32DE /* VXSelectionView.m */; };
+		69B9DAC612BC46C4003C32DE /* donate.png in Resources */ = {isa = PBXBuildFile; fileRef = 69B9DAC512BC46C4003C32DE /* donate.png */; };
+		69B9DBC012BC47F4003C32DE /* IOBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69859A2B12B1DEB500F89660 /* IOBluetooth.framework */; };
+		69B9DBC112BC47F4003C32DE /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69859A2D12B1DEB500F89660 /* IOKit.framework */; };
+		69B9DBC212BC47F4003C32DE /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69859AAE12B1F39000F89660 /* AddressBook.framework */; };
+		69B9DBC312BC47F4003C32DE /* CalendarStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69859AB012B1F39000F89660 /* CalendarStore.framework */; };
+		69B9DBC412BC47F4003C32DE /* SyncServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69859C3D12B4305300F89660 /* SyncServices.framework */; };
+		69B9DBC912BC482C003C32DE /* log.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DAC212BC46A7003C32DE /* log.m */; };
+		69B9DBCA12BC482C003C32DE /* recurrence.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DAC412BC46A7003C32DE /* recurrence.m */; };
+		69B9DBCD12BC4836003C32DE /* cksum.c in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DAC112BC46A7003C32DE /* cksum.c */; };
+		69B9DC0A12BC7317003C32DE /* LGPhonebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DC0812BC7306003C32DE /* LGPhonebook.m */; };
+		69B9DC1F12BC763F003C32DE /* log.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DAC212BC46A7003C32DE /* log.m */; };
+		69B9DC2012BC763F003C32DE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DAC312BC46A7003C32DE /* main.m */; };
+		69B9DC2312BC7647003C32DE /* cksum.c in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DAC112BC46A7003C32DE /* cksum.c */; };
+		69B9DD4812BC7A97003C32DE /* VXSyncSchema.syncschema in Resources */ = {isa = PBXBuildFile; fileRef = 69B9DD3912BC7A97003C32DE /* VXSyncSchema.syncschema */; };
+		69BE9B5712BF1BF500252E06 /* log.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DAC212BC46A7003C32DE /* log.m */; };
+		69BE9B5812BF1BF700252E06 /* cksum.c in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DAC112BC46A7003C32DE /* cksum.c */; };
+		69BE9B5912BF1C0F00252E06 /* BREWefs.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DAA312BC4693003C32DE /* BREWefs.m */; };
+		69BE9B5A12BF1C0F00252E06 /* IOBluetoothPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DAA412BC4693003C32DE /* IOBluetoothPhone.m */; };
+		69BE9B5B12BF1C0F00252E06 /* IOUSBPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DAA512BC4693003C32DE /* IOUSBPhone.m */; };
+		69BE9B5C12BF1C0F00252E06 /* vxPhone_plugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DAA612BC4693003C32DE /* vxPhone_plugin.m */; };
+		69BE9B5D12BF1C0F00252E06 /* vxPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DAA712BC4693003C32DE /* vxPhone.m */; };
+		69BE9C5912BF1C5600252E06 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		69BE9C5A12BF1C5600252E06 /* IOBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69859A2B12B1DEB500F89660 /* IOBluetooth.framework */; };
+		69BE9C5B12BF1C5600252E06 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69859A2D12B1DEB500F89660 /* IOKit.framework */; };
+		69BE9C5C12BF1C5600252E06 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69859AAE12B1F39000F89660 /* AddressBook.framework */; };
+		69BE9C5D12BF1C5600252E06 /* CalendarStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69859AB012B1F39000F89660 /* CalendarStore.framework */; };
+		69BE9C5E12BF1C5600252E06 /* SyncServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69859C3D12B4305300F89660 /* SyncServices.framework */; };
+		69BE9C6112BF1C7200252E06 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		69BE9C6212BF1C7200252E06 /* IOBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69859A2B12B1DEB500F89660 /* IOBluetooth.framework */; };
+		69BE9C6312BF1C7200252E06 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69859A2D12B1DEB500F89660 /* IOKit.framework */; };
+		69BE9C6412BF1C7200252E06 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69859AAE12B1F39000F89660 /* AddressBook.framework */; };
+		69BE9C6512BF1C7200252E06 /* CalendarStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69859AB012B1F39000F89660 /* CalendarStore.framework */; };
+		69BE9C6612BF1C7200252E06 /* SyncServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69859C3D12B4305300F89660 /* SyncServices.framework */; };
+		69BE9C6712BF1C9400252E06 /* BREWefs.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DAA312BC4693003C32DE /* BREWefs.m */; };
+		69BE9C6812BF1C9400252E06 /* IOBluetoothPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DAA412BC4693003C32DE /* IOBluetoothPhone.m */; };
+		69BE9C6912BF1C9400252E06 /* IOUSBPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DAA512BC4693003C32DE /* IOUSBPhone.m */; };
+		69BE9C6A12BF1C9400252E06 /* vxPhone_plugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DAA612BC4693003C32DE /* vxPhone_plugin.m */; };
+		69BE9C6B12BF1C9400252E06 /* vxPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DAA712BC4693003C32DE /* vxPhone.m */; };
+		69BE9C6C12BF1C9400252E06 /* cksum.c in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DAC112BC46A7003C32DE /* cksum.c */; };
+		69BE9C6D12BF1C9400252E06 /* log.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DAC212BC46A7003C32DE /* log.m */; };
+		69BE9C7012BF1CAD00252E06 /* vxBackup in Resources */ = {isa = PBXBuildFile; fileRef = 69B9D95912BC42B7003C32DE /* vxBackup */; };
+		69BE9C7112BF1CAD00252E06 /* vxRestore in Resources */ = {isa = PBXBuildFile; fileRef = 69B9D96012BC42CD003C32DE /* vxRestore */; };
+		69FFA34312CD69D00086A6D1 /* util.m in Sources */ = {isa = PBXBuildFile; fileRef = 698595D512AF3FF200F89660 /* util.m */; };
+		69FFA34412CD69D00086A6D1 /* BREWefs.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DAA312BC4693003C32DE /* BREWefs.m */; };
+		69FFA34512CD69D00086A6D1 /* IOBluetoothPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DAA412BC4693003C32DE /* IOBluetoothPhone.m */; };
+		69FFA34612CD69D00086A6D1 /* IOUSBPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DAA512BC4693003C32DE /* IOUSBPhone.m */; };
+		69FFA34712CD69D00086A6D1 /* vxPhone_plugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DAA612BC4693003C32DE /* vxPhone_plugin.m */; };
+		69FFA34812CD69D00086A6D1 /* vxPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DAA712BC4693003C32DE /* vxPhone.m */; };
+		69FFA34912CD69D00086A6D1 /* cksum.c in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DAC112BC46A7003C32DE /* cksum.c */; };
+		69FFA34A12CD69D00086A6D1 /* log.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B9DAC212BC46A7003C32DE /* log.m */; };
+		69FFA34B12CD69DC0086A6D1 /* reset.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B34BD612CD51A20036B640 /* reset.m */; };
+		69FFA44712CD6A400086A6D1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		69FFA44812CD6A400086A6D1 /* IOBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69859A2B12B1DEB500F89660 /* IOBluetooth.framework */; };
+		69FFA44912CD6A400086A6D1 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69859A2D12B1DEB500F89660 /* IOKit.framework */; };
+		69FFA45F12CD6ABE0086A6D1 /* vxReset in Resources */ = {isa = PBXBuildFile; fileRef = 69FFA32F12CD671E0086A6D1 /* vxReset */; };
+		69FFA63D12CEB41B0086A6D1 /* vxSync.icns in Resources */ = {isa = PBXBuildFile; fileRef = 69FFA63C12CEB41B0086A6D1 /* vxSync.icns */; };
+		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
+		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		69FFA33B12CD69C30086A6D1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 69B9D95112BC42A6003C32DE;
+			remoteInfo = vxSyncDevice;
+		};
+		69FFA33D12CD69C30086A6D1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 69B9D95812BC42B7003C32DE;
+			remoteInfo = vxBackup;
+		};
+		69FFA33F12CD69C30086A6D1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 69B9D95F12BC42CD003C32DE;
+			remoteInfo = vxRestore;
+		};
+		69FFA34112CD69C30086A6D1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 69FFA32E12CD671E0086A6D1;
+			remoteInfo = vxReset;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6985973312AF5FE800F89660 /* Copy Plugins */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				69859D7112B438C200F89660 /* vx5400.vxphone in Copy Plugins */,
+				69859D7212B438C200F89660 /* vx5500.vxphone in Copy Plugins */,
+				69859D7312B438C200F89660 /* vx5600.vxphone in Copy Plugins */,
+				69859D7412B438C200F89660 /* vx7100.vxphone in Copy Plugins */,
+				69859D7512B438C200F89660 /* vx8350.vxphone in Copy Plugins */,
+				69859D7612B438C200F89660 /* vx8360.vxphone in Copy Plugins */,
+				69859D7712B438C200F89660 /* vx8550.vxphone in Copy Plugins */,
+				69859D7812B438C200F89660 /* vx8560.vxphone in Copy Plugins */,
+				69859D7912B438C200F89660 /* vx8575.vxphone in Copy Plugins */,
+				69859D7A12B438C200F89660 /* vx8610.vxphone in Copy Plugins */,
+				69859D7B12B438C200F89660 /* vx8800.vxphone in Copy Plugins */,
+				69859D7C12B438C200F89660 /* vx9100.vxphone in Copy Plugins */,
+				69859D7D12B438C200F89660 /* vx9200.vxphone in Copy Plugins */,
+				69859D7E12B438C200F89660 /* vx9600.vxphone in Copy Plugins */,
+				69859D7F12B438C200F89660 /* vx9700.vxphone in Copy Plugins */,
+				69859D8012B438C200F89660 /* vx10000.vxphone in Copy Plugins */,
+				69859D8112B438C200F89660 /* vx11000.vxphone in Copy Plugins */,
+			);
+			name = "Copy Plugins";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
+		1DDD58150DA1D0A300B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		256AC3F00F4B6AF500CF3369 /* vxSync_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vxSync_Prefix.pch; sourceTree = "<group>"; };
+		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		69589C6412E953F300A993A6 /* NSDictionaryNoEmpty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSDictionaryNoEmpty.h; path = Headers/NSDictionaryNoEmpty.h; sourceTree = "<group>"; };
+		69589C6512E953F300A993A6 /* NSDictionaryNoEmpty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSDictionaryNoEmpty.m; path = Classes/NSDictionaryNoEmpty.m; sourceTree = "<group>"; };
+		698595D212AF3F9600F89660 /* vxAvailableTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = vxAvailableTransformer.m; path = Classes/vxAvailableTransformer.m; sourceTree = "<group>"; };
+		698595D512AF3FF200F89660 /* util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = util.m; path = "Other Sources/util.m"; sourceTree = "<group>"; };
+		698595FA12AF447800F89660 /* unavailable.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = unavailable.tif; path = ../vxSync.backup/Resources/unavailable.tif; sourceTree = SOURCE_ROOT; };
+		698595FB12AF447800F89660 /* available.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = available.tif; path = ../vxSync.backup/Resources/available.tif; sourceTree = SOURCE_ROOT; };
+		69859A2B12B1DEB500F89660 /* IOBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOBluetooth.framework; path = System/Library/Frameworks/IOBluetooth.framework; sourceTree = SDKROOT; };
+		69859A2D12B1DEB500F89660 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		69859AAE12B1F39000F89660 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		69859AB012B1F39000F89660 /* CalendarStore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CalendarStore.framework; path = System/Library/Frameworks/CalendarStore.framework; sourceTree = SDKROOT; };
+		69859C3D12B4305300F89660 /* SyncServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SyncServices.framework; path = System/Library/Frameworks/SyncServices.framework; sourceTree = SDKROOT; };
+		69859CB612B438BB00F89660 /* vx5400.vxphone */ = {isa = PBXFileReference; lastKnownFileType = folder; path = vx5400.vxphone; sourceTree = "<group>"; };
+		69859CC012B438BB00F89660 /* vx5500.vxphone */ = {isa = PBXFileReference; lastKnownFileType = folder; path = vx5500.vxphone; sourceTree = "<group>"; };
+		69859CCA12B438BB00F89660 /* vx5600.vxphone */ = {isa = PBXFileReference; lastKnownFileType = folder; path = vx5600.vxphone; sourceTree = "<group>"; };
+		69859CD412B438BB00F89660 /* vx7100.vxphone */ = {isa = PBXFileReference; lastKnownFileType = folder; path = vx7100.vxphone; sourceTree = "<group>"; };
+		69859CDE12B438BB00F89660 /* vx8350.vxphone */ = {isa = PBXFileReference; lastKnownFileType = folder; path = vx8350.vxphone; sourceTree = "<group>"; };
+		69859CE812B438BB00F89660 /* vx8360.vxphone */ = {isa = PBXFileReference; lastKnownFileType = folder; path = vx8360.vxphone; sourceTree = "<group>"; };
+		69859CF212B438BB00F89660 /* vx8550.vxphone */ = {isa = PBXFileReference; lastKnownFileType = folder; path = vx8550.vxphone; sourceTree = "<group>"; };
+		69859CFC12B438BB00F89660 /* vx8560.vxphone */ = {isa = PBXFileReference; lastKnownFileType = folder; path = vx8560.vxphone; sourceTree = "<group>"; };
+		69859D0612B438BB00F89660 /* vx8575.vxphone */ = {isa = PBXFileReference; lastKnownFileType = folder; path = vx8575.vxphone; sourceTree = "<group>"; };
+		69859D1012B438BB00F89660 /* vx8610.vxphone */ = {isa = PBXFileReference; lastKnownFileType = folder; path = vx8610.vxphone; sourceTree = "<group>"; };
+		69859D1A12B438BB00F89660 /* vx8800.vxphone */ = {isa = PBXFileReference; lastKnownFileType = folder; path = vx8800.vxphone; sourceTree = "<group>"; };
+		69859D2412B438BB00F89660 /* vx9100.vxphone */ = {isa = PBXFileReference; lastKnownFileType = folder; path = vx9100.vxphone; sourceTree = "<group>"; };
+		69859D2E12B438BB00F89660 /* vx9200.vxphone */ = {isa = PBXFileReference; lastKnownFileType = folder; path = vx9200.vxphone; sourceTree = "<group>"; };
+		69859D3812B438BB00F89660 /* vx9600.vxphone */ = {isa = PBXFileReference; lastKnownFileType = folder; path = vx9600.vxphone; sourceTree = "<group>"; };
+		69859D4212B438BB00F89660 /* vx9700.vxphone */ = {isa = PBXFileReference; lastKnownFileType = folder; path = vx9700.vxphone; sourceTree = "<group>"; };
+		69859D4C12B438BB00F89660 /* vx10000.vxphone */ = {isa = PBXFileReference; lastKnownFileType = folder; path = vx10000.vxphone; sourceTree = "<group>"; };
+		69859D5612B438BB00F89660 /* vx11000.vxphone */ = {isa = PBXFileReference; lastKnownFileType = folder; path = vx11000.vxphone; sourceTree = "<group>"; };
+		698D6D0B12CFB81E009349A2 /* ChangeLog.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = ChangeLog.rtf; sourceTree = "<group>"; };
+		69B34BD612CD51A20036B640 /* reset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = reset.m; sourceTree = "<group>"; };
+		69B9D92A12BC3F42003C32DE /* add.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = add.tiff; path = Resources/add.tiff; sourceTree = "<group>"; };
+		69B9D92B12BC3F42003C32DE /* addBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = addBlue.png; path = Resources/addBlue.png; sourceTree = "<group>"; };
+		69B9D92C12BC3F42003C32DE /* bluetooth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bluetooth.png; path = Resources/bluetooth.png; sourceTree = "<group>"; };
+		69B9D92D12BC3F42003C32DE /* bluetoothBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bluetoothBlue.png; path = Resources/bluetoothBlue.png; sourceTree = "<group>"; };
+		69B9D92E12BC3F42003C32DE /* item_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = item_background.png; path = Resources/item_background.png; sourceTree = "<group>"; };
+		69B9D92F12BC3F42003C32DE /* remove.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = remove.tiff; path = Resources/remove.tiff; sourceTree = "<group>"; };
+		69B9D93012BC3F42003C32DE /* removeBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = removeBlue.png; path = Resources/removeBlue.png; sourceTree = "<group>"; };
+		69B9D93D12BC423D003C32DE /* backup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = backup.m; sourceTree = "<group>"; };
+		69B9D93E12BC423D003C32DE /* restore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = restore.m; sourceTree = "<group>"; };
+		69B9D93F12BC423D003C32DE /* syncdevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = syncdevice.m; sourceTree = "<group>"; };
+		69B9D95212BC42A6003C32DE /* vxSyncDevice */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = vxSyncDevice; sourceTree = BUILT_PRODUCTS_DIR; };
+		69B9D95912BC42B7003C32DE /* vxBackup */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = vxBackup; sourceTree = BUILT_PRODUCTS_DIR; };
+		69B9D96012BC42CD003C32DE /* vxRestore */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = vxRestore; sourceTree = BUILT_PRODUCTS_DIR; };
+		69B9DA4412BC43B5003C32DE /* LGCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LGCalendar.m; path = Classes/LGCalendar.m; sourceTree = "<group>"; };
+		69B9DA4512BC43B5003C32DE /* LGExceptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LGExceptions.m; path = Classes/LGExceptions.m; sourceTree = "<group>"; };
+		69B9DA4612BC43B5003C32DE /* LGMemos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LGMemos.m; path = Classes/LGMemos.m; sourceTree = "<group>"; };
+		69B9DA4712BC43B5003C32DE /* LGPBAddressFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LGPBAddressFile.m; path = Classes/LGPBAddressFile.m; sourceTree = "<group>"; };
+		69B9DA4812BC43B5003C32DE /* LGPBEntryFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LGPBEntryFile.m; path = Classes/LGPBEntryFile.m; sourceTree = "<group>"; };
+		69B9DA4912BC43B5003C32DE /* LGPBFavorites.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LGPBFavorites.m; path = Classes/LGPBFavorites.m; sourceTree = "<group>"; };
+		69B9DA4A12BC43B5003C32DE /* LGPBGroupFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LGPBGroupFile.m; path = Classes/LGPBGroupFile.m; sourceTree = "<group>"; };
+		69B9DA4B12BC43B5003C32DE /* LGPBSpeedFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LGPBSpeedFile.m; path = Classes/LGPBSpeedFile.m; sourceTree = "<group>"; };
+		69B9DA5612BC43E2003C32DE /* VXSyncDataDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VXSyncDataDelegate.m; path = Classes/VXSyncDataDelegate.m; sourceTree = "<group>"; };
+		69B9DA5712BC43E2003C32DE /* VXSyncDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VXSyncDataSource.m; path = Classes/VXSyncDataSource.m; sourceTree = "<group>"; };
+		69B9DA5C12BC440A003C32DE /* vxSyncCalendarFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = vxSyncCalendarFilter.m; path = Classes/vxSyncCalendarFilter.m; sourceTree = "<group>"; };
+		69B9DA5D12BC440A003C32DE /* vxSyncGroupFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = vxSyncGroupFilter.m; path = Classes/vxSyncGroupFilter.m; sourceTree = "<group>"; };
+		69B9DA8612BC467E003C32DE /* BREWefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BREWefs.h; path = Headers/BREWefs.h; sourceTree = "<group>"; };
+		69B9DA8712BC467E003C32DE /* cksum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cksum.h; path = Headers/cksum.h; sourceTree = "<group>"; };
+		69B9DA8812BC467E003C32DE /* defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = defines.h; path = Headers/defines.h; sourceTree = "<group>"; };
+		69B9DA8912BC467E003C32DE /* IOBluetoothPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOBluetoothPhone.h; path = Headers/IOBluetoothPhone.h; sourceTree = "<group>"; };
+		69B9DA8A12BC467E003C32DE /* IOUSBPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IOUSBPhone.h; path = Headers/IOUSBPhone.h; sourceTree = "<group>"; };
+		69B9DA8B12BC467E003C32DE /* KNShelfSplitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KNShelfSplitView.h; path = Headers/KNShelfSplitView.h; sourceTree = "<group>"; };
+		69B9DA8C12BC467E003C32DE /* LGCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LGCalendar.h; path = Headers/LGCalendar.h; sourceTree = "<group>"; };
+		69B9DA8D12BC467E003C32DE /* LGExceptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LGExceptions.h; path = Headers/LGExceptions.h; sourceTree = "<group>"; };
+		69B9DA8E12BC467E003C32DE /* LGMemos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LGMemos.h; path = Headers/LGMemos.h; sourceTree = "<group>"; };
+		69B9DA8F12BC467E003C32DE /* LGPBAddressFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LGPBAddressFile.h; path = Headers/LGPBAddressFile.h; sourceTree = "<group>"; };
+		69B9DA9012BC467E003C32DE /* LGPBEntryFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LGPBEntryFile.h; path = Headers/LGPBEntryFile.h; sourceTree = "<group>"; };
+		69B9DA9112BC467E003C32DE /* LGPBFavorites.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LGPBFavorites.h; path = Headers/LGPBFavorites.h; sourceTree = "<group>"; };
+		69B9DA9212BC467E003C32DE /* LGPBGroupFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LGPBGroupFile.h; path = Headers/LGPBGroupFile.h; sourceTree = "<group>"; };
+		69B9DA9312BC467E003C32DE /* LGPBSpeedFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LGPBSpeedFile.h; path = Headers/LGPBSpeedFile.h; sourceTree = "<group>"; };
+		69B9DA9412BC467E003C32DE /* LGPhonebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LGPhonebook.h; path = Headers/LGPhonebook.h; sourceTree = "<group>"; };
+		69B9DA9512BC467E003C32DE /* log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = log.h; path = Headers/log.h; sourceTree = "<group>"; };
+		69B9DA9612BC467E003C32DE /* protocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = protocols.h; path = Headers/protocols.h; sourceTree = "<group>"; };
+		69B9DA9712BC467E003C32DE /* structures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = structures.h; path = Headers/structures.h; sourceTree = "<group>"; };
+		69B9DA9812BC467E003C32DE /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = util.h; path = Headers/util.h; sourceTree = "<group>"; };
+		69B9DA9912BC467E003C32DE /* VX_SyncPref.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VX_SyncPref.h; path = Headers/VX_SyncPref.h; sourceTree = "<group>"; };
+		69B9DA9A12BC467E003C32DE /* vxAvailableTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vxAvailableTransformer.h; path = Headers/vxAvailableTransformer.h; sourceTree = "<group>"; };
+		69B9DA9B12BC467E003C32DE /* vxPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vxPhone.h; path = Headers/vxPhone.h; sourceTree = "<group>"; };
+		69B9DA9C12BC467E003C32DE /* VXSelectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VXSelectionView.h; path = Headers/VXSelectionView.h; sourceTree = "<group>"; };
+		69B9DA9D12BC467E003C32DE /* VXSync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VXSync.h; path = Headers/VXSync.h; sourceTree = "<group>"; };
+		69B9DA9E12BC467E003C32DE /* vxSyncAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vxSyncAppDelegate.h; path = Headers/vxSyncAppDelegate.h; sourceTree = "<group>"; };
+		69B9DA9F12BC467E003C32DE /* vxSyncCalendarFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vxSyncCalendarFilter.h; path = Headers/vxSyncCalendarFilter.h; sourceTree = "<group>"; };
+		69B9DAA012BC467E003C32DE /* VXSyncDataDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VXSyncDataDelegate.h; path = Headers/VXSyncDataDelegate.h; sourceTree = "<group>"; };
+		69B9DAA112BC467E003C32DE /* VXSyncDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VXSyncDataSource.h; path = Headers/VXSyncDataSource.h; sourceTree = "<group>"; };
+		69B9DAA212BC467E003C32DE /* vxSyncGroupFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vxSyncGroupFilter.h; path = Headers/vxSyncGroupFilter.h; sourceTree = "<group>"; };
+		69B9DAA312BC4693003C32DE /* BREWefs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BREWefs.m; path = Classes/BREWefs.m; sourceTree = "<group>"; };
+		69B9DAA412BC4693003C32DE /* IOBluetoothPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IOBluetoothPhone.m; path = Classes/IOBluetoothPhone.m; sourceTree = "<group>"; };
+		69B9DAA512BC4693003C32DE /* IOUSBPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IOUSBPhone.m; path = Classes/IOUSBPhone.m; sourceTree = "<group>"; };
+		69B9DAA612BC4693003C32DE /* vxPhone_plugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = vxPhone_plugin.m; path = Classes/vxPhone_plugin.m; sourceTree = "<group>"; };
+		69B9DAA712BC4693003C32DE /* vxPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = vxPhone.m; path = Classes/vxPhone.m; sourceTree = "<group>"; };
+		69B9DAA812BC4693003C32DE /* VXSelectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VXSelectionView.m; path = Classes/VXSelectionView.m; sourceTree = "<group>"; };
+		69B9DAA912BC4693003C32DE /* vxSyncAppDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = vxSyncAppDefaults.m; path = Classes/vxSyncAppDefaults.m; sourceTree = "<group>"; };
+		69B9DAAA12BC4693003C32DE /* vxSyncAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = vxSyncAppDelegate.m; path = Classes/vxSyncAppDelegate.m; sourceTree = "<group>"; };
+		69B9DAAB12BC4693003C32DE /* vxSyncAppDelegateBluetooth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = vxSyncAppDelegateBluetooth.m; path = Classes/vxSyncAppDelegateBluetooth.m; sourceTree = "<group>"; };
+		69B9DAAC12BC4693003C32DE /* vxSyncAppDelegateDeviceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = vxSyncAppDelegateDeviceManager.m; path = Classes/vxSyncAppDelegateDeviceManager.m; sourceTree = "<group>"; };
+		69B9DAC112BC46A7003C32DE /* cksum.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = cksum.c; path = "Other Sources/cksum.c"; sourceTree = "<group>"; };
+		69B9DAC212BC46A7003C32DE /* log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = log.m; path = "Other Sources/log.m"; sourceTree = "<group>"; };
+		69B9DAC312BC46A7003C32DE /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "Other Sources/main.m"; sourceTree = "<group>"; };
+		69B9DAC412BC46A7003C32DE /* recurrence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = recurrence.m; path = "Other Sources/recurrence.m"; sourceTree = "<group>"; };
+		69B9DAC512BC46C4003C32DE /* donate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = donate.png; path = Resources/donate.png; sourceTree = "<group>"; };
+		69B9DC0812BC7306003C32DE /* LGPhonebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LGPhonebook.m; path = Classes/LGPhonebook.m; sourceTree = "<group>"; };
+		69B9DD3912BC7A97003C32DE /* VXSyncSchema.syncschema */ = {isa = PBXFileReference; lastKnownFileType = folder; name = VXSyncSchema.syncschema; path = VXSyncSchema/build/Debug/VXSyncSchema.syncschema; sourceTree = "<group>"; };
+		69FFA32F12CD671E0086A6D1 /* vxReset */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = vxReset; sourceTree = BUILT_PRODUCTS_DIR; };
+		69FFA63C12CEB41B0086A6D1 /* vxSync.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = vxSync.icns; path = Resources/vxSync.icns; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* vxSync-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "vxSync-Info.plist"; sourceTree = "<group>"; };
+		8D1107320486CEB800E47090 /* vxSync.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = vxSync.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		69B9D95012BC42A6003C32DE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				69B9DBC012BC47F4003C32DE /* IOBluetooth.framework in Frameworks */,
+				69B9DBC112BC47F4003C32DE /* IOKit.framework in Frameworks */,
+				69B9DBC212BC47F4003C32DE /* AddressBook.framework in Frameworks */,
+				69B9DBC312BC47F4003C32DE /* CalendarStore.framework in Frameworks */,
+				69B9DBC412BC47F4003C32DE /* SyncServices.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		69B9D95712BC42B7003C32DE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				69BE9C5912BF1C5600252E06 /* Cocoa.framework in Frameworks */,
+				69BE9C5A12BF1C5600252E06 /* IOBluetooth.framework in Frameworks */,
+				69BE9C5B12BF1C5600252E06 /* IOKit.framework in Frameworks */,
+				69BE9C5C12BF1C5600252E06 /* AddressBook.framework in Frameworks */,
+				69BE9C5D12BF1C5600252E06 /* CalendarStore.framework in Frameworks */,
+				69BE9C5E12BF1C5600252E06 /* SyncServices.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		69B9D95E12BC42CD003C32DE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				69BE9C6112BF1C7200252E06 /* Cocoa.framework in Frameworks */,
+				69BE9C6212BF1C7200252E06 /* IOBluetooth.framework in Frameworks */,
+				69BE9C6312BF1C7200252E06 /* IOKit.framework in Frameworks */,
+				69BE9C6412BF1C7200252E06 /* AddressBook.framework in Frameworks */,
+				69BE9C6512BF1C7200252E06 /* CalendarStore.framework in Frameworks */,
+				69BE9C6612BF1C7200252E06 /* SyncServices.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		69FFA32D12CD671E0086A6D1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				69FFA44712CD6A400086A6D1 /* Cocoa.framework in Frameworks */,
+				69FFA44812CD6A400086A6D1 /* IOBluetooth.framework in Frameworks */,
+				69FFA44912CD6A400086A6D1 /* IOKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D11072E0486CEB800E47090 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				69859A2C12B1DEB500F89660 /* IOBluetooth.framework in Frameworks */,
+				69859A2E12B1DEB500F89660 /* IOKit.framework in Frameworks */,
+				69859AAF12B1F39000F89660 /* AddressBook.framework in Frameworks */,
+				69859AB112B1F39000F89660 /* CalendarStore.framework in Frameworks */,
+				69859C3E12B4305300F89660 /* SyncServices.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				69B9DC0812BC7306003C32DE /* LGPhonebook.m */,
+				69B9DAA312BC4693003C32DE /* BREWefs.m */,
+				69B9DAA412BC4693003C32DE /* IOBluetoothPhone.m */,
+				69B9DAA512BC4693003C32DE /* IOUSBPhone.m */,
+				69B9DAA612BC4693003C32DE /* vxPhone_plugin.m */,
+				69B9DAA712BC4693003C32DE /* vxPhone.m */,
+				69B9DAA812BC4693003C32DE /* VXSelectionView.m */,
+				69B9DAA912BC4693003C32DE /* vxSyncAppDefaults.m */,
+				69B9DAAA12BC4693003C32DE /* vxSyncAppDelegate.m */,
+				69B9DAAB12BC4693003C32DE /* vxSyncAppDelegateBluetooth.m */,
+				69B9DAAC12BC4693003C32DE /* vxSyncAppDelegateDeviceManager.m */,
+				69B9DA5612BC43E2003C32DE /* VXSyncDataDelegate.m */,
+				69B9DA5712BC43E2003C32DE /* VXSyncDataSource.m */,
+				69B9DA4412BC43B5003C32DE /* LGCalendar.m */,
+				69B9DA4512BC43B5003C32DE /* LGExceptions.m */,
+				69B9DA4612BC43B5003C32DE /* LGMemos.m */,
+				69B9DA4712BC43B5003C32DE /* LGPBAddressFile.m */,
+				69B9DA4812BC43B5003C32DE /* LGPBEntryFile.m */,
+				69B9DA4912BC43B5003C32DE /* LGPBFavorites.m */,
+				69B9DA4A12BC43B5003C32DE /* LGPBGroupFile.m */,
+				69B9DA4B12BC43B5003C32DE /* LGPBSpeedFile.m */,
+				698595D212AF3F9600F89660 /* vxAvailableTransformer.m */,
+				69589C6512E953F300A993A6 /* NSDictionaryNoEmpty.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
+				69859A2B12B1DEB500F89660 /* IOBluetooth.framework */,
+				69859A2D12B1DEB500F89660 /* IOKit.framework */,
+				69859AAE12B1F39000F89660 /* AddressBook.framework */,
+				69859AB012B1F39000F89660 /* CalendarStore.framework */,
+				69859C3D12B4305300F89660 /* SyncServices.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
+				13E42FB307B3F0F600E4EEF1 /* CoreData.framework */,
+				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D1107320486CEB800E47090 /* vxSync.app */,
+				69B9D95212BC42A6003C32DE /* vxSyncDevice */,
+				69B9D95912BC42B7003C32DE /* vxBackup */,
+				69B9D96012BC42CD003C32DE /* vxRestore */,
+				69FFA32F12CD671E0086A6D1 /* vxReset */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* vxSync1 */ = {
+			isa = PBXGroup;
+			children = (
+				69FCC79912D95C220019AF8C /* Filters */,
+				6985980212AF608A00F89660 /* Plugins */,
+				69859DCE12B523DC00F89660 /* Headers */,
+				080E96DDFE201D6D7F000001 /* Classes */,
+				69B9D93C12BC423D003C32DE /* Tools */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = vxSync1;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				69B9DAC112BC46A7003C32DE /* cksum.c */,
+				69B9DAC212BC46A7003C32DE /* log.m */,
+				69B9DAC312BC46A7003C32DE /* main.m */,
+				69B9DAC412BC46A7003C32DE /* recurrence.m */,
+				698595D512AF3FF200F89660 /* util.m */,
+				256AC3F00F4B6AF500CF3369 /* vxSync_Prefix.pch */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				698D6D0B12CFB81E009349A2 /* ChangeLog.rtf */,
+				69FFA63C12CEB41B0086A6D1 /* vxSync.icns */,
+				69B9DD3912BC7A97003C32DE /* VXSyncSchema.syncschema */,
+				69B9DAC512BC46C4003C32DE /* donate.png */,
+				69B9D92A12BC3F42003C32DE /* add.tiff */,
+				69B9D92B12BC3F42003C32DE /* addBlue.png */,
+				69B9D92C12BC3F42003C32DE /* bluetooth.png */,
+				69B9D92D12BC3F42003C32DE /* bluetoothBlue.png */,
+				69B9D92E12BC3F42003C32DE /* item_background.png */,
+				69B9D92F12BC3F42003C32DE /* remove.tiff */,
+				69B9D93012BC3F42003C32DE /* removeBlue.png */,
+				698595FA12AF447800F89660 /* unavailable.tif */,
+				698595FB12AF447800F89660 /* available.tif */,
+				8D1107310486CEB800E47090 /* vxSync-Info.plist */,
+				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
+				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
+				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6985980212AF608A00F89660 /* Plugins */ = {
+			isa = PBXGroup;
+			children = (
+				69859CB612B438BB00F89660 /* vx5400.vxphone */,
+				69859CC012B438BB00F89660 /* vx5500.vxphone */,
+				69859CCA12B438BB00F89660 /* vx5600.vxphone */,
+				69859CD412B438BB00F89660 /* vx7100.vxphone */,
+				69859CDE12B438BB00F89660 /* vx8350.vxphone */,
+				69859CE812B438BB00F89660 /* vx8360.vxphone */,
+				69859CF212B438BB00F89660 /* vx8550.vxphone */,
+				69859CFC12B438BB00F89660 /* vx8560.vxphone */,
+				69859D0612B438BB00F89660 /* vx8575.vxphone */,
+				69859D1012B438BB00F89660 /* vx8610.vxphone */,
+				69859D1A12B438BB00F89660 /* vx8800.vxphone */,
+				69859D2412B438BB00F89660 /* vx9100.vxphone */,
+				69859D2E12B438BB00F89660 /* vx9200.vxphone */,
+				69859D3812B438BB00F89660 /* vx9600.vxphone */,
+				69859D4212B438BB00F89660 /* vx9700.vxphone */,
+				69859D4C12B438BB00F89660 /* vx10000.vxphone */,
+				69859D5612B438BB00F89660 /* vx11000.vxphone */,
+			);
+			path = Plugins;
+			sourceTree = "<group>";
+		};
+		69859DCE12B523DC00F89660 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				69B9DA8612BC467E003C32DE /* BREWefs.h */,
+				69B9DA8712BC467E003C32DE /* cksum.h */,
+				69B9DA8812BC467E003C32DE /* defines.h */,
+				69B9DA8912BC467E003C32DE /* IOBluetoothPhone.h */,
+				69B9DA8A12BC467E003C32DE /* IOUSBPhone.h */,
+				69B9DA8B12BC467E003C32DE /* KNShelfSplitView.h */,
+				69B9DA8C12BC467E003C32DE /* LGCalendar.h */,
+				69B9DA8D12BC467E003C32DE /* LGExceptions.h */,
+				69B9DA8E12BC467E003C32DE /* LGMemos.h */,
+				69B9DA8F12BC467E003C32DE /* LGPBAddressFile.h */,
+				69B9DA9012BC467E003C32DE /* LGPBEntryFile.h */,
+				69B9DA9112BC467E003C32DE /* LGPBFavorites.h */,
+				69B9DA9212BC467E003C32DE /* LGPBGroupFile.h */,
+				69B9DA9312BC467E003C32DE /* LGPBSpeedFile.h */,
+				69B9DA9412BC467E003C32DE /* LGPhonebook.h */,
+				69B9DA9512BC467E003C32DE /* log.h */,
+				69B9DA9812BC467E003C32DE /* util.h */,
+				69B9DA9612BC467E003C32DE /* protocols.h */,
+				69B9DA9712BC467E003C32DE /* structures.h */,
+				69B9DA9912BC467E003C32DE /* VX_SyncPref.h */,
+				69B9DA9A12BC467E003C32DE /* vxAvailableTransformer.h */,
+				69B9DA9B12BC467E003C32DE /* vxPhone.h */,
+				69B9DA9C12BC467E003C32DE /* VXSelectionView.h */,
+				69B9DA9D12BC467E003C32DE /* VXSync.h */,
+				69B9DA9E12BC467E003C32DE /* vxSyncAppDelegate.h */,
+				69B9DA9F12BC467E003C32DE /* vxSyncCalendarFilter.h */,
+				69B9DAA012BC467E003C32DE /* VXSyncDataDelegate.h */,
+				69B9DAA112BC467E003C32DE /* VXSyncDataSource.h */,
+				69B9DAA212BC467E003C32DE /* vxSyncGroupFilter.h */,
+				69589C6412E953F300A993A6 /* NSDictionaryNoEmpty.h */,
+			);
+			name = Headers;
+			sourceTree = "<group>";
+		};
+		69B9D93C12BC423D003C32DE /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				69B34BD612CD51A20036B640 /* reset.m */,
+				69B9D93D12BC423D003C32DE /* backup.m */,
+				69B9D93E12BC423D003C32DE /* restore.m */,
+				69B9D93F12BC423D003C32DE /* syncdevice.m */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		69FCC79912D95C220019AF8C /* Filters */ = {
+			isa = PBXGroup;
+			children = (
+				69B9DA5C12BC440A003C32DE /* vxSyncCalendarFilter.m */,
+				69B9DA5D12BC440A003C32DE /* vxSyncGroupFilter.m */,
+			);
+			name = Filters;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		69B9D95112BC42A6003C32DE /* vxSyncDevice */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 69B9D97A12BC42F1003C32DE /* Build configuration list for PBXNativeTarget "vxSyncDevice" */;
+			buildPhases = (
+				69B9D94F12BC42A6003C32DE /* Sources */,
+				69B9D95012BC42A6003C32DE /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = vxSyncDevice;
+			productName = vxSyncDevice;
+			productReference = 69B9D95212BC42A6003C32DE /* vxSyncDevice */;
+			productType = "com.apple.product-type.tool";
+		};
+		69B9D95812BC42B7003C32DE /* vxBackup */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 69B9D97B12BC42F1003C32DE /* Build configuration list for PBXNativeTarget "vxBackup" */;
+			buildPhases = (
+				69B9D95612BC42B7003C32DE /* Sources */,
+				69B9D95712BC42B7003C32DE /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = vxBackup;
+			productName = vxBackup;
+			productReference = 69B9D95912BC42B7003C32DE /* vxBackup */;
+			productType = "com.apple.product-type.tool";
+		};
+		69B9D95F12BC42CD003C32DE /* vxRestore */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 69B9D97C12BC42F1003C32DE /* Build configuration list for PBXNativeTarget "vxRestore" */;
+			buildPhases = (
+				69B9D95D12BC42CD003C32DE /* Sources */,
+				69B9D95E12BC42CD003C32DE /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = vxRestore;
+			productName = vxRestore;
+			productReference = 69B9D96012BC42CD003C32DE /* vxRestore */;
+			productType = "com.apple.product-type.tool";
+		};
+		69FFA32E12CD671E0086A6D1 /* vxReset */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 69FFA33312CD673D0086A6D1 /* Build configuration list for PBXNativeTarget "vxReset" */;
+			buildPhases = (
+				69FFA32C12CD671E0086A6D1 /* Sources */,
+				69FFA32D12CD671E0086A6D1 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = vxReset;
+			productName = vxReset;
+			productReference = 69FFA32F12CD671E0086A6D1 /* vxReset */;
+			productType = "com.apple.product-type.tool";
+		};
+		8D1107260486CEB800E47090 /* vxSync */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "vxSync" */;
+			buildPhases = (
+				8D1107290486CEB800E47090 /* Resources */,
+				6985973312AF5FE800F89660 /* Copy Plugins */,
+				8D11072C0486CEB800E47090 /* Sources */,
+				8D11072E0486CEB800E47090 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				69FFA33C12CD69C30086A6D1 /* PBXTargetDependency */,
+				69FFA33E12CD69C30086A6D1 /* PBXTargetDependency */,
+				69FFA34012CD69C30086A6D1 /* PBXTargetDependency */,
+				69FFA34212CD69C30086A6D1 /* PBXTargetDependency */,
+			);
+			name = vxSync;
+			productInstallPath = "$(HOME)/Applications";
+			productName = vxSync1;
+			productReference = 8D1107320486CEB800E47090 /* vxSync.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "vxSync" */;
+			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* vxSync1 */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8D1107260486CEB800E47090 /* vxSync */,
+				69B9D95112BC42A6003C32DE /* vxSyncDevice */,
+				69B9D95812BC42B7003C32DE /* vxBackup */,
+				69B9D95F12BC42CD003C32DE /* vxRestore */,
+				69FFA32E12CD671E0086A6D1 /* vxReset */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8D1107290486CEB800E47090 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				69B9DA7F12BC44D8003C32DE /* vxSyncDevice in Resources */,
+				69BE9C7012BF1CAD00252E06 /* vxBackup in Resources */,
+				69BE9C7112BF1CAD00252E06 /* vxRestore in Resources */,
+				69FFA45F12CD6ABE0086A6D1 /* vxReset in Resources */,
+				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
+				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
+				6985960E12AF447800F89660 /* unavailable.tif in Resources */,
+				6985960F12AF447800F89660 /* available.tif in Resources */,
+				69B9D93112BC3F42003C32DE /* add.tiff in Resources */,
+				69B9D93212BC3F42003C32DE /* addBlue.png in Resources */,
+				69B9D93312BC3F42003C32DE /* bluetooth.png in Resources */,
+				69B9D93412BC3F42003C32DE /* bluetoothBlue.png in Resources */,
+				69B9D93512BC3F42003C32DE /* item_background.png in Resources */,
+				69B9D93612BC3F42003C32DE /* remove.tiff in Resources */,
+				69B9D93712BC3F42003C32DE /* removeBlue.png in Resources */,
+				69B9DAC612BC46C4003C32DE /* donate.png in Resources */,
+				69B9DD4812BC7A97003C32DE /* VXSyncSchema.syncschema in Resources */,
+				69FFA63D12CEB41B0086A6D1 /* vxSync.icns in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		69B9D94F12BC42A6003C32DE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				69B9DC0A12BC7317003C32DE /* LGPhonebook.m in Sources */,
+				69B9DBCD12BC4836003C32DE /* cksum.c in Sources */,
+				69B9DBC912BC482C003C32DE /* log.m in Sources */,
+				69B9DBCA12BC482C003C32DE /* recurrence.m in Sources */,
+				69B9DA7312BC4430003C32DE /* util.m in Sources */,
+				69B9DA5A12BC43E2003C32DE /* VXSyncDataDelegate.m in Sources */,
+				69B9DA5B12BC43E2003C32DE /* VXSyncDataSource.m in Sources */,
+				69B9DA6012BC440A003C32DE /* vxSyncCalendarFilter.m in Sources */,
+				69B9DA6112BC440A003C32DE /* vxSyncGroupFilter.m in Sources */,
+				69B9DA6212BC4430003C32DE /* LGCalendar.m in Sources */,
+				69B9DA6312BC4430003C32DE /* LGExceptions.m in Sources */,
+				69B9DA6412BC4430003C32DE /* LGMemos.m in Sources */,
+				69B9DA6512BC4430003C32DE /* LGPBAddressFile.m in Sources */,
+				69B9DA6612BC4430003C32DE /* LGPBEntryFile.m in Sources */,
+				69B9DA6712BC4430003C32DE /* LGPBFavorites.m in Sources */,
+				69B9DA6812BC4430003C32DE /* LGPBGroupFile.m in Sources */,
+				69B9DA6912BC4430003C32DE /* LGPBSpeedFile.m in Sources */,
+				69B9D96512BC42E2003C32DE /* syncdevice.m in Sources */,
+				69B9DAB712BC4693003C32DE /* BREWefs.m in Sources */,
+				69B9DAB812BC4693003C32DE /* IOBluetoothPhone.m in Sources */,
+				69B9DAB912BC4693003C32DE /* IOUSBPhone.m in Sources */,
+				69B9DABA12BC4693003C32DE /* vxPhone_plugin.m in Sources */,
+				69B9DABB12BC4693003C32DE /* vxPhone.m in Sources */,
+				69B9DABC12BC4693003C32DE /* VXSelectionView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		69B9D95612BC42B7003C32DE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				69BE9B5912BF1C0F00252E06 /* BREWefs.m in Sources */,
+				69BE9B5A12BF1C0F00252E06 /* IOBluetoothPhone.m in Sources */,
+				69BE9B5B12BF1C0F00252E06 /* IOUSBPhone.m in Sources */,
+				69BE9B5C12BF1C0F00252E06 /* vxPhone_plugin.m in Sources */,
+				69BE9B5D12BF1C0F00252E06 /* vxPhone.m in Sources */,
+				69B9D96612BC42E7003C32DE /* backup.m in Sources */,
+				69BE9B5812BF1BF700252E06 /* cksum.c in Sources */,
+				69BE9B5712BF1BF500252E06 /* log.m in Sources */,
+				69B9DA3712BC4342003C32DE /* util.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		69B9D95D12BC42CD003C32DE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				69B9D96412BC42DB003C32DE /* restore.m in Sources */,
+				69B9DA3F12BC4365003C32DE /* util.m in Sources */,
+				69BE9C6712BF1C9400252E06 /* BREWefs.m in Sources */,
+				69BE9C6812BF1C9400252E06 /* IOBluetoothPhone.m in Sources */,
+				69BE9C6912BF1C9400252E06 /* IOUSBPhone.m in Sources */,
+				69BE9C6A12BF1C9400252E06 /* vxPhone_plugin.m in Sources */,
+				69BE9C6B12BF1C9400252E06 /* vxPhone.m in Sources */,
+				69BE9C6C12BF1C9400252E06 /* cksum.c in Sources */,
+				69BE9C6D12BF1C9400252E06 /* log.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		69FFA32C12CD671E0086A6D1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				69FFA34B12CD69DC0086A6D1 /* reset.m in Sources */,
+				69FFA34312CD69D00086A6D1 /* util.m in Sources */,
+				69FFA34412CD69D00086A6D1 /* BREWefs.m in Sources */,
+				69FFA34512CD69D00086A6D1 /* IOBluetoothPhone.m in Sources */,
+				69FFA34612CD69D00086A6D1 /* IOUSBPhone.m in Sources */,
+				69FFA34712CD69D00086A6D1 /* vxPhone_plugin.m in Sources */,
+				69FFA34812CD69D00086A6D1 /* vxPhone.m in Sources */,
+				69FFA34912CD69D00086A6D1 /* cksum.c in Sources */,
+				69FFA34A12CD69D00086A6D1 /* log.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D11072C0486CEB800E47090 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				69B9DC2312BC7647003C32DE /* cksum.c in Sources */,
+				69B9DC1F12BC763F003C32DE /* log.m in Sources */,
+				69B9DC2012BC763F003C32DE /* main.m in Sources */,
+				698595D312AF3F9600F89660 /* vxAvailableTransformer.m in Sources */,
+				698595D612AF3FF200F89660 /* util.m in Sources */,
+				69B9DAAD12BC4693003C32DE /* BREWefs.m in Sources */,
+				69B9DAAE12BC4693003C32DE /* IOBluetoothPhone.m in Sources */,
+				69B9DAAF12BC4693003C32DE /* IOUSBPhone.m in Sources */,
+				69B9DAB012BC4693003C32DE /* vxPhone_plugin.m in Sources */,
+				69B9DAB112BC4693003C32DE /* vxPhone.m in Sources */,
+				69B9DAB212BC4693003C32DE /* VXSelectionView.m in Sources */,
+				69B9DAB312BC4693003C32DE /* vxSyncAppDefaults.m in Sources */,
+				69B9DAB412BC4693003C32DE /* vxSyncAppDelegate.m in Sources */,
+				69B9DAB512BC4693003C32DE /* vxSyncAppDelegateBluetooth.m in Sources */,
+				69B9DAB612BC4693003C32DE /* vxSyncAppDelegateDeviceManager.m in Sources */,
+				69589C6612E953F300A993A6 /* NSDictionaryNoEmpty.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		69FFA33C12CD69C30086A6D1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 69B9D95112BC42A6003C32DE /* vxSyncDevice */;
+			targetProxy = 69FFA33B12CD69C30086A6D1 /* PBXContainerItemProxy */;
+		};
+		69FFA33E12CD69C30086A6D1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 69B9D95812BC42B7003C32DE /* vxBackup */;
+			targetProxy = 69FFA33D12CD69C30086A6D1 /* PBXContainerItemProxy */;
+		};
+		69FFA34012CD69C30086A6D1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 69B9D95F12BC42CD003C32DE /* vxRestore */;
+			targetProxy = 69FFA33F12CD69C30086A6D1 /* PBXContainerItemProxy */;
+		};
+		69FFA34212CD69C30086A6D1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 69FFA32E12CD671E0086A6D1 /* vxReset */;
+			targetProxy = 69FFA34112CD69C30086A6D1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				089C165DFE840E0CC02AAC07 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		1DDD58140DA1D0A300B32029 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1DDD58150DA1D0A300B32029 /* English */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		69B9D95412BC42A7003C32DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = vxSync_Prefix.pch;
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = vxSyncDevice;
+			};
+			name = Debug;
+		};
+		69B9D95512BC42A7003C32DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = vxSync_Prefix.pch;
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = vxSyncDevice;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		69B9D95B12BC42B7003C32DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = vxSync_Prefix.pch;
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = vxBackup;
+			};
+			name = Debug;
+		};
+		69B9D95C12BC42B7003C32DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = vxSync_Prefix.pch;
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = vxBackup;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		69B9D96212BC42CD003C32DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = vxSync_Prefix.pch;
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = vxRestore;
+			};
+			name = Debug;
+		};
+		69B9D96312BC42CD003C32DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = vxSync_Prefix.pch;
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = vxRestore;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		69FFA33112CD671E0086A6D1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = vxSync_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = "VXPHONE_NO_PLUGIN=1";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = vxReset;
+			};
+			name = Debug;
+		};
+		69FFA33212CD671E0086A6D1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = vxSync_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = "VXPHONE_NO_PLUGIN=1";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = vxReset;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		C01FCF4B08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = vxSync_Prefix.pch;
+				INFOPLIST_FILE = "vxSync-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				PRODUCT_NAME = vxSync;
+			};
+			name = Debug;
+		};
+		C01FCF4C08A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = vxSync_Prefix.pch;
+				INFOPLIST_FILE = "vxSync-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				PRODUCT_NAME = vxSync;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.5;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				PREBINDING = NO;
+				SDKROOT = macosx10.5;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		69B9D97A12BC42F1003C32DE /* Build configuration list for PBXNativeTarget "vxSyncDevice" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				69B9D95412BC42A7003C32DE /* Debug */,
+				69B9D95512BC42A7003C32DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		69B9D97B12BC42F1003C32DE /* Build configuration list for PBXNativeTarget "vxBackup" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				69B9D95B12BC42B7003C32DE /* Debug */,
+				69B9D95C12BC42B7003C32DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		69B9D97C12BC42F1003C32DE /* Build configuration list for PBXNativeTarget "vxRestore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				69B9D96212BC42CD003C32DE /* Debug */,
+				69B9D96312BC42CD003C32DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		69FFA33312CD673D0086A6D1 /* Build configuration list for PBXNativeTarget "vxReset" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				69FFA33112CD671E0086A6D1 /* Debug */,
+				69FFA33212CD671E0086A6D1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "vxSync" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4B08A954540054247B /* Debug */,
+				C01FCF4C08A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "vxSync" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}

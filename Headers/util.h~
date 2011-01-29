@@ -1,0 +1,77 @@
+/* (-*- objc -*-)
+ * vxSync: util.h
+ * Copyright (C) 2009-2010 Nathan Hjelm
+ * v0.5.1
+ *
+ * Copying of this source file in part of whole without explicit permission is strictly prohibited.
+ */
+
+#if !defined(UTIL_H)
+#define UTIL_H
+
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+#include <time.h>
+#include <sys/time.h>
+
+/* BREW time (Epoch = Jan 6, 1980) */
+NSDate *dateFromBREWTime (int timeVal);
+NSDate *dateFromBREWLocalTime (int timeVal);
+u_int32_t BREWTimeFromDate (NSDate *date);
+u_int32_t BREWLocalTimeFromDate (NSDate *date);
+
+/* LG Calendar date */
+u_int32_t LGCalendarDateFromDate (NSDate *date);
+NSDate *dateFromLGCalendarDate (u_int32_t LGCalDate);
+NSCalendarDate *calendarDateFromLGCalendarDate (u_int32_t LGCalDate);
+
+NSDate *startOfDate (NSDate *date);
+
+/* Yet another LG date format */
+NSDate *dateFromLGDate (u_int16_t dateData[6]);
+NSDate *dateFromLGDateUTC (u_int16_t dateData[6]);
+void lgDateFromDate (NSDate * date, u_int16_t dateData[6]);
+
+/* byte pack phone numbers */
+NSData *dataFromNumericPhonenumber (NSString *phoneNumber);
+NSString *numericPhonenumberFromData (NSData *phoneNumberData);
+
+NSString *formattedNumber (char *input);
+NSString *unformatNumber (NSString *input);
+NSString *numericalPhoneNumber (NSString *input);
+
+NSString *shortenString (NSString *theString, NSStringEncoding theEncoding, int maxLength);
+NSString *stringFromBuffer (const unsigned char *buffer, int maxLength, u_int64_t encoding);
+
+NSString *flattenHTML (NSString *htmlString);
+void splitName (NSString *fullName, NSMutableDictionary *store);
+
+NSInteger sortAscending (id ob1, id ob2, void *context);
+NSInteger sortDescending (id ob1, id ob2, void *context);
+id extractValue (id arg, void *context);
+
+void unpackValue (u_int8_t **ptrp, void *stp, int size);
+void unpackString (u_int8_t **ptrp, char *stpm, int length);
+void packValue (u_int8_t **ptrp, unsigned int ld, int size);
+void packString (u_int8_t **ptrp, char *ldp, int len);
+        
+void pretty_print_block (unsigned char *b, int len);
+NSString *vxSyncBundlePath (void);
+NSBundle *vxSyncBundle (void);
+
+NSDate *getAnOccurrence (NSDictionary *event, NSDictionary *recurrence, NSDate *after);
+
+int ppp_escape_inplace (u_int8_t *msg, size_t len, size_t buffer_len);
+int ppp_unescape_inplace(u_int8_t *msg, size_t len);
+
+@interface NSArray (map)
+- (id) mapSelector: (SEL) aSelector withObject: (id) anObject;
+- (id) mapSelector: (SEL) aSelector;
+@end
+
+@interface NSDictionary (vxSync)
+- (NSSet *) keysOfObjectsPassingTest: (BOOL (*)(id key, id obj, BOOL *stop)) predicate;
+@end
+
+#endif
