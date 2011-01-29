@@ -1,182 +1,0 @@
-TVXSyncSchema
-v7
-r0
-t273861070.541396
-cCheck dependencies
-cProcessInfoPlistFile "/Users/hjelmn/Documents/VX Sync/VXSyncSchema/build/Debug/VXSyncSchema.syncschema/Contents/Info.plist" Info.plist
-cCpResource build/Debug/VXSyncSchema.syncschema/Contents/Resources/Schema.plist Schema.plist
-cCopyTiffFile "/Users/hjelmn/Documents/VX Sync/VXSyncSchema/build/Debug/VXSyncSchema.syncschema/Contents/Resources/SyncDataClass.tiff" SyncDataClass.tiff
-cCopyStringsFile "/Users/hjelmn/Documents/VX Sync/VXSyncSchema/build/Debug/VXSyncSchema.syncschema/Contents/Resources/English.lproj/Schema.strings" English.lproj/Schema.strings
-cProcessPCH /var/folders/+9/+98P9C3aGOy4hASUXQFZ-k+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/VXSyncSchema_Prefix-asietbcheugsjwbvjwbkcxdynllo/VXSyncSchema_Prefix.pch.gch VXSyncSchema_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/VXSyncSchema.build/Debug/VXSyncSchema.build/Objects-normal/i386/Schema-strings.o "/Users/hjelmn/Documents/VX Sync/VXSyncSchema/Schema-strings.m" normal i386 objective-c com.apple.compilers.gcc.4_2
-cLd "/Users/hjelmn/Documents/VX Sync/VXSyncSchema/build/Debug/VXSyncSchema.syncschema/Contents/MacOS/VXSyncSchema" normal i386
-cTouch "/Users/hjelmn/Documents/VX Sync/VXSyncSchema/build/Debug/VXSyncSchema.syncschema"
-
-N/Developer/SDKs/MacOSX10.6.sdk
-c000000004A769DAB00000000000000EE
-t1249287595
-s238
-
-N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.h
-c000000004A600B8400000000000013E6
-t1247808388
-s5094
-
-N/System/Library/Frameworks/Foundation.framework/Foundation
-c000000004A87436B0000000000B37450
-t1250378603
-s11760720
-
-N/Users/hjelmn/Documents/VX Sync/VXSyncSchema/English.lproj/Schema.strings
-c000000004A8E1E1400000000000003FA
-t1250827796
-s1018
-
-N/Users/hjelmn/Documents/VX Sync/VXSyncSchema/Schema-strings.m
-c000000004A8E1E140000000000000280
-t1250827796
-s640
-i<Foundation/Foundation.h>
-
-N/Users/hjelmn/Documents/VX Sync/VXSyncSchema/Schema.plist
-c000000004AA29241000000000000081B
-t1252168257
-s2075
-
-N/Users/hjelmn/Documents/VX Sync/VXSyncSchema/SyncDataClass.tiff
-c000000004A8E1E140000000000006F54
-t1250827796
-s28500
-
-N/Users/hjelmn/Documents/VX Sync/VXSyncSchema/VXSyncSchema_Prefix.pch
-c000000004A8E1E1400000000000000A2
-t1250827796
-s162
-i<Foundation/Foundation.h>
-
-N/Users/hjelmn/Documents/VX Sync/VXSyncSchema/build/Debug/VXSyncSchema.syncschema
-t1252168270
-s102
-
-N/Users/hjelmn/Documents/VX Sync/VXSyncSchema/build/Debug/VXSyncSchema.syncschema/Contents/Info.plist
-t1251291928
-s723
-
-N/Users/hjelmn/Documents/VX Sync/VXSyncSchema/build/Debug/VXSyncSchema.syncschema/Contents/MacOS/VXSyncSchema
-t1251291928
-s13488
-
-N/Users/hjelmn/Documents/VX Sync/VXSyncSchema/build/Debug/VXSyncSchema.syncschema/Contents/Resources/English.lproj/Schema.strings
-t1251291928
-s1018
-
-N/Users/hjelmn/Documents/VX Sync/VXSyncSchema/build/Debug/VXSyncSchema.syncschema/Contents/Resources/Schema.plist
-t1252168270
-s2075
-
-N/Users/hjelmn/Documents/VX Sync/VXSyncSchema/build/Debug/VXSyncSchema.syncschema/Contents/Resources/SyncDataClass.tiff
-t1251291928
-s28500
-
-N/Users/hjelmn/Documents/VX Sync/VXSyncSchema/build/VXSyncSchema.build/Debug/VXSyncSchema.build/Objects-normal/i386/Schema-strings.o
-t1251290615
-s6124
-
-N/Users/hjelmn/Documents/VX Sync/VXSyncSchema/build/VXSyncSchema.build/Debug/VXSyncSchema.build/Objects-normal/i386/VXSyncSchema.LinkFileList
-c000000004A952DF10000000000000084
-t1251290609
-s132
-
-N/var/folders/+9/+98P9C3aGOy4hASUXQFZ-k+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/VXSyncSchema_Prefix-asietbcheugsjwbvjwbkcxdynllo/VXSyncSchema_Prefix.pch.gch
-t1251290615
-s43911984
-
-NInfo.plist
-c000000004A8E1E14000000000000030C
-t1250827796
-s780
-
-CCheck dependencies
-r0
-lSLF07#2@18"Check dependencies273861070#273861070#0(0"0(0#1#0"4300882208#0"0#
-
-CCompileC build/VXSyncSchema.build/Debug/VXSyncSchema.build/Objects-normal/i386/Schema-strings.o "/Users/hjelmn/Documents/VX Sync/VXSyncSchema/Schema-strings.m" normal i386 objective-c com.apple.compilers.gcc.4_2
-s272983415.199152
-e272983415.395125
-r1
-xCompileC
-xbuild/VXSyncSchema.build/Debug/VXSyncSchema.build/Objects-normal/i386/Schema-strings.o
-x/Users/hjelmn/Documents/VX Sync/VXSyncSchema/Schema-strings.m
-xnormal
-xi386
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@69"Compile /Users/hjelmn/Documents/VX Sync/VXSyncSchema/Schema-strings.m272983415#272983415#0(0"0(0#0#61"/Users/hjelmn/Documents/VX Sync/VXSyncSchema/Schema-strings.m4300882208#1168"    cd "/Users/hjelmn/Documents/VX Sync/VXSyncSchema"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -isysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.6 -gdwarf-2 "-I/Users/hjelmn/Documents/VX Sync/VXSyncSchema/build/VXSyncSchema.build/Debug/VXSyncSchema.build/VXSyncSchema.hmap" "-F/Users/hjelmn/Documents/VX Sync/VXSyncSchema/build/Debug" "-I/Users/hjelmn/Documents/VX Sync/VXSyncSchema/build/Debug/include" "-I/Users/hjelmn/Documents/VX Sync/VXSyncSchema/build/VXSyncSchema.build/Debug/VXSyncSchema.build/DerivedSources/i386" "-I/Users/hjelmn/Documents/VX Sync/VXSyncSchema/build/VXSyncSchema.build/Debug/VXSyncSchema.build/DerivedSources" -include /var/folders/+9/+98P9C3aGOy4hASUXQFZ-k+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/VXSyncSchema_Prefix-asietbcheugsjwbvjwbkcxdynllo/VXSyncSchema_Prefix.pch -c "/Users/hjelmn/Documents/VX Sync/VXSyncSchema/Schema-strings.m" -o "/Users/hjelmn/Documents/VX Sync/VXSyncSchema/build/VXSyncSchema.build/Debug/VXSyncSchema.build/Objects-normal/i386/Schema-strings.o"0#
-
-CCopyStringsFile "/Users/hjelmn/Documents/VX Sync/VXSyncSchema/build/Debug/VXSyncSchema.syncschema/Contents/Resources/English.lproj/Schema.strings" English.lproj/Schema.strings
-s272984728.248931
-e272984728.363337
-r1
-xCopyStringsFile
-x/Users/hjelmn/Documents/VX Sync/VXSyncSchema/build/Debug/VXSyncSchema.syncschema/Contents/Resources/English.lproj/Schema.strings
-xEnglish.lproj/Schema.strings
-lSLF07#2@33"Copy English.lproj/Schema.strings272984728#272984728#0(0"0(0#0#73"/Users/hjelmn/Documents/VX Sync/VXSyncSchema/English.lproj/Schema.strings4300882208#391"    cd "/Users/hjelmn/Documents/VX Sync/VXSyncSchema"    setenv ICONV /usr/bin/iconv    /Developer/Library/Xcode/Plug-ins/CoreBuildTasks.xcplugin/Contents/Resources/copystrings --validate --inputencoding utf-16 --outputencoding UTF-16 English.lproj/Schema.strings --outdir "/Users/hjelmn/Documents/VX Sync/VXSyncSchema/build/Debug/VXSyncSchema.syncschema/Contents/Resources/English.lproj"0#
-
-CCopyTiffFile "/Users/hjelmn/Documents/VX Sync/VXSyncSchema/build/Debug/VXSyncSchema.syncschema/Contents/Resources/SyncDataClass.tiff" SyncDataClass.tiff
-s272984728.212924
-e272984728.336310
-r1
-xCopyTiffFile
-x/Users/hjelmn/Documents/VX Sync/VXSyncSchema/build/Debug/VXSyncSchema.syncschema/Contents/Resources/SyncDataClass.tiff
-xSyncDataClass.tiff
-lSLF07#2@23"Copy SyncDataClass.tiff272984728#272984728#0(0"0(0#0#63"/Users/hjelmn/Documents/VX Sync/VXSyncSchema/SyncDataClass.tiff4300882208#274"    cd "/Users/hjelmn/Documents/VX Sync/VXSyncSchema"    /Developer/Library/Xcode/Plug-ins/CoreBuildTasks.xcplugin/Contents/Resources/copytiff SyncDataClass.tiff --outdir "/Users/hjelmn/Documents/VX Sync/VXSyncSchema/build/Debug/VXSyncSchema.syncschema/Contents/Resources"0#
-
-CCpResource build/Debug/VXSyncSchema.syncschema/Contents/Resources/Schema.plist Schema.plist
-s273861070.485560
-e273861070.538465
-r1
-xCpResource
-xbuild/Debug/VXSyncSchema.syncschema/Contents/Resources/Schema.plist
-xSchema.plist
-lSLF07#2@17"Copy Schema.plist273861070#273861070#0(0"0(0#0#57"/Users/hjelmn/Documents/VX Sync/VXSyncSchema/Schema.plist4300882208#364"    cd "/Users/hjelmn/Documents/VX Sync/VXSyncSchema"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks "/Users/hjelmn/Documents/VX Sync/VXSyncSchema/Schema.plist" "/Users/hjelmn/Documents/VX Sync/VXSyncSchema/build/Debug/VXSyncSchema.syncschema/Contents/Resources"0#
-
-CLd "/Users/hjelmn/Documents/VX Sync/VXSyncSchema/build/Debug/VXSyncSchema.syncschema/Contents/MacOS/VXSyncSchema" normal i386
-s272984728.363646
-e272984728.603922
-r1
-xLd
-x/Users/hjelmn/Documents/VX Sync/VXSyncSchema/build/Debug/VXSyncSchema.syncschema/Contents/MacOS/VXSyncSchema
-xnormal
-xi386
-lSLF07#2@113"Link /Users/hjelmn/Documents/VX Sync/VXSyncSchema/build/Debug/VXSyncSchema.syncschema/Contents/MacOS/VXSyncSchema272984728#272984728#0(0"0(0#0#0"4300882208#623"    cd "/Users/hjelmn/Documents/VX Sync/VXSyncSchema"    setenv MACOSX_DEPLOYMENT_TARGET 10.6    /Developer/usr/bin/gcc-4.2 -arch i386 -bundle -isysroot /Developer/SDKs/MacOSX10.6.sdk "-L/Users/hjelmn/Documents/VX Sync/VXSyncSchema/build/Debug" "-F/Users/hjelmn/Documents/VX Sync/VXSyncSchema/build/Debug" -filelist "/Users/hjelmn/Documents/VX Sync/VXSyncSchema/build/VXSyncSchema.build/Debug/VXSyncSchema.build/Objects-normal/i386/VXSyncSchema.LinkFileList" -mmacosx-version-min=10.6 -framework Foundation -o "/Users/hjelmn/Documents/VX Sync/VXSyncSchema/build/Debug/VXSyncSchema.syncschema/Contents/MacOS/VXSyncSchema"0#
-
-CProcessInfoPlistFile "/Users/hjelmn/Documents/VX Sync/VXSyncSchema/build/Debug/VXSyncSchema.syncschema/Contents/Info.plist" Info.plist
-s272984728.197131
-e272984728.212087
-r1
-xProcessInfoPlistFile
-x/Users/hjelmn/Documents/VX Sync/VXSyncSchema/build/Debug/VXSyncSchema.syncschema/Contents/Info.plist
-xInfo.plist
-lSLF07#2@18"Process Info.plist272984728#272984728#0(0"0(0#0#55"/Users/hjelmn/Documents/VX Sync/VXSyncSchema/Info.plist4300882208#238"    cd "/Users/hjelmn/Documents/VX Sync/VXSyncSchema"    builtin-infoPlistUtility Info.plist -expandbuildsettings -platform macosx -o "/Users/hjelmn/Documents/VX Sync/VXSyncSchema/build/Debug/VXSyncSchema.syncschema/Contents/Info.plist"0#
-
-CProcessPCH /var/folders/+9/+98P9C3aGOy4hASUXQFZ-k+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/VXSyncSchema_Prefix-asietbcheugsjwbvjwbkcxdynllo/VXSyncSchema_Prefix.pch.gch VXSyncSchema_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
-s272983409.812486
-e272983415.198971
-r1
-xProcessPCH
-x/var/folders/+9/+98P9C3aGOy4hASUXQFZ-k+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/VXSyncSchema_Prefix-asietbcheugsjwbvjwbkcxdynllo/VXSyncSchema_Prefix.pch.gch
-xVXSyncSchema_Prefix.pch
-xnormal
-xi386
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@34"Precompile VXSyncSchema_Prefix.pch272983409#272983415#0(0"0(0#0#68"/Users/hjelmn/Documents/VX Sync/VXSyncSchema/VXSyncSchema_Prefix.pch4300882208#1043"    cd "/Users/hjelmn/Documents/VX Sync/VXSyncSchema"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c-header -arch i386 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -isysroot /Developer/SDKs/MacOSX10.6.sdk -mmacosx-version-min=10.6 -gdwarf-2 "-I/Users/hjelmn/Documents/VX Sync/VXSyncSchema/build/VXSyncSchema.build/Debug/VXSyncSchema.build/VXSyncSchema.hmap" "-F/Users/hjelmn/Documents/VX Sync/VXSyncSchema/build/Debug" "-I/Users/hjelmn/Documents/VX Sync/VXSyncSchema/build/Debug/include" "-I/Users/hjelmn/Documents/VX Sync/VXSyncSchema/build/VXSyncSchema.build/Debug/VXSyncSchema.build/DerivedSources/i386" "-I/Users/hjelmn/Documents/VX Sync/VXSyncSchema/build/VXSyncSchema.build/Debug/VXSyncSchema.build/DerivedSources" -c "/Users/hjelmn/Documents/VX Sync/VXSyncSchema/VXSyncSchema_Prefix.pch" -o /var/folders/+9/+98P9C3aGOy4hASUXQFZ-k+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/VXSyncSchema_Prefix-asietbcheugsjwbvjwbkcxdynllo/VXSyncSchema_Prefix.pch.gch0#
-
-CTouch "/Users/hjelmn/Documents/VX Sync/VXSyncSchema/build/Debug/VXSyncSchema.syncschema"
-s273861070.538838
-e273861070.541369
-r1
-xTouch
-x/Users/hjelmn/Documents/VX Sync/VXSyncSchema/build/Debug/VXSyncSchema.syncschema
-lSLF07#2@86"Touch /Users/hjelmn/Documents/VX Sync/VXSyncSchema/build/Debug/VXSyncSchema.syncschema273861070#273861070#0(0"0(0#0#0"4300882208#159"    cd "/Users/hjelmn/Documents/VX Sync/VXSyncSchema"    /usr/bin/touch -c "/Users/hjelmn/Documents/VX Sync/VXSyncSchema/build/Debug/VXSyncSchema.syncschema"0#
-
