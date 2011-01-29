@@ -52,37 +52,6 @@ void convert_old_to_new_path (NSMutableDictionary *dict, NSString *oldKey, NSStr
   }
 }
 
-
-/* hack to get around the behavior if the default newObject */
-@interface vxKeyValue : NSObject {
-@private
-  NSString *key;
-  id value;
-  BOOL isExplicitlyIncluded;
-}
-
-@property (retain) NSString *key;
-@property (retain) id value;
-@property BOOL isExplicitlyIncluded;
-
-- (void) _markAsExplicitlyIncluded: (BOOL) mark;
-
-@end
-
-@implementation vxKeyValue
-
-+ (id) newKeyValue {
-  return [[vxKeyValue alloc] init];
-}
-
-@synthesize key, value, isExplicitlyIncluded;
-
-- (void) _markAsExplicitlyIncluded: (BOOL) mark {
-  [self setIsExplicitlyIncluded: mark];
-}
-@end
-
-
 void add_value_to_controller (NSDictionaryController *controller, NSObject *value, NSString *key) {
   id newObject = [controller newObject];
   [newObject setValue: value];
