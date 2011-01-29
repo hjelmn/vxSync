@@ -1,8 +1,0 @@
-/Users/hjelmn/src/vxSync1/vxSync1AppDelegate.m:9:30: error: vxSyncAppDelegate.h: No such file or directory
-/Users/hjelmn/src/vxSync1/vxSync1AppDelegate.m:13: warning: cannot find interface declaration for 'vxSyncAppDelegate'
-/Users/hjelmn/src/vxSync1/vxSync1AppDelegate.m:13: error: no declaration of property 'window' found in the interface
-/Users/hjelmn/src/vxSync1/vxSync1AppDelegate.m: In function '-[vxSyncAppDelegate applicationDidFinishLaunching:]':
-/Users/hjelmn/src/vxSync1/vxSync1AppDelegate.m:17: warning: 'vxSyncAppDelegate' may not respond to '-defaultsInitialize'
-/Users/hjelmn/src/vxSync1/vxSync1AppDelegate.m:17: warning: (Messages without a matching method signature
-/Users/hjelmn/src/vxSync1/vxSync1AppDelegate.m:17: warning: will be assumed to return 'id' and accept
-/Users/hjelmn/src/vxSync1/vxSync1AppDelegate.m:17: warning: '...' as arguments.)

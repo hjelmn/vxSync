@@ -1,249 +1,0 @@
-TvxSync
-v7
-r0
-t313274557.821129
-cCheck dependencies
-cProcessInfoPlistFile /Users/hjelmn/src/vxSync1/build/Debug/vxSync.app/Contents/Info.plist vxSync1-Info.plist
-cCopyStringsFile /Users/hjelmn/src/vxSync1/build/Debug/vxSync.app/Contents/Resources/English.lproj/InfoPlist.strings English.lproj/InfoPlist.strings
-cCompileXIB /Users/hjelmn/src/vxSync1/English.lproj/MainMenu.xib
-cProcessPCH /var/folders/+9/+98P9C3aGOy4hASUXQFZ-k+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/vxSync1_Prefix-crxrhrwdmoimphcymfvirwpkjxyb/vxSync1_Prefix.pch.gch vxSync1_Prefix.pch normal x86_64 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/vxSync1.build/Debug/vxSync.build/Objects-normal/x86_64/main.o /Users/hjelmn/src/vxSync1/main.m normal x86_64 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/vxSync1.build/Debug/vxSync.build/Objects-normal/x86_64/vxSyncAppDelegate.o /Users/hjelmn/src/vxSync1/vxSyncAppDelegate.m normal x86_64 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/vxSync1.build/Debug/vxSync.build/Objects-normal/x86_64/vxSyncAppDefaults.o /Users/hjelmn/src/vxSync1/vxSyncAppDefaults.m normal x86_64 objective-c com.apple.compilers.gcc.4_2
-cLd /Users/hjelmn/src/vxSync1/build/Debug/vxSync.app/Contents/MacOS/vxSync normal x86_64
-cTouch /Users/hjelmn/src/vxSync1/build/Debug/vxSync.app
-
-N/Developer/SDKs/MacOSX10.6.sdk
-c000000004BEDCA1900000000000000EE
-t1273874969
-s238
-
-N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/Cocoa.framework/Headers/Cocoa.h
-c0000000040C4AA6800000000000001E5
-t1086630504
-s485
-
-N/System/Library/Frameworks/Cocoa.framework/Cocoa
-c000000004A1F2D63000000000000A5E0
-t1243557219
-s42464
-
-N/Users/hjelmn/src/vxSync1/English.lproj/InfoPlist.strings
-c000000004CFBF404000000000000002D
-t1291580420
-s45
-
-N/Users/hjelmn/src/vxSync1/English.lproj/MainMenu.xib
-c000000004CFBF8CA000000000002C4ED
-t1291581642
-s181485
-
-N/Users/hjelmn/src/vxSync1/build/Debug/vxSync.app
-t1291581757
-s102
-
-N/Users/hjelmn/src/vxSync1/build/Debug/vxSync.app/Contents/Info.plist
-t1291581206
-s871
-
-N/Users/hjelmn/src/vxSync1/build/Debug/vxSync.app/Contents/MacOS/vxSync
-t1291581757
-s15560
-
-N/Users/hjelmn/src/vxSync1/build/Debug/vxSync.app/Contents/PkgInfo
-t1291581206
-s8
-
-N/Users/hjelmn/src/vxSync1/build/Debug/vxSync.app/Contents/Resources/English.lproj/InfoPlist.strings
-t1291581206
-s92
-
-N/Users/hjelmn/src/vxSync1/build/Debug/vxSync.app/Contents/Resources/English.lproj/MainMenu.nib
-t1291581646
-s34690
-
-N/Users/hjelmn/src/vxSync1/build/vxSync1.build/Debug/vxSync.build/Objects-normal/x86_64/main.o
-t1291581226
-s4960
-
-N/Users/hjelmn/src/vxSync1/build/vxSync1.build/Debug/vxSync.build/Objects-normal/x86_64/vxSync.LinkFileList
-c000000004CFBF77D0000000000000134
-t1291581309
-s308
-
-N/Users/hjelmn/src/vxSync1/build/vxSync1.build/Debug/vxSync.build/Objects-normal/x86_64/vxSync1AppDelegate.o
-t1291581227
-s21224
-
-N/Users/hjelmn/src/vxSync1/build/vxSync1.build/Debug/vxSync.build/Objects-normal/x86_64/vxSyncAppDefaults.o
-t1291581647
-s15704
-
-N/Users/hjelmn/src/vxSync1/build/vxSync1.build/Debug/vxSync.build/Objects-normal/x86_64/vxSyncAppDelegate.o
-t1291581757
-s23672
-
-N/Users/hjelmn/src/vxSync1/main.m
-c000000004CFBF40400000000000000FD
-t1291580420
-s253
-i<Cocoa/Cocoa.h>
-
-N/Users/hjelmn/src/vxSync1/vxSync1AppDelegate.h
-c000000004CFBF7660000000000000184
-t1291581286
-s388
-i<Cocoa/Cocoa.h>
-
-N/Users/hjelmn/src/vxSync1/vxSync1AppDelegate.m
-c000000004CFBF770000000000000019A
-t1291581296
-s410
-i"vxSyncAppDelegate.h"
-
-N/Users/hjelmn/src/vxSync1/vxSync1_Prefix.pch
-c000000004CFBF4040000000000000091
-t1291580420
-s145
-i<Cocoa/Cocoa.h>
-
-N/Users/hjelmn/src/vxSync1/vxSyncAppDefaults.m
-c000000004CFBF7B60000000000000240
-t1291581366
-s576
-i"vxSyncAppDelegate.h"
-
-N/Users/hjelmn/src/vxSync1/vxSyncAppDelegate.h
-c000000004CFBF8BE00000000000001C9
-t1291581630
-s457
-i<Cocoa/Cocoa.h>
-
-N/Users/hjelmn/src/vxSync1/vxSyncAppDelegate.m
-c000000004CFBF93900000000000001E7
-t1291581753
-s487
-i"vxSyncAppDelegate.h"
-
-N/var/folders/+9/+98P9C3aGOy4hASUXQFZ-k+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/vxSync1_Prefix-crxrhrwdmoimphcymfvirwpkjxyb/vxSync1_Prefix.pch.gch
-t1291581224
-s54265616
-
-NvxSync1-Info.plist
-c000000004CFBF68200000000000003DE
-t1291581058
-s990
-
-CCheck dependencies
-r0
-lSLF07#2@18"Check dependencies313274556#313274556#0(0"0(0#1#0"4300911832#0"0#
-
-CCompileC build/vxSync1.build/Debug/vxSync.build/Objects-normal/x86_64/main.o /Users/hjelmn/src/vxSync1/main.m normal x86_64 objective-c com.apple.compilers.gcc.4_2
-s313274024.955623
-e313274026.846828
-r1
-xCompileC
-xbuild/vxSync1.build/Debug/vxSync.build/Objects-normal/x86_64/main.o
-x/Users/hjelmn/src/vxSync1/main.m
-xnormal
-xx86_64
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@40"Compile /Users/hjelmn/src/vxSync1/main.m313274024#313274026#0(0"0(0#0#32"/Users/hjelmn/src/vxSync1/main.m4300911832#1296"    cd /Users/hjelmn/src/vxSync1    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/hjelmn/src/vxSync1/build/vxSync1.build/Debug/vxSync.build/vxSync-generated-files.hmap -I/Users/hjelmn/src/vxSync1/build/vxSync1.build/Debug/vxSync.build/vxSync-own-target-headers.hmap -I/Users/hjelmn/src/vxSync1/build/vxSync1.build/Debug/vxSync.build/vxSync-all-target-headers.hmap -iquote /Users/hjelmn/src/vxSync1/build/vxSync1.build/Debug/vxSync.build/vxSync-project-headers.hmap -F/Users/hjelmn/src/vxSync1/build/Debug -I/Users/hjelmn/src/vxSync1/build/Debug/include -I/Users/hjelmn/src/vxSync1/build/vxSync1.build/Debug/vxSync.build/DerivedSources/x86_64 -I/Users/hjelmn/src/vxSync1/build/vxSync1.build/Debug/vxSync.build/DerivedSources -include /var/folders/+9/+98P9C3aGOy4hASUXQFZ-k+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/vxSync1_Prefix-crxrhrwdmoimphcymfvirwpkjxyb/vxSync1_Prefix.pch -c /Users/hjelmn/src/vxSync1/main.m -o /Users/hjelmn/src/vxSync1/build/vxSync1.build/Debug/vxSync.build/Objects-normal/x86_64/main.o0#
-
-CCompileC build/vxSync1.build/Debug/vxSync.build/Objects-normal/x86_64/vxSync1AppDelegate.o /Users/hjelmn/src/vxSync1/vxSync1AppDelegate.m normal x86_64 objective-c com.apple.compilers.gcc.4_2
-s313274024.956785
-e313274027.022952
-r1
-xCompileC
-xbuild/vxSync1.build/Debug/vxSync.build/Objects-normal/x86_64/vxSync1AppDelegate.o
-x/Users/hjelmn/src/vxSync1/vxSync1AppDelegate.m
-xnormal
-xx86_64
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@54"Compile /Users/hjelmn/src/vxSync1/vxSync1AppDelegate.m313274024#313274027#0(0"0(0#0#46"/Users/hjelmn/src/vxSync1/vxSync1AppDelegate.m4300911832#1324"    cd /Users/hjelmn/src/vxSync1    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/hjelmn/src/vxSync1/build/vxSync1.build/Debug/vxSync.build/vxSync-generated-files.hmap -I/Users/hjelmn/src/vxSync1/build/vxSync1.build/Debug/vxSync.build/vxSync-own-target-headers.hmap -I/Users/hjelmn/src/vxSync1/build/vxSync1.build/Debug/vxSync.build/vxSync-all-target-headers.hmap -iquote /Users/hjelmn/src/vxSync1/build/vxSync1.build/Debug/vxSync.build/vxSync-project-headers.hmap -F/Users/hjelmn/src/vxSync1/build/Debug -I/Users/hjelmn/src/vxSync1/build/Debug/include -I/Users/hjelmn/src/vxSync1/build/vxSync1.build/Debug/vxSync.build/DerivedSources/x86_64 -I/Users/hjelmn/src/vxSync1/build/vxSync1.build/Debug/vxSync.build/DerivedSources -include /var/folders/+9/+98P9C3aGOy4hASUXQFZ-k+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/vxSync1_Prefix-crxrhrwdmoimphcymfvirwpkjxyb/vxSync1_Prefix.pch -c /Users/hjelmn/src/vxSync1/vxSync1AppDelegate.m -o /Users/hjelmn/src/vxSync1/build/vxSync1.build/Debug/vxSync.build/Objects-normal/x86_64/vxSync1AppDelegate.o0#
-
-CCompileC build/vxSync1.build/Debug/vxSync.build/Objects-normal/x86_64/vxSyncAppDefaults.o /Users/hjelmn/src/vxSync1/vxSyncAppDefaults.m normal x86_64 objective-c com.apple.compilers.gcc.4_2
-s313274446.575803
-e313274447.254749
-r1
-xCompileC
-xbuild/vxSync1.build/Debug/vxSync.build/Objects-normal/x86_64/vxSyncAppDefaults.o
-x/Users/hjelmn/src/vxSync1/vxSyncAppDefaults.m
-xnormal
-xx86_64
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@53"Compile /Users/hjelmn/src/vxSync1/vxSyncAppDefaults.m313274446#313274447#0(0"0(0#0#45"/Users/hjelmn/src/vxSync1/vxSyncAppDefaults.m4300911832#1322"    cd /Users/hjelmn/src/vxSync1    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/hjelmn/src/vxSync1/build/vxSync1.build/Debug/vxSync.build/vxSync-generated-files.hmap -I/Users/hjelmn/src/vxSync1/build/vxSync1.build/Debug/vxSync.build/vxSync-own-target-headers.hmap -I/Users/hjelmn/src/vxSync1/build/vxSync1.build/Debug/vxSync.build/vxSync-all-target-headers.hmap -iquote /Users/hjelmn/src/vxSync1/build/vxSync1.build/Debug/vxSync.build/vxSync-project-headers.hmap -F/Users/hjelmn/src/vxSync1/build/Debug -I/Users/hjelmn/src/vxSync1/build/Debug/include -I/Users/hjelmn/src/vxSync1/build/vxSync1.build/Debug/vxSync.build/DerivedSources/x86_64 -I/Users/hjelmn/src/vxSync1/build/vxSync1.build/Debug/vxSync.build/DerivedSources -include /var/folders/+9/+98P9C3aGOy4hASUXQFZ-k+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/vxSync1_Prefix-crxrhrwdmoimphcymfvirwpkjxyb/vxSync1_Prefix.pch -c /Users/hjelmn/src/vxSync1/vxSyncAppDefaults.m -o /Users/hjelmn/src/vxSync1/build/vxSync1.build/Debug/vxSync.build/Objects-normal/x86_64/vxSyncAppDefaults.o0#
-
-CCompileC build/vxSync1.build/Debug/vxSync.build/Objects-normal/x86_64/vxSyncAppDelegate.o /Users/hjelmn/src/vxSync1/vxSyncAppDelegate.m normal x86_64 objective-c com.apple.compilers.gcc.4_2
-s313274556.973180
-e313274557.622411
-r1
-xCompileC
-xbuild/vxSync1.build/Debug/vxSync.build/Objects-normal/x86_64/vxSyncAppDelegate.o
-x/Users/hjelmn/src/vxSync1/vxSyncAppDelegate.m
-xnormal
-xx86_64
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@53"Compile /Users/hjelmn/src/vxSync1/vxSyncAppDelegate.m313274556#313274557#0(0"0(0#0#45"/Users/hjelmn/src/vxSync1/vxSyncAppDelegate.m4300911832#1322"    cd /Users/hjelmn/src/vxSync1    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/hjelmn/src/vxSync1/build/vxSync1.build/Debug/vxSync.build/vxSync-generated-files.hmap -I/Users/hjelmn/src/vxSync1/build/vxSync1.build/Debug/vxSync.build/vxSync-own-target-headers.hmap -I/Users/hjelmn/src/vxSync1/build/vxSync1.build/Debug/vxSync.build/vxSync-all-target-headers.hmap -iquote /Users/hjelmn/src/vxSync1/build/vxSync1.build/Debug/vxSync.build/vxSync-project-headers.hmap -F/Users/hjelmn/src/vxSync1/build/Debug -I/Users/hjelmn/src/vxSync1/build/Debug/include -I/Users/hjelmn/src/vxSync1/build/vxSync1.build/Debug/vxSync.build/DerivedSources/x86_64 -I/Users/hjelmn/src/vxSync1/build/vxSync1.build/Debug/vxSync.build/DerivedSources -include /var/folders/+9/+98P9C3aGOy4hASUXQFZ-k+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/vxSync1_Prefix-crxrhrwdmoimphcymfvirwpkjxyb/vxSync1_Prefix.pch -c /Users/hjelmn/src/vxSync1/vxSyncAppDelegate.m -o /Users/hjelmn/src/vxSync1/build/vxSync1.build/Debug/vxSync.build/Objects-normal/x86_64/vxSyncAppDelegate.o0#
-
-CCompileXIB /Users/hjelmn/src/vxSync1/English.lproj/MainMenu.xib
-s313274446.205986
-e313274446.574600
-r1
-xCompileXIB
-x/Users/hjelmn/src/vxSync1/English.lproj/MainMenu.xib
-lSLF07#2@37"CompileXIB English.lproj/MainMenu.xib313274446#313274446#0(0"0(0#0#52"/Users/hjelmn/src/vxSync1/English.lproj/MainMenu.xib4300911832#287"    cd /Users/hjelmn/src/vxSync1    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/hjelmn/src/vxSync1/build/Debug/vxSync.app/Contents/Resources/English.lproj/MainMenu.nib /Users/hjelmn/src/vxSync1/English.lproj/MainMenu.xib0#
-
-CCopyStringsFile /Users/hjelmn/src/vxSync1/build/Debug/vxSync.app/Contents/Resources/English.lproj/InfoPlist.strings English.lproj/InfoPlist.strings
-s313274006.219059
-e313274006.848528
-r1
-xCopyStringsFile
-x/Users/hjelmn/src/vxSync1/build/Debug/vxSync.app/Contents/Resources/English.lproj/InfoPlist.strings
-xEnglish.lproj/InfoPlist.strings
-lSLF07#2@36"Copy English.lproj/InfoPlist.strings313274006#313274006#0(0"0(0#0#57"/Users/hjelmn/src/vxSync1/English.lproj/InfoPlist.strings4300911832#338"    cd /Users/hjelmn/src/vxSync1    setenv ICONV /usr/bin/iconv    /Developer/Library/Xcode/Plug-ins/CoreBuildTasks.xcplugin/Contents/Resources/copystrings --validate --inputencoding utf-8 --outputencoding UTF-16 English.lproj/InfoPlist.strings --outdir /Users/hjelmn/src/vxSync1/build/Debug/vxSync.app/Contents/Resources/English.lproj0#
-
-CLd /Users/hjelmn/src/vxSync1/build/Debug/vxSync.app/Contents/MacOS/vxSync normal x86_64
-s313274557.622502
-e313274557.803539
-r1
-xLd
-x/Users/hjelmn/src/vxSync1/build/Debug/vxSync.app/Contents/MacOS/vxSync
-xnormal
-xx86_64
-lSLF07#2@75"Link /Users/hjelmn/src/vxSync1/build/Debug/vxSync.app/Contents/MacOS/vxSync313274557#313274557#0(0"0(0#0#0"4300911832#473"    cd /Users/hjelmn/src/vxSync1    setenv MACOSX_DEPLOYMENT_TARGET 10.6    /Developer/usr/bin/gcc-4.2 -arch x86_64 -isysroot /Developer/SDKs/MacOSX10.6.sdk -L/Users/hjelmn/src/vxSync1/build/Debug -F/Users/hjelmn/src/vxSync1/build/Debug -filelist /Users/hjelmn/src/vxSync1/build/vxSync1.build/Debug/vxSync.build/Objects-normal/x86_64/vxSync.LinkFileList -mmacosx-version-min=10.6 -framework Cocoa -o /Users/hjelmn/src/vxSync1/build/Debug/vxSync.app/Contents/MacOS/vxSync0#
-
-CProcessInfoPlistFile /Users/hjelmn/src/vxSync1/build/Debug/vxSync.app/Contents/Info.plist vxSync1-Info.plist
-s313274006.193024
-e313274006.218964
-r1
-xProcessInfoPlistFile
-x/Users/hjelmn/src/vxSync1/build/Debug/vxSync.app/Contents/Info.plist
-xvxSync1-Info.plist
-lSLF07#2@26"Process vxSync1-Info.plist313274006#313274006#0(0"0(0#0#44"/Users/hjelmn/src/vxSync1/vxSync1-Info.plist4300911832#269"    cd /Users/hjelmn/src/vxSync1    builtin-infoPlistUtility vxSync1-Info.plist -genpkginfo /Users/hjelmn/src/vxSync1/build/Debug/vxSync.app/Contents/PkgInfo -expandbuildsettings -platform macosx -o /Users/hjelmn/src/vxSync1/build/Debug/vxSync.app/Contents/Info.plist0#
-
-CProcessPCH /var/folders/+9/+98P9C3aGOy4hASUXQFZ-k+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/vxSync1_Prefix-crxrhrwdmoimphcymfvirwpkjxyb/vxSync1_Prefix.pch.gch vxSync1_Prefix.pch normal x86_64 objective-c com.apple.compilers.gcc.4_2
-s313274008.225341
-e313274024.955406
-r1
-xProcessPCH
-x/var/folders/+9/+98P9C3aGOy4hASUXQFZ-k+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/vxSync1_Prefix-crxrhrwdmoimphcymfvirwpkjxyb/vxSync1_Prefix.pch.gch
-xvxSync1_Prefix.pch
-xnormal
-xx86_64
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@29"Precompile vxSync1_Prefix.pch313274008#313274024#0(0"0(0#0#44"/Users/hjelmn/src/vxSync1/vxSync1_Prefix.pch4300911832#1216"    cd /Users/hjelmn/src/vxSync1    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c-header -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/hjelmn/src/vxSync1/build/vxSync1.build/Debug/vxSync.build/vxSync-generated-files.hmap -I/Users/hjelmn/src/vxSync1/build/vxSync1.build/Debug/vxSync.build/vxSync-own-target-headers.hmap -I/Users/hjelmn/src/vxSync1/build/vxSync1.build/Debug/vxSync.build/vxSync-all-target-headers.hmap -iquote /Users/hjelmn/src/vxSync1/build/vxSync1.build/Debug/vxSync.build/vxSync-project-headers.hmap -F/Users/hjelmn/src/vxSync1/build/Debug -I/Users/hjelmn/src/vxSync1/build/Debug/include -I/Users/hjelmn/src/vxSync1/build/vxSync1.build/Debug/vxSync.build/DerivedSources/x86_64 -I/Users/hjelmn/src/vxSync1/build/vxSync1.build/Debug/vxSync.build/DerivedSources -c /Users/hjelmn/src/vxSync1/vxSync1_Prefix.pch -o /var/folders/+9/+98P9C3aGOy4hASUXQFZ-k+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/vxSync1_Prefix-crxrhrwdmoimphcymfvirwpkjxyb/vxSync1_Prefix.pch.gch0#
-
-CTouch /Users/hjelmn/src/vxSync1/build/Debug/vxSync.app
-s313274557.803631
-e313274557.820874
-r1
-xTouch
-x/Users/hjelmn/src/vxSync1/build/Debug/vxSync.app
-lSLF07#2@54"Touch /Users/hjelmn/src/vxSync1/build/Debug/vxSync.app313274557#313274557#0(0"0(0#0#0"4300911832#104"    cd /Users/hjelmn/src/vxSync1    /usr/bin/touch -c /Users/hjelmn/src/vxSync1/build/Debug/vxSync.app0#
-
