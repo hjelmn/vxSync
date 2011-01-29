@@ -109,7 +109,7 @@ int syncDevice (vxPhone *phone) {
           printf ("Success!\n");
       }
     } @catch (NSException *e) {
-      vxSync_log3(VXSYNC_LOG_ERROR, @"caught exception: %@\n", e);
+      vxSync_log3(VXSYNC_LOG_ERROR, @"caught exception: %s\n", NS2CH(e));
 
       if( [e respondsToSelector: @selector(callStackSymbols)] ) {
         id (*callStackSymbols)(id, SEL) = (id (*)(id, SEL))[e methodForSelector: @selector(callStackSymbols)];

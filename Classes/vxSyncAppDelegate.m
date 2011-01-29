@@ -101,14 +101,12 @@ void add_value_to_controller (NSDictionaryController *controller, NSObject *valu
   [self updateCalendars: nil];
   
   for (id item in [fKnownDevicesController arrangedObjects]) {
-    NSMutableDictionary *device = [[[item value] mutableCopy] autorelease];
+    NSMutableDictionary *device = [item value];
 
     set_disconnected(device);
     NSArray *foo = [[device objectForKey: @"imagePath"] componentsSeparatedByString: @"PlugIns"];
     if ([foo count])
       [device setObject: [[[self bundle] builtInPlugInsPath] stringByAppendingFormat: [foo objectAtIndex: 1]] forKey: @"imagePath"];
-    
-    [item setValue: device];
   }  
   
   [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(deviceArrived:) name: @"USBDevicePlug" object: nil];
@@ -252,31 +250,41 @@ void add_value_to_controller (NSDictionaryController *controller, NSObject *valu
   [defaultsController commitEditing];
 }
 
+
+- (void) setPropertyForPhone: (NSDictionary *) properties {
+  id phone = [properties objectForKey: @"phone"];
+  NSString *keyPath    = [properties objectForKey: @"keyPath"];
+  NSString *value      = [properties objectForKey: @"value"];
+    
+  [[phone value] setValue: value forKeyPath: keyPath];
+}
+
 /* XXX -- todo -- move me */
 - (void) setStatus: (NSString *) _status forDeviceWithIdentifier: (NSString *) _identifier {
   id phone = find_object_with_key (fKnownDevicesController, _identifier);
-  NSMutableDictionary *updatedDictionary = [[[phone value] mutableCopy] autorelease];
-  [updatedDictionary setValue: _status forKeyPath: @"status"];
   
-  [phone setValue: updatedDictionary];
+  [self performSelectorOnMainThread: @selector(setPropertyForPhone:) withObject: [NSDictionary dictionaryWithObjectsAndKeys: phone, @"phone",
+                                                                                  @"status", @"keyPath",
+                                                                                  _status, @"value", nil]
+                      waitUntilDone: YES];
   
   if (_status)
-    /* always log status changes */
-    [[vxSyncLogger defaultLogger] addMessage: [NSString stringWithFormat: @"%@: %@", [updatedDictionary valueForKeyPath: @"bluetooth.name"], _status]];
+  /* always log status changes */
+    [[vxSyncLogger defaultLogger] addMessage: [NSString stringWithFormat: @"%@: %@", [phone valueForKeyPath: @"value.bluetooth.name"], _status]];
 }
 
 - (void) setLastSync: (NSDate *) date forDeviceWithIdentifier: (NSString *) _identifier {
   id phone = find_object_with_key (fKnownDevicesController, _identifier);
-  NSMutableDictionary *updatedDictionary = [[[phone value] mutableCopy] autorelease];
-
-  [updatedDictionary setValue: date forKeyPath: @"LastSync"];
-  [phone setValue: updatedDictionary];
+  
+  [self performSelectorOnMainThread: @selector(setPropertyForPhone:) withObject: [NSDictionary dictionaryWithObjectsAndKeys: phone, @"phone",
+                                                                                  @"LastSync", @"keyPath",
+                                                                                  date, @"value", nil]
+                      waitUntilDone: YES];
 }
 
 - (BOOL) setBusy: (BOOL) _busy forDeviceWithIdentifier: (NSString *) _identifier {  
   @try {
     id phone = find_object_with_key (fKnownDevicesController, _identifier);
-    NSMutableDictionary *updatedDictionary = [[[phone value] mutableCopy] autorelease];
 
     if (_busy) {
       if ([[phone valueForKeyPath: @"value.busy"] boolValue] || ![[phone valueForKeyPath: @"value.available"] boolValue]) {
@@ -284,11 +292,11 @@ void add_value_to_controller (NSDictionaryController *controller, NSObject *valu
         return NO;
       }
     }
-
-    vxSync_log3(VXSYNC_LOG_INFO, @"setting busy to %d for phone with identifier %s\n", _busy, NS2CH(_identifier));
     
-    [updatedDictionary setValue: [NSNumber numberWithBool: _busy] forKeyPath: @"busy"];
-    [phone setValue: updatedDictionary];
+    [self performSelectorOnMainThread: @selector(setPropertyForPhone:) withObject: [NSDictionary dictionaryWithObjectsAndKeys: phone, @"phone",
+                                                                                      @"busy", @"keyPath",
+                                                                                    [NSNumber numberWithBool: _busy], @"value", nil]
+                        waitUntilDone: YES];
   } @catch (NSException *e) {
     vxSync_log3(VXSYNC_LOG_ERROR, @"got exception: %s\n", NS2CH(e));
     return NO;
