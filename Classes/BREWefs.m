@@ -546,10 +546,8 @@ enum brew_commands {
   }
 
   LOCKED2 (([self send_command: BREW_STAT, [filename UTF8String]]), ([self recv_response_to: BREW_STAT, &mode, &size, &unk1, &atime, &mtime, &ctime]), &ret);
-  if (ret < 0) {
-    vxSync_log3(VXSYNC_LOG_WARNING, @"could not stat %s: %s\n", NS2CH(filename), strerror(errno));
+  if (ret < 0)
     return -1;
-  }
   
   if (sb != NULL) {
     memset (sb, 0, sizeof (struct stat));
