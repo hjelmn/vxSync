@@ -1,10 +1,10 @@
-//
-//  NSDictionaryNoEmpty.m
-//  vxSync
-//
-//  Created by Nathan Hjelm on 1/20/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
+/* (-*- objc -*-)
+ * vxSync: NSDictionaryNoEmpty.m
+ * (C) 2008-2011 Nathan Hjelm
+ * v0.8.3
+ *
+ * Copying of this source file in part of whole without explicit permission is strictly prohibited.
+ */
 
 #import "NSDictionaryNoEmpty.h"
 
@@ -29,7 +29,6 @@
 - (void) _setWithoutNotificationLocalizedKey: (id) foo key: (id) _key {
   [key release];
   key = [_key retain];
-  fprintf (stderr, "foo = %s, key = %s\n", [[foo description] UTF8String], [[key description] UTF8String]);
 }
 
 - (void) _setValueWithoutNotification: (id) _value {

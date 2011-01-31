@@ -164,7 +164,8 @@ static NSString *levelMessage[] = {@"ERROR", @"WARNING", @"INFO", @"DEBUG", @"DA
     fprintf (self.filehandle, "%s", [message UTF8String]);
     fputc('\n', filehandle); /* insert another newline to tell vxSync where the log message ends */
   } else if (self.controller)
-    [self addStringToController: message];
+    /* add the string to the controller using the main thread. this is needed to overcome issues with concurrency on Leopard */
+    [self performSelectorOnMainThread: @selector(addStringToController:) withObject: message waitUntilDone: YES]; 
 }
 
 - (void) addStringToController: (NSString *) logLine {
@@ -182,7 +183,6 @@ static NSString *levelMessage[] = {@"ERROR", @"WARNING", @"INFO", @"DEBUG", @"DA
 
   [controller addObject: logLine];
   
-  usleep(10000);
   [lock unlock];
 }
 
