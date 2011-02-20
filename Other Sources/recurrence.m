@@ -124,9 +124,7 @@ NSDate *getAnOccurrence (NSDictionary *event, NSDictionary *recurrence, NSDate *
       while ((month = [bymonthEnum nextObject])) {
         int monthValue = [month intValue];
         comps = [cal components: units fromDate: year];
-        
-        vxSync_log3(VXSYNC_LOG_INFO, @"month = %d\n", monthValue);
-        
+
         [comps setMonth: monthValue];
 
         if ([bydayfreq count] < 2) {
@@ -315,6 +313,8 @@ NSArray *splitEvent (NSDictionary *event, NSDictionary *recurrence) {
 #endif
 
 #if defined(__testing_recurrence__)
+#warn "recurrence unit test"
+
 int main (int argc, char *argv[]) {
   NSAutoreleasePool *releasePool = [[NSAutoreleasePool alloc] init];
   NSDictionary *event = [NSDictionary dictionaryWithObjectsAndKeys: [[NSDate date] addTimeInterval: 12 * kSecondsInDay], @"start date", [NSArray arrayWithObject: @"dummy"], @"recurrences", nil];

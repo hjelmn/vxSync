@@ -1,7 +1,7 @@
 /* (-*- objc -*-)
  * vxSync: structures.h
- * Copyright (C) 2009-2010 Nathan Hjelm
- * v0.5.1
+ * Copyright (C) 2009-2011 Nathan Hjelm
+ * v0.8.4
  *
  * Copying of this source file in part of whole without explicit permission is strictly prohibited.
  */
@@ -370,6 +370,44 @@ struct lg_pbv1_unicode {
   u_int16_t validflag;      /* 0x012f == invalid, 0x0000 == valid */
 } __attribute__ ((__packed__));
 
+
+/*
+  all dates are year, month, day, hour, min
+*/
+#if 0
+struct lg_pb_event {
+  u_int8_t  command;        /* 0xf1 */
+  u_int8_t  option;         /* see commands above */
+  u_int16_t index;          /* */
+  u_int8_t  unknown0[8];    /* 00 00 00 00 00 00 */
+  u_int16_t name[33];       /* contact name (utf-16 le) */
+  u_int16_t mdate[9];       /* or cdate (GMT) */
+  u_int16_t cdate[9];       /* or mdate (GMT) */
+  u_int8_t  uuid[64];       /* or less */
+  u_int16_t start[9];       /* event start (GMT) */
+  u_int16_t end[9];         /* event end (GMT) */
+  struct {
+    u_int8_t  type;         /* 1 - daily, 2 - weekly, 3 - monthly, 4 - yearly */
+    u_int16_t frequency;
+    u_int8_t  unknown0[2];
+    u_int16_t end[9];
+    u_int8_t  unknown1[11];
+    u_int8_t  flag1;        /* set when repeating on the same day of the month? */
+    u_int8_t  unknown2[2];
+    u_int8_t  day_mask;     /* high bit is not used? */
+    u_int8_t  week;         /* */
+  } __attribute__ ((__packed__)) repeat;
+  u_int8_t  repeat_type
+
+  u_int16_t gid;            /* 0(no group)-30 */
+  char      emails[2][49];  /* contact emails */
+  u_int8_t  unknown1[6];    /* 00 00 00 00 00 00 */
+  char      numbers[5][49]; /* mobile1, home, work, mobile2, fax */
+  u_int16_t default_number; /* 1-5 (index in previous array + 1) */
+  u_int8_t  unknown2[96];   /* doesn't matter */
+  u_int16_t validflag;      /* 0x012f == invalid, 0x0000 == valid */
+} __attribute__ ((__packed__));
+#endif
 /**** end: data structures ****/
 
 struct _devices {

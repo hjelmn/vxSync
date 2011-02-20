@@ -17,45 +17,6 @@
 - (int) matchPluginWithModel: (NSString *) model;
 @end
 
-#if 0
-@interface vxPhoneManager : NSObject {
-@private
-  NSMutableArray *phones;
-  NSMutableSet *locations;
-}
-
-@property (retain) NSMutableDictionary *phones;
-@property (retain) NSMutableSet *locations;
-
-@end
-
-static vxPhoneManager *sharedManager = nil;
-
-@implementation vxPhoneManager
-+ (id) sharedPhoneManager {
-  if (!sharedManager)
-    sharedManager = [[vxPhoneManger alloc] init];
-
-  return sharedManager;
-}
-
-- (void) addLocation: (NSString *) location {
-  if (![[locations filteredSetUsingPredicate: [NSPredicate predicateWithFormat: @"SELF == %@", location]] count]) {
-    vxPhone *newPhone = [vxPhone phoneWithLocation: location];
-
-    if (![phones objectForKey: [newPhone identifier]])
-      return;
-
-    [phones setObject: newPhone forKey: [newPhone identifier]];
-
-    [locations addObject: location];
-  }
-}
-
-@synthesize phones, locations;
-@end
-#endif
-
 @implementation vxPhone
 
 @synthesize efs, identifier, formats, limits, options, pictureid, imagePath, branding, bundle, clientDescriptionPath;
@@ -261,7 +222,9 @@ static vxPhoneManager *sharedManager = nil;
 
 @end
 
-#if defined(TEST_VXPHONE)
+#if defined(VXPHONE_UNIT_TEST)
+#warn "vxPhone unit test"
+
 int main (int argc, char *argv[]) {
   NSAutoreleasePool *releasePool = [[NSAutoreleasePool alloc] init];
 

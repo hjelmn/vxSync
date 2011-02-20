@@ -500,3 +500,19 @@ int ppp_unescape_inplace(u_int8_t *msg, size_t len) {
   return newArray;
 }
 @end
+
+@implementation NSString (counter)
+- (unsigned int) countOccurencesOfSubstring: (NSString *) subString {
+  unsigned int count;
+  NSUInteger start = 0;
+  unsigned int totalLength = [self length];
+  NSRange searchRange;
+
+  for (count = 0 ; NSNotFound != start ; count++) {
+    searchRange = NSMakeRange(start, totalLength - start);
+    start = NSMaxRange([self rangeOfString: subString options: 0 range: searchRange]);
+  }
+  
+  return count;
+}
+@end

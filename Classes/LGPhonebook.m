@@ -836,7 +836,7 @@ static NSString *numberTypes[] = {@"none", @"mobile", @"home", @"work", @"mobile
   if (![emailRecord objectForKey: VXKeyParentIndex]) {
     parentIndex = [phonebookData getEntryFirstFreeEmailIndex];
     if (-1 == parentIndex) {
-      vxSync_log3(VXSYNC_LOG_WARNING, @"no free email indices. this should not happen!\n");
+      vxSync_log3(VXSYNC_LOG_INFO, @"no free email indices. this probaly should not happen!\n");
       return -2;
     }
   } else

@@ -1,7 +1,7 @@
 /* (-*- objc -*-)
  * vxSync: LGCalendar.m
  * (C) 2009-2011 Nathan Hjelm
- * v0.8.2
+ * v0.8.4
  *
  * Changes:
  *  - 0.3.1 - Move LGException class into a seperate file. Bug fixes and code cleanup
@@ -261,7 +261,7 @@ static NSString *days[] = {@"sunday", @"monday", @"tuesday", @"wednesday", @"thu
       if (recurrence & kRecurrenceExceptionBit)
         [newEvent setObject: [exceptionsData exceptionsForEvent: offset startTime: start_time] forKey: @"exception dates"];
 
-      /* we hide an all-day flag at the end of the entry */
+      /* we hide an all-day flag at the end of the entry -- not anymore */
 //      [newEvent setObject: [NSNumber numberWithBool: 0x01 == event->extra_data[64]] forKey: @"all day"];
 
       [[dictionary objectForKey: EntityEvent] setObject: newEvent forKey: [newEvent objectForKey: VXKeyIdentifier]];

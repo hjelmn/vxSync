@@ -64,7 +64,7 @@
   groupData = [[phone efs] get_file_data_from: VXPBGroupPath errorOut: &error];
   if (groupData) {
     fprintf (stderr, "File data from %s\n", [VXPBGroupPath UTF8String]);
-    pretty_print_block ([groupData bytes], [groupData length]);
+    pretty_print_block ((unsigned char *)[groupData bytes], [groupData length]);
   } else
     fprintf (stderr, "Could not read data from %s: %s\n", [VXPBGroupPath UTF8String], [error UTF8String]);
 
@@ -73,7 +73,7 @@
   groupData = [[phone efs] get_file_data_from: VXMemoPath errorOut: &error];
   if (groupData) {
     fprintf (stderr, "File data from %s\n", [VXMemoPath UTF8String]);
-    pretty_print_block ([groupData bytes], [groupData length]);
+    pretty_print_block ((unsigned char *)[groupData bytes], [groupData length]);
   } else
     fprintf (stderr, "Could not read data from %s: %s\n", [VXPBGroupPath UTF8String], [error UTF8String]);
 
@@ -157,15 +157,16 @@
   int i, entryIndex;
   BOOL found = NO;
 
-#if 0
   memset  (bytes, 0, 1024);
   bytes[0] = 0xf1;
   bytes[1] = 0x32;
-  bytes[11] = 0x01;
+  bytes[2] = 32;
+  bytes[4] = 0xff;
+  bytes[6] = 0;
+  memset (bytes + 7, 0xff, 3);
   int ret = [[phone efs] send_recv_message: bytes sendLength: 512 sendBufferSize: 1024 recvTo: bytes recvLength: 1024];
-  fprintf (stderr, "Sample event:\n");
+  fprintf (stderr, "Sample event (4):\n");
   pretty_print_block (bytes, ret);
-#endif
 
   for (entryIndex = 0 ; entryIndex < 1000 && !found ; entryIndex++) {
     memset (bytes, 0, 1024);
@@ -174,7 +175,7 @@
     OSWriteLittleInt16 (bytes, 2, entryIndex);
   
     int ret = [[phone efs] send_recv_message: bytes sendLength: 4 sendBufferSize: 1024 recvTo: bytes recvLength: 1024];
-    vxSync_log_data (VXSYNC_LOG_DATA, __func__, __LINE__, [NSData dataWithBytes: bytes length: ret], @"phonebook data for contact %i:\n", entryIndex);
+    vxSync_log3_data (VXSYNC_LOG_DATA, [NSData dataWithBytes: bytes length: ret], @"phonebook data for contact %i:\n", entryIndex);
 
     for (i = 0 ; i < ret - 24 ; i++) {
       NSString *utf16str = [stringFromBuffer (bytes + i, 22, VXUTF16LEStringEncoding) lowercaseString];
@@ -201,16 +202,13 @@
 
 int main (void) {
   NSAutoreleasePool *releasePool = [[NSAutoreleasePool alloc] init];
-  struct notification_data devices;
+  NSSet *devices;
 
-  vxSync_log_set_level (0);
+  [vxSyncLogger setDefaultLogger: [vxSyncLogger loggerWithLevel: 0 logFd: -1 progName: @"LGPBTestDump"]];
 
-  devices.lock = [[NSLock alloc] init];
-  devices.list = [NSMutableArray array];
+  devices = [IOUSBPhone scanDevices];
 
-  [IOUSBPhone scanDevices: &devices];
-
-  for (id device in devices.list) {
+  for (id device in devices) {
     NSArray *locationComponents = [device componentsSeparatedByString: @"::"];
     vxPhone *phone = [vxPhone phoneWithLocation: device];
 
@@ -220,7 +218,8 @@ int main (void) {
     LGPBTestDump *dumped = [LGPBTestDump newWithPhone: phone];
   }
 
-  [devices.lock release];
+  [vxSyncLogger setDefaultLogger: nil];
+
   [releasePool release];
 
   return 0;

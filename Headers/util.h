@@ -76,4 +76,8 @@ int ppp_unescape_inplace(u_int8_t *msg, size_t len);
 - (NSSet *) keysOfObjectsPassingTest: (BOOL (*)(id key, id obj, BOOL *stop)) predicate;
 @end
 
+@interface NSString (counter)
+- (unsigned int) countOccurencesOfSubstring: (NSString *) subString;
+@end
+
 #endif

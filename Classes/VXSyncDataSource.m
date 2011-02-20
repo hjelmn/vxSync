@@ -289,6 +289,8 @@ static BOOL notOnPhone (id key, id obj, BOOL *stop) {
 
   for (id dataSource in dataSources) {
     NSDictionary *objects = [dataSource readRecords];
+    
+    printf ("Evaluating phone data\n");
 
     for (id entityName in objects) {
       NSSet *oldOnPhone = [[persistentStore objectForKey: entityName] keysOfObjectsPassingTest: isOnPhone];
@@ -327,38 +329,6 @@ static BOOL notOnPhone (id key, id obj, BOOL *stop) {
 
   return [[changesDictionary copy] autorelease];
 }
-
-#if 0
-/* this might be needed in the future */
-- (void) cleanupPersistentStore {
-  NSMutableArray *toDelete = [NSMutableArray array];
-  
-  for (id entityName in persistentStore) {
-    for (id record in persistentStore) {
-      id parentEntity = nil, parentRecord = nil;
-
-      if ([[record objectForKey: @"contact"] count]) {
-        parentRecord = [[record objectForKey: @"contact"] objectAtIndex: 0];
-        parentEntity = EntityContact;
-      } else if ([[record objectForKey: @"calendar"] count]) {
-        parentRecord = [[record objectForKey: @"calendar"] objectAtIndex: 0];
-        parentEntity = EntityCalendar;
-      } else if ([[record objectForKey: @"owner"] count]) {
-        parentRecord = [[record objectForKey: @"owner"] objectAtIndex: 0];
-        parentEntity = EntityContact;
-      }
-
-      if (parentRecord && ![self findRecordWithIdentifier: parentRecord entityName: parentEntity])
-        [toDelete addRecord record];
-    }
-  }
-  
-  
-  
-  for (id record in toDelete)
-    [self removeRecordWithIdentifier: [record objectForKey: VXKeyIdentifier] withEntityName: [record objectForKey: RecordEntityName]];
-}
-#endif
 
 #pragma mark slow sync
 /* (R) Returns records for the given entity name that should be pushed to the sync engine during a slow sync. */
@@ -642,7 +612,7 @@ static BOOL notOnPhone (id key, id obj, BOOL *stop) {
   
   [allEventsOrdered sortUsingFunction: sortAscending context: @"hoursAway"];
   
-  /* keep 5% of the event space free */
+  /* keep user specified % of the event space free for new events */
   eventLimit = ([phone limitForEntity: EntityEvent] * eventThreshold)/100;
 
   syncArray = [allEventsOrdered mapSelector: @selector(objectForKey:) withObject: VXKeyIdentifier];

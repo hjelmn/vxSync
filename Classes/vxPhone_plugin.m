@@ -1,7 +1,7 @@
 /* (-*- objc -*-)
  * vxSync: vxPhone_plugin.h
- * Copyright (C) 2010 Nathan Hjelm
- * v0.7.0 pre-alpha (0) -- aka 0.6.4
+ * Copyright (C) 2010-2011 Nathan Hjelm
+ * v0.8.4
  *
  * Copying of this source file in part of whole without explicit permission is strictly prohibited.
  */
@@ -24,7 +24,7 @@
 }
 
 - (int) matchPluginWithModel: (NSString *) model {
-#if !defined(VXPHONE_NO_PLUGIN)
+#if !defined(VXPHONE_DISABLE_PLUGINS)
   NSString *pluginPath = [[self bundle] builtInPlugInsPath];
   NSError *error = nil;
   NSArray *plugins = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath: pluginPath error: &error] filteredArrayUsingPredicate: [NSPredicate predicateWithFormat: @"SELF endswith[c] %@", @".vxphone"]];

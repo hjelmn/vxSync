@@ -101,12 +101,14 @@ void add_value_to_controller (NSDictionaryController *controller, NSObject *valu
   [self updateCalendars: nil];
   
   for (id item in [fKnownDevicesController arrangedObjects]) {
-    NSMutableDictionary *device = [item value];
+    NSMutableDictionary *device = [[[item value] mutableCopy] autorelease];
 
     set_disconnected(device);
     NSArray *foo = [[device objectForKey: @"imagePath"] componentsSeparatedByString: @"PlugIns"];
     if ([foo count])
       [device setObject: [[[self bundle] builtInPlugInsPath] stringByAppendingFormat: [foo objectAtIndex: 1]] forKey: @"imagePath"];
+    
+    [item setValue: device];
   }  
   
   [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(deviceArrived:) name: @"USBDevicePlug" object: nil];
@@ -253,10 +255,14 @@ void add_value_to_controller (NSDictionaryController *controller, NSObject *valu
 
 - (void) setPropertyForPhone: (NSDictionary *) properties {
   id phone = [properties objectForKey: @"phone"];
+  NSMutableDictionary *updatedDictionary = [[[phone value] mutableCopy] autorelease];
+
   NSString *keyPath    = [properties objectForKey: @"keyPath"];
   NSString *value      = [properties objectForKey: @"value"];
-    
-  [[phone value] setValue: value forKeyPath: keyPath];
+  
+  [updatedDictionary setValue: value forKeyPath: keyPath];
+  
+  [phone setValue: updatedDictionary];
 }
 
 /* XXX -- todo -- move me */
@@ -410,23 +416,50 @@ void add_value_to_controller (NSDictionaryController *controller, NSObject *valu
 //  NSString *identifier = [object objectForKey: @"identifier"];
   int fd = [[object objectForKey: @"fileDescriptor"] intValue];
   FILE *message_fh = fdopen(fd, "r");
-  char messageBuffer[2048];
+  size_t buffer_len = 16384;
+  char *messageBuffer;
 
+  messageBuffer = malloc(buffer_len);
+  if (!messageBuffer) {
+    fclose(message_fh);
+    [releasePool release];
+
+    return;
+  }
+  
   do {
-    NSString *logString = @"";
+    char *tmp = messageBuffer;
+    size_t left = buffer_len;
+    
+    tmp[0] = '\0';
     
     do {
-      if (!fgets(messageBuffer, 2048, message_fh) || strlen (messageBuffer) == 0 || messageBuffer[0] == '\n') {
+      char *tmp2 = fgets(tmp, left, message_fh);
+      int read_len;
+      
+      if (!tmp2 || !left)
+        break;
+      
+      read_len = strlen (tmp);
+      
+      if (!read_len || tmp[0] == '\n') {
+        tmp[0] = '\0';
         break;
       }
       
-      logString = [logString stringByAppendingFormat: @"%s", messageBuffer];
+      tmp  += read_len;
+      left -= read_len;
     } while (1);
     
-    if ([logString length])
+    if (messageBuffer[0]) {
+      NSString *logString = [NSString stringWithCString: messageBuffer encoding: NSASCIIStringEncoding];
+    
       [[vxSyncLogger defaultLogger] addMessage: logString];
+    }
   } while (!feof(message_fh));
 
+  free (messageBuffer);
+  
   fclose(message_fh);
     
   [releasePool release];

@@ -1,7 +1,7 @@
 /* (-*- objc -*-)
  * vxSync: LGPBAddressFile.m
  * (C) 2009-2011 Nathan Hjelm
- * v0.8.2
+ * v0.8.4
  *
  * Changes:
  *  - 0.3.1 - Move LGException class into a seperate file. Bug fixes and code cleanup

@@ -85,19 +85,19 @@ static inline void location_left (NSDictionaryController *controller, NSString *
     [fUnknownDevicesController remove: self];
 
     [modEntry setObject: [NSMutableDictionary dictionary] forKey: @"calendar"];
-    [modEntry setValue: [NSNumber numberWithBool: YES] forKeyPath: @"calendar.sync"];
+    [modEntry setValue: [NSNumber numberWithBool: NO] forKeyPath: @"calendar.sync"];
     [modEntry setValue: [NSNumber numberWithBool: YES] forKeyPath: @"calendar.syncAll"];
     [modEntry setValue: [NSMutableArray array] forKeyPath: @"calendar.list"];
     [modEntry setValue: [NSNumber numberWithFloat: 0.95] forKeyPath: @"calendar.eventThreshold"];
     
     [modEntry setObject: [NSMutableDictionary dictionary] forKey: @"contacts"];
-    [modEntry setValue: [NSNumber numberWithBool: YES] forKeyPath: @"contacts.sync"];
+    [modEntry setValue: [NSNumber numberWithBool: NO] forKeyPath: @"contacts.sync"];
     [modEntry setValue: [NSNumber numberWithBool: YES] forKeyPath: @"contacts.syncAll"];
     [modEntry setValue: [NSMutableArray array] forKeyPath: @"contacts.list"];
     [modEntry setValue: [NSNumber numberWithBool: NO] forKeyPath: @"contacts.syncOnlyWithPhoneNumbers"];
     
     [modEntry setObject: [NSMutableDictionary dictionary] forKey: @"notes"];
-    [modEntry setValue: [NSNumber numberWithBool: YES] forKeyPath: @"notes.sync"];
+    [modEntry setValue: [NSNumber numberWithBool: NO] forKeyPath: @"notes.sync"];
     
     add_value_to_controller (fKnownDevicesController, modEntry, identifier);
 

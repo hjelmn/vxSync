@@ -233,8 +233,6 @@ static inline NSSet *bluetoothPhoneProbe () {
     /* we might want to push the remaining data back on the queue?? */
   }
 
-  //  [queueLock unlock];
-
   return readCount;
 }
 
@@ -328,12 +326,8 @@ static inline NSSet *bluetoothPhoneProbe () {
 @end
 
 @implementation IOBluetoothPhone (IOBluetoothRFCOMMChannelDelegate)
-- (void) rfcommChannelData:(IOBluetoothRFCOMMChannel*)rfcommChannel data:(void *)dataPointer length:(size_t)dataLength {
-  //  [queueLock lock];
-  
+- (void) rfcommChannelData:(IOBluetoothRFCOMMChannel*)rfcommChannel data:(void *)dataPointer length:(size_t)dataLength {  
   [dataQueue addObject: [NSData dataWithBytes: dataPointer length: dataLength]];
-  
-  //  [queueLock unlock];
 }
 
 - (void) rfcommChannelOpenComplete: (IOBluetoothRFCOMMChannel*) rfcommChannel status: (IOReturn) commerror {

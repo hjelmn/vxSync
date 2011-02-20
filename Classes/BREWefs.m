@@ -480,18 +480,16 @@ enum brew_commands {
   if (fd < 0)
     return fd;
   
-  if (flags != O_RDONLY) {
-    brew_flags1 = 0;
-    if (flags & O_WRONLY)
-      brew_flags1 |= 1;
-    if (flags & O_RDWR)
-      brew_flags1 |= 2;
-    if (flags & O_TRUNC)
-      brew_flags1 |= 0x200;
-    if (flags & O_APPEND)
-      brew_flags1 |= 0x400;
-  } else
-    brew_flags1 = 0;
+  brew_flags1    = 0x000;
+
+  if (flags & O_WRONLY)
+    brew_flags1 |= 0x001;
+  if (flags & O_RDWR)
+    brew_flags1 |= 0x002;
+  if (flags & O_TRUNC)
+    brew_flags1 |= 0x200;
+  if (flags & O_APPEND)
+    brew_flags1 |= 0x400;
   
   brew_flags1 |= (flags & O_CREAT) ? 0x40 : 0;
   brew_flags2 = (flags & O_CREAT) ? 1 : 0;

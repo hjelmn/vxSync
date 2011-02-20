@@ -165,19 +165,26 @@ static NSString *levelMessage[] = {@"ERROR", @"WARNING", @"INFO", @"DEBUG", @"DA
     fputc('\n', filehandle); /* insert another newline to tell vxSync where the log message ends */
   } else if (self.controller)
     /* add the string to the controller using the main thread. this is needed to overcome issues with concurrency on Leopard */
-    [self performSelectorOnMainThread: @selector(addStringToController:) withObject: message waitUntilDone: YES]; 
+    [self performSelectorOnMainThread: @selector(addStringToController:) withObject: message waitUntilDone: YES];
+  else
+    fprintf (stderr, "%s", [message UTF8String]);
 }
 
 - (void) addStringToController: (NSString *) logLine {
-  NSArray *components = [logLine componentsSeparatedByString: @"\n"];
-  int rows = [components count];
+  int rows = [logLine countOccurencesOfSubstring: @"\n"];
+  int maxCount = [[[[NSUserDefaults standardUserDefaults] persistentDomainForName: kBundleDomain] objectForKey: @"logLineMax"] intValue];
   
   /* rows should be how many times the current string would need to
    be split to fit in the current width */
-  if ([(NSString *)[components objectAtIndex: [components count] - 1] length] == 0)
+  if ([logLine hasSuffix: @"\n"])
     rows--;
   
   [lock lock];
+  
+  if (maxCount > 0 && [[controller content] count] >= maxCount) {
+    [lineCounts removeObjectsInRange: NSMakeRange(0, maxCount - [lineCounts count] + 1)];
+    [controller removeObjectsAtArrangedObjectIndexes: [NSIndexSet indexSetWithIndexesInRange: NSMakeRange(0, maxCount - [[controller content] count] + 1)]];
+  }
   /* store line counts to simplify the table view delegate. this *must* be done before adding the string to the controller */
   [lineCounts addObject: [NSNumber numberWithInt: rows]];
 

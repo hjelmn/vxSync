@@ -8,6 +8,11 @@
 
 #import "NSDictionaryNoEmpty.h"
 
+/*
+  vxKeyValue:
+   - an NSDictionaryControllerKeyValuePair that stores mutable dictionary values (the default pair only supports non-mutable values)
+ */
+
 @interface vxKeyValue : NSObject
 {
 @private
@@ -42,6 +47,10 @@
 @end
 
 
+/*
+ NSDictionaryNoEmpty:
+  - NSDictionaryController that 
+ */
 @implementation NSDictionaryNoEmpty
 
 - (BOOL)setSelectionIndexes:(NSIndexSet *)indexes {
@@ -51,8 +60,10 @@
   return [super setSelectionIndexes: indexes];
 }
 
+#if 0
 - (id) newObject {
   return [[vxKeyValue alloc] init];
 }
+#endif
 
 @end
