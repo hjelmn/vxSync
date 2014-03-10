@@ -9,7 +9,19 @@
  *  - 0.2.3 - Bug fixes
  *  - 0.2.0 - Initial release
  *
- * Copying of this source file in part of whole without explicit permission is strictly prohibited.
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU  General Public
+ * License as published by the Free Software Foundation; either
+ * version 3.0 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU  General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
 #include "VXSyncDataDelegate.h"
@@ -21,23 +33,26 @@
 - (void) getIdentifierForRecord: (NSMutableDictionary *) objectIn compareKeys: (NSArray *) keys {
   NSDictionary *records = [persistentStore objectForKey: [objectIn objectForKey: RecordEntityName]];
   NSString *identifier = nil;
+  NSDictionary *dataSourceDict = [dataSources objectForKey: [supportedEntities objectForKey: [objectIn objectForKey: RecordEntityName]]];
+  int mode = [[dataSourceDict valueForKeyPath: @"mode"] intValue];
 
-  if ([keys count])
-    for (identifier in records) {
-      id record = [records objectForKey: identifier];
-      BOOL isFound = YES;
-      
-      for (id key in keys) {
-        if (![[objectIn objectForKey: key] isEqual: [record objectForKey: key]] && [objectIn objectForKey: key] != [record objectForKey: key]) {
-          isFound = NO;
-          break;
+  if (VXSYNC_MODE_PHONE_OW != mode)
+    if ([keys count])
+      for (identifier in records) {
+        id record = [records objectForKey: identifier];
+        BOOL isFound = YES;
+        
+        for (id key in keys) {
+          if (![[objectIn objectForKey: key] isEqual: [record objectForKey: key]] && [objectIn objectForKey: key] != [record objectForKey: key]) {
+            isFound = NO;
+            break;
+          }
         }
+        
+        if (YES == isFound)
+          break;
       }
-      
-      if (YES == isFound)
-        break;
-  }
-    
+  
   if (!identifier) {
     /* create a new uuid for the object */
     CFUUIDRef uuid = CFUUIDCreate (NULL); 

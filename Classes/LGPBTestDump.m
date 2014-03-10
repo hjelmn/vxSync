@@ -156,25 +156,28 @@
 - (void) printProtocolTest {
   int i, entryIndex;
   BOOL found = NO;
+  int byte, bit, command;
 
-  memset  (bytes, 0, 1024);
-  bytes[0] = 0xf1;
-  bytes[1] = 0x32;
-  bytes[2] = 32;
-  bytes[4] = 0xff;
-  bytes[6] = 0;
-  memset (bytes + 7, 0xff, 3);
-  int ret = [[phone efs] send_recv_message: bytes sendLength: 512 sendBufferSize: 1024 recvTo: bytes recvLength: 1024];
-  fprintf (stderr, "Sample event (4):\n");
-  pretty_print_block (bytes, ret);
+  for (command = 0xff ; command <= 0xff ; ++command) {
+    memset  (bytes, 0, 1024);
+    bytes[0] = command;
+    bytes[1] = 2;
+    bytes[2] = 1;
+    bytes[10] = 1;
+    int ret = [[phone efs] send_recv_message: bytes sendLength: 10 sendBufferSize: 1024 recvTo: bytes recvLength: 1024];
+    if (bytes[1] != 0x53) {
+      fprintf (stderr, "Response from command %d:\n", command);
+      pretty_print_block (bytes, ret);
+    }
+  }
 
-  for (entryIndex = 0 ; entryIndex < 1000 && !found ; entryIndex++) {
+  for (entryIndex = 0 ; entryIndex < 000 && !found ; entryIndex++) {
     memset (bytes, 0, 1024);
     bytes[0] = 0xf1;
     bytes[1] = 0x29;
     OSWriteLittleInt16 (bytes, 2, entryIndex);
-  
-    int ret = [[phone efs] send_recv_message: bytes sendLength: 4 sendBufferSize: 1024 recvTo: bytes recvLength: 1024];
+
+    int ret = [[phone efs] send_recv_message: bytes sendLength: 10 sendBufferSize: 1024 recvTo: bytes recvLength: 1024];
     vxSync_log3_data (VXSYNC_LOG_DATA, [NSData dataWithBytes: bytes length: ret], @"phonebook data for contact %i:\n", entryIndex);
 
     for (i = 0 ; i < ret - 24 ; i++) {

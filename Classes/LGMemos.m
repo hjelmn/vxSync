@@ -2,7 +2,7 @@
  * vxSync: LGMemos.m
  * (C) 2009-2011 Nathan Hjelm
  *
- * v0.8.2
+ * v0.8.5
  *
  * Changes:
  *  - 0.2.0 - initial release.
@@ -10,7 +10,19 @@
  *  - 0.3.0 - bug fixes.
  *  - 0.3.1 - code cleanup
  *
- * Copying of this source file in part of whole without explicit permission is strictly prohibited.
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU  General Public
+ * License as published by the Free Software Foundation; either
+ * version 3.0 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU  General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
 #include <stdlib.h>
@@ -86,17 +98,19 @@ const size_t memoSize = 312; /* both supported formats */
   
   memoCount = ![fileData length] ? 0 : OSReadLittleInt32 (bytes, 0);
 
+  vxSync_log3(VXSYNC_LOG_DEBUG, @"memo count: %d\n", memoCount);
+  
   for (i = 0, offset = 4 ; i < memoCount ; i++, offset += memoSize) {
     NSString *content =  stringFromBuffer(bytes + offset + 4, memoLength[memoFormat], NSISOLatin1StringEncoding);
     NSMutableDictionary *newNote = [NSMutableDictionary dictionaryWithCapacity: 8];
     id oldRecord;
-        
+
     [newNote setObject: EntityNote forKey: RecordEntityName];
     [newNote setObject: content forKey: @"content"];
     [newNote setObject: [[content componentsSeparatedByString: @"\n"] objectAtIndex: 0] forKey: @"subject"];
     [newNote setObject: @"text/plain" forKey: @"contentType"];
-    [newNote setObject: dateFromBREWTime (OSReadLittleInt32 (bytes + offset, 0)) forKey: @"dateCreated"];
-    [newNote setObject: dateFromLGCalendarDate (OSReadLittleInt32 (bytes + offset + mDateOffset[memoFormat], 0)) forKey: @"dateModified"];
+    [newNote setObject: [NSDate dateWithTimeIntervalSinceBREWEpochLocal: OSReadLittleInt32 (bytes + offset, 0)] forKey: @"dateCreated"];
+    [newNote setObject: [NSDate dateWithLGCalendarDate: OSReadLittleInt32 (bytes + offset + mDateOffset[memoFormat], 0)] forKey: @"dateModified"];
     
     /* ask the delegate what the identifier should be for this record -- dateCreated is sufficient */
     [delegate getIdentifierForRecord: newNote compareKeys: [NSArray arrayWithObjects: @"dateCreated", nil]];
@@ -104,8 +118,13 @@ const size_t memoSize = 312; /* both supported formats */
     oldRecord = [delegate findRecordWithIdentifier: [newNote objectForKey: VXKeyIdentifier] entityName: EntityNote];
     [newNote setObject: oldRecord ? [oldRecord objectForKey: @"author"] : @"Unknown" forKey: @"author"];
     
+    if ([[internalRecords objectForKey: EntityNote] objectForKey: [newNote objectForKey: VXKeyIdentifier]])
+      vxSync_log3(VXSYNC_LOG_WARNING, @"note id collision. the following notes have the same identifier: %s, %s\n", NS2CH(newNote), NS2CH([[internalRecords objectForKey: EntityNote] objectForKey: [newNote objectForKey: VXKeyIdentifier]]));
+    
     [[internalRecords objectForKey: EntityNote] setObject: newNote forKey: [newNote objectForKey: VXKeyIdentifier]];
   }
+  
+  vxSync_log3(VXSYNC_LOG_DEBUG, @"internalRecords = %s\n", NS2CH(internalRecords));
   
   return 0;
 }
@@ -212,8 +231,8 @@ const size_t memoSize = 312; /* both supported formats */
     size_t offset = 4 + i * memoSize;
     NSDictionary *record = [[internalRecords objectForKey: EntityNote] objectForKey: [keys objectAtIndex: i]];
 
-    OSWriteLittleInt32 (bytes + offset, 0, BREWTimeFromDate ([record objectForKey: @"dateCreated"]));
-    OSWriteLittleInt32 (bytes + offset + mDateOffset[memoFormat], 0, LGCalendarDateFromDate ([record objectForKey: @"dateModified"]));
+    OSWriteLittleInt32 (bytes + offset, 0, [[record objectForKey: @"dateCreated"] timeIntervalSinceBREWEpochLocal]);
+    OSWriteLittleInt32 (bytes + offset + mDateOffset[memoFormat], 0, [[record objectForKey: @"dateModified"] LGCalendarDate]);
 
     [[record objectForKey: @"content"] getCString: (char *)(bytes + offset + 4) maxLength: memoLength[memoFormat] encoding: NSISOLatin1StringEncoding];
   }

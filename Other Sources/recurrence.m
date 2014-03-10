@@ -25,7 +25,8 @@ static NSArray *daysToWeekdays (NSArray *bydaydays) {
 
 static int checkOccurrence (NSDate **occurrenceStore, NSDate *occurrenceDate, NSSet *exceptions, NSDate *until, int *countp, NSDate *startDate, NSDate *after) {
   int count = countp ? *countp : -1;
-  vxSync_log3(VXSYNC_LOG_INFO, @"occurrence (%s, %s, %s, %s, %i, %s)\n", NS2CH(*occurrenceStore), NS2CH(occurrenceDate), NS2CH(exceptions), NS2CH(until), count, NS2CH(startDate));
+  vxSync_log3(VXSYNC_LOG_INFO, @"occurrence (%s, %s, %s, %s, %i, %s, %s)\n", NS2CH(*occurrenceStore), NS2CH(occurrenceDate), NS2CH(exceptions), NS2CH(until),
+              count, NS2CH(startDate), NS2CH(after));
 
   if ((until && ([until compare: occurrenceDate] == NSOrderedAscending)) || (count == 0))
     /* done */
@@ -35,7 +36,7 @@ static int checkOccurrence (NSDate **occurrenceStore, NSDate *occurrenceDate, NS
     /* either an exception or */
     return 0;
 
-  if (!after || (*occurrenceStore && [(*occurrenceStore) compare: after] == NSOrderedAscending))
+  if (!after || !*occurrenceStore || (*occurrenceStore && [(*occurrenceStore) compare: after] == NSOrderedAscending))
     *occurrenceStore = occurrenceDate;
   
   if (countp && *countp > 0)
@@ -52,7 +53,7 @@ static int checkOccurrence (NSDate **occurrenceStore, NSDate *occurrenceDate, NS
 NSDate *getAnOccurrence (NSDictionary *event, NSDictionary *recurrence, NSDate *after) {
   NSDate *startDate   = [event objectForKey: @"start date"];
   NSDate *occurrenceDate = nil, *foundOccurrence = nil;
-  int count;
+  int count = -1;
   
   vxSync_log3(VXSYNC_LOG_INFO, @"finding occurrences of event %s with recurrence %s\n", NS2CH(event), NS2CH(recurrence));
   

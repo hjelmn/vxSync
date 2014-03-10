@@ -1,7 +1,7 @@
 /* (-*- objc -*-)
  * vxSync: syncdevice.m
  * Copyright (C) 2010-2011 Nathan Hjelm
- * v0.8.2
+ * v0.8.5
  *
  * Copying of this source file in part of whole without explicit permission is strictly prohibited.
  */
@@ -21,7 +21,8 @@ int setupClientSyncFilters (VXSyncDataSource *dataSource, vxPhone *phone) {
     ISyncClient *myClient = [[ISyncManager sharedManager] registerClientWithIdentifier: [dataSource clientIdentifier] descriptionFilePath: [dataSource clientDescriptionPath]];
     NSMutableArray *filters = [NSMutableArray array];
     
-    if ([phone getOption: @"calendar.sync"]) {
+    /* do not set up any filters when set to overwrite the computer or the mode is disabled */
+    if ([phone getOption: @"calendar.sync"] && [[phone getOption:@"calendar.mode"] intValue] != VXSYNC_MODE_PHONE_OW) {
       NSArray *syncCalendars = [phone getOption: @"calendar.list"];
       
       if (![[phone getOption: @"calendar.syncAll"] boolValue])
@@ -37,7 +38,8 @@ int setupClientSyncFilters (VXSyncDataSource *dataSource, vxPhone *phone) {
       [filters addObject: filter];
     }
     
-    if ([[phone getOption: @"contacts.sync"] boolValue]) {
+    /* do not set up any filters when set to overwrite the computer or the mode is disabled */
+    if ([[phone getOption: @"contacts.sync"] boolValue] && [[phone getOption:@"contacts.mode"] intValue] != VXSYNC_MODE_PHONE_OW) {
       NSArray *syncGroups = [phone getOption: @"contacts.list"];
       
       if (![[phone getOption: @"contacts.syncAll"] boolValue])
@@ -83,7 +85,7 @@ int syncDevice (vxPhone *phone) {
     ret = setupClientSyncFilters(syncClient, phone);
     if (ret != 0)
       return ret;
-    
+
     @try {
       /* create the sync session driver */
       syncDriver = [ISyncSessionDriver sessionDriverWithDataSource: syncClient];
@@ -93,11 +95,23 @@ int syncDevice (vxPhone *phone) {
       
       /* sync */
       BOOL result = [syncDriver sync];
+      vxSync_log3(VXSYNC_LOG_INFO, @"finished phase 1, on to phase 2\n");
+      if (result && [syncClient needsTwoPhaseSync]) {
+        [syncClient setPhase: 2];
+
+        /* reset the sync driver */
+        syncDriver = [ISyncSessionDriver sessionDriverWithDataSource: syncClient];
+        [syncDriver setDelegate: syncClient];
+
+        /* run phase 2 of the sync */
+        result = [syncDriver sync];
+      }
+      
       if (!result) {
         vxSync_log3(VXSYNC_LOG_ERROR, @"an error occurred while syncing: %s\n", NS2CH([syncDriver lastError]));
         vxSync_log3(VXSYNC_LOG_ERROR, @"%s\n", NS2CH([[syncDriver lastError] userInfo]));
         
-        printf ("Error! Check console for more information.\n");
+        printf ("Error! See error log.\n");
 
         return 2;
       } else {

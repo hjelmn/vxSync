@@ -3,7 +3,19 @@
  * (C) 2009-2011 Nathan Hjelm
  * v0.8.2
  *
- * Copying of this source file in part of whole without explicit permission is strictly prohibited.
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU  General Public
+ * License as published by the Free Software Foundation; either
+ * version 3.0 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU  General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
 #import "vxSyncAppDelegate.h"
@@ -62,14 +74,15 @@ void add_value_to_controller (NSDictionaryController *controller, NSObject *valu
 @interface vxSyncAppDelegate (hidden)
 - (NSNumber *) logLevel;
 - (NSBundle *) bundle;
+- (void) readSyncServerPreferences;
 @end
 
 @implementation vxSyncAppDelegate
 
-@synthesize window, defaultsController, fKnownDevicesController, fUnknownDevices, isBusy;
+@synthesize window, defaultsController, fKnownDevicesController, fUnknownDevices, isBusy, preferencePanel;
 @synthesize progIndicator, calendarController, groupController, updateIndicator, btScanIndicator;
 @synthesize btScanStatus, fUnknownDevicesController, addView, actionStatus, errorPanel, errorText;
-@synthesize logDataController, logTableView, logTableColumn;
+@synthesize logDataController, logTableView, logTableColumn, disableSyncAlerts, syncAlertIndex;
 
 - (void) applicationWillFinishLaunching:(NSNotification *)aNotification {
   [self defaultsInitialize];
@@ -121,7 +134,9 @@ void add_value_to_controller (NSDictionaryController *controller, NSObject *valu
   [[NSNotificationCenter defaultCenter] addObserver: self selector:@selector(updateGroups:)
                                                name: kABDatabaseChangedExternallyNotification
                                              object: [ABAddressBook sharedAddressBook]];
-
+  
+  [self readSyncServerPreferences];
+  
   /* create a master port to talk to IOKit */
   IOMasterPort (IO_OBJECT_NULL, &masterPort);
 
@@ -142,6 +157,9 @@ void add_value_to_controller (NSDictionaryController *controller, NSObject *valu
   }
 
   [vxSyncLogger setDefaultLogger: nil];
+
+  /* no longer need to listen for notifications */
+  [[NSNotificationCenter defaultCenter] removeObserver: self];
 
   [super dealloc];
 }
@@ -416,7 +434,7 @@ void add_value_to_controller (NSDictionaryController *controller, NSObject *valu
 //  NSString *identifier = [object objectForKey: @"identifier"];
   int fd = [[object objectForKey: @"fileDescriptor"] intValue];
   FILE *message_fh = fdopen(fd, "r");
-  size_t buffer_len = 16384;
+  size_t buffer_len = 512;
   char *messageBuffer;
 
   messageBuffer = malloc(buffer_len);
@@ -428,34 +446,26 @@ void add_value_to_controller (NSDictionaryController *controller, NSObject *valu
   }
   
   do {
-    char *tmp = messageBuffer;
-    size_t left = buffer_len;
-    
-    tmp[0] = '\0';
-    
+    NSMutableString *message = [NSMutableString string];
+
     do {
-      char *tmp2 = fgets(tmp, left, message_fh);
+      char *tmp2 = fgets(messageBuffer, buffer_len, message_fh);
       int read_len;
       
-      if (!tmp2 || !left)
+      if (!tmp2)
         break;
       
-      read_len = strlen (tmp);
+      read_len = strlen (messageBuffer);
       
-      if (!read_len || tmp[0] == '\n') {
-        tmp[0] = '\0';
+      if (!read_len || messageBuffer[0] == '\n') {
         break;
       }
       
-      tmp  += read_len;
-      left -= read_len;
+      [message appendFormat: @"%s", messageBuffer];
     } while (1);
     
-    if (messageBuffer[0]) {
-      NSString *logString = [NSString stringWithCString: messageBuffer encoding: NSASCIIStringEncoding];
-    
-      [[vxSyncLogger defaultLogger] addMessage: logString];
-    }
+    if ([message length])    
+      [[vxSyncLogger defaultLogger] addMessage: message];
   } while (!feof(message_fh));
 
   free (messageBuffer);
@@ -507,9 +517,24 @@ void add_value_to_controller (NSDictionaryController *controller, NSObject *valu
   [releasePool release];
 }
 
+- (void) endSyncAlert: (NSAlert *) alert returnCode: (int) returnCode contextInfo: (int *) contextInfo {
+  if (0 == returnCode) { /* default button */
+    [NSThread detachNewThreadSelector: @selector(syncThread:) toTarget: self withObject: nil];
+  } /* else ignore */
+}
+
 - (IBAction) sync: (id) sender {
   [[NSUserDefaults standardUserDefaults] synchronize];
-  [NSThread detachNewThreadSelector: @selector(syncThread:) toTarget: self withObject: nil];
+
+  id phone = [[fKnownDevicesController selection] valueForKeyPath: @"self.value"];
+
+  if (([[phone valueForKeyPath: @"calendar.sync"] boolValue] && VXSYNC_MODE_PHONE_OW == [[phone valueForKeyPath: @"calendar.mode"] intValue]) ||
+      ([[phone valueForKeyPath: @"contacts.sync"] boolValue] && VXSYNC_MODE_PHONE_OW == [[phone valueForKeyPath: @"contacts.mode"] intValue]) ||
+      ([[phone valueForKeyPath: @"notes.sync"] boolValue] && VXSYNC_MODE_PHONE_OW == [[phone valueForKeyPath: @"notes.mode"] intValue])) {
+    [[NSAlert alertWithMessageText: @"One or more data sources are set to overwrite the computer. Are you sure you want to replace data on this computer with data the phone?" defaultButton: @"Cancel" alternateButton: @"Sync" otherButton: nil informativeTextWithFormat: @"This action can not be undone"] beginSheetModalForWindow: window modalDelegate: self didEndSelector: @selector(endSyncAlert:returnCode:contextInfo:) contextInfo: nil];
+    return;
+  } else
+    [NSThread detachNewThreadSelector: @selector(syncThread:) toTarget: self withObject: nil];
 }
 
 - (void) backupThread: (id) sender {
@@ -664,6 +689,66 @@ void add_value_to_controller (NSDictionaryController *controller, NSObject *valu
 - (IBAction) logLevelChanged: (id) sender {
   if ([[vxSyncLogger defaultLogger] logLevel] != [[self logLevel] unsignedIntValue])
     [[vxSyncLogger defaultLogger] setLogLevel: [[self logLevel] unsignedIntValue]];
+}
+
+- (IBAction) clearErrorLog: (id) sender {
+  [[vxSyncLogger defaultLogger] clearLog];
+}
+
+- (void) didEndSheet: (NSWindow *) sheet returnCode: (NSInteger) returnCode contextInfo: (void *) contextInfo {
+  [sheet orderOut:self];
+}
+
+- (IBAction) openPreferenceSheet: (id) sender {
+  [NSApp beginSheet: preferencePanel modalForWindow: window modalDelegate: self didEndSelector: @selector(didEndSheet:returnCode:contextInfo:) contextInfo: NULL];
+}
+
+- (IBAction) closePreferenceSheet: (id) sender {
+  [self preferencesChanged: self];
+  [NSApp endSheet: preferencePanel];
+}
+
+- (void) readSyncServerPreferences {
+  NSDictionary *syncServerDefaults = [[NSUserDefaults standardUserDefaults] persistentDomainForName: @"com.apple.syncserver"];
+
+  /* the domain doesn't exist when the alerts are set to the default (on, 25%) */
+  int alertThreshold = syncServerDefaults ? [[syncServerDefaults objectForKey: @"AirbagThreshold"] intValue] : 25;
+
+  const int thresholds[] = {0, 5, 25, 50, -1};
+  int i, alertIndex = 0;
+
+  [self setValue: syncServerDefaults ? [syncServerDefaults objectForKey: @"AirbagDisabled"] : [NSNumber numberWithBool: NO] forKeyPath: @"disableSyncAlerts"];
+
+  for (i = 0 ; thresholds[i] != -1 ; i++)
+    if (thresholds[i] == alertThreshold) {
+      alertIndex = i;
+      break;
+    }
+  
+  [self setValue: [NSNumber numberWithInt: alertIndex] forKeyPath: @"syncAlertIndex"];
+}
+
+- (IBAction) preferencesChanged: (id) sender {
+  NSMutableDictionary *syncServerDefaults = [[[[NSUserDefaults standardUserDefaults] persistentDomainForName: @"com.apple.syncserver"] mutableCopy] autorelease];
+  const int thresholds[] = {0, 5, 25, 50, -1};
+  int alertIndex = [syncAlertIndex intValue];
+
+  if (thresholds[alertIndex] != 25) {
+    if (!syncServerDefaults)
+      syncServerDefaults = [NSMutableDictionary dictionary];
+
+    if (![disableSyncAlerts boolValue])
+      [syncServerDefaults removeObjectForKey: @"AirbagDisabled"];
+    else
+      [syncServerDefaults setObject: disableSyncAlerts forKey: @"AirbagDisabled"];
+    
+    [syncServerDefaults setObject: [NSNumber numberWithInt: thresholds[alertIndex]] forKey: @"AirbagThreshold"];
+    
+    [[NSUserDefaults standardUserDefaults] setPersistentDomain: syncServerDefaults forName: @"com.apple.syncserver"];
+  } else
+    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName: @"com.apple.syncserver"];
+
+  [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 @end

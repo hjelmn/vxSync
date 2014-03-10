@@ -4,12 +4,25 @@
  * v0.8.4
  *
  * Changes:
+ *  - 0.3.2 - Changed license to GPL v3.0
  *  - 0.3.1 - Move LGException class into a seperate file. Bug fixes and code cleanup
  *  - 0.3.0 - Cleaner code. Support for commitChanges. Better support for all day events. Multiple calendars support.
  *  - 0.2.3 - Bug fixes
  *  - 0.2.0 - Initial release
  *
- * Copying of this source file in part of whole without explicit permission is strictly prohibited.
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU  General Public
+ * License as published by the Free Software Foundation; either
+ * version 3.0 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU  General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
 #include <stdlib.h>
@@ -190,7 +203,7 @@ static NSString *days[] = {@"sunday", @"monday", @"tuesday", @"wednesday", @"thu
   for (i = 0, parsedEvents = 0 ; (i < eventLimit) && (parsedEvents < eventCount) ; i++) {
     if ((usedEntries[i] & 0x01)) {
       lg_sched_event_t *event = (lg_sched_event_t *) (bytes + 2 + i * sizeof (lg_sched_event_t));
-      NSDate *modificationDate = dateFromBREWLocalTime(OSSwapLittleToHostInt32(event->mtime));
+      NSDate *modificationDate = [NSDate dateWithTimeIntervalSinceBREWEpochLocal: OSSwapLittleToHostInt32(event->mtime)];
       u_int32_t offset = OSSwapLittleToHostInt32 (event->offset);
       u_int32_t recurrence = OSSwapLittleToHostInt32 (event->recurrence);
       u_int32_t start_time = OSSwapLittleToHostInt32 (event->start_date);
@@ -201,7 +214,7 @@ static NSString *days[] = {@"sunday", @"monday", @"tuesday", @"wednesday", @"thu
       newEvent      = [NSMutableDictionary dictionary];
       [newEvent setObject: EntityEvent forKey: RecordEntityName];
       [newEvent setObject: [NSNumber numberWithUnsignedInt: i] forKey: VXKeyIndex];
-      [newEvent setObject: dateFromBREWLocalTime (OSSwapLittleToHostInt32 (event->ctime)) forKey: VXKeyDateCreated];
+      [newEvent setObject: [NSDate dateWithTimeIntervalSinceBREWEpochLocal: OSSwapLittleToHostInt32 (event->ctime)] forKey: VXKeyDateCreated];
       [newEvent setObject: stringFromBuffer((unsigned char *)event->summary, sizeof (event->summary), NSISOLatin1StringEncoding) forKey: @"summary"];
       [newEvent setObject: calendarDateFromLGCalendarDate (start_time) forKey: @"start date"];
 
@@ -494,14 +507,14 @@ static NSString *days[] = {@"sunday", @"monday", @"tuesday", @"wednesday", @"thu
 
   [[eventRecord objectForKey: @"summary"] getCString: event->summary maxLength: sizeof (event->summary) encoding: NSISOLatin1StringEncoding];
 
-  event->ctime = OSSwapHostToLittleInt32 (BREWLocalTimeFromDate ([eventRecord objectForKey: VXKeyDateCreated]));
-  event->mtime = OSSwapHostToLittleInt32 (BREWLocalTimeFromDate ([eventRecord objectForKey: VXKeyDateModified]));
+  event->ctime = OSSwapHostToLittleInt32 ([[eventRecord objectForKey: VXKeyDateCreated] timeIntervalSinceBREWEpochLocal]);
+  event->mtime = OSSwapHostToLittleInt32 ([[eventRecord objectForKey: VXKeyDateModified] timeIntervalSinceBREWEpochLocal]);
 
 //  if ([[eventRecord objectForKey: @"all day"] boolValue])
 //    event->extra_data[64] = 0x01;
   
-  event->start_date = OSSwapLittleToHostInt32 (LGCalendarDateFromDate ([eventRecord objectForKey: @"start date"]));
-  event->end_date = OSSwapLittleToHostInt32 (LGCalendarDateFromDate ([eventRecord objectForKey: @"end date"]));
+  event->start_date = OSSwapLittleToHostInt32 ([[eventRecord objectForKey: @"start date"] LGCalendarDate]);
+  event->end_date   = OSSwapLittleToHostInt32 ([[eventRecord objectForKey: @"end date"] LGCalendarDate]);
 
   /* this value varied between phones but it doesn't appear that it matters */
   event->unknown3 = OSSwapHostToLittleInt16(0x1fa);
@@ -792,7 +805,7 @@ static NSString *days[] = {@"sunday", @"monday", @"tuesday", @"wednesday", @"thu
     
     vxSync_log3(VXSYNC_LOG_DEBUG, @"**** recurrence end date: %s, recurrence = %08x\n", NS2CH(until), recurrence);
     
-    recurrence_end = (recurrence & 0x7) ? LGCalendarDateFromDate (until) : 0;
+    recurrence_end = (recurrence & 0x7) ? [until LGCalendarDate] : 0;
   }
 
   formattedRecord = [[recurrenceRecord mutableCopy] autorelease];

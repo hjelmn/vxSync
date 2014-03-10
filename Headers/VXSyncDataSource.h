@@ -3,7 +3,19 @@
  * Copyright (C) 2009-2010 Nathan Hjelm
  * v0.6.4
  *
- * Copying of this source file in part of whole without explicit permission is strictly prohibited.
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU  General Public
+ * License as published by the Free Software Foundation; either
+ * version 3.0 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU  General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
 #if !defined(VXSYNCDATSOURCE_H)
@@ -21,11 +33,12 @@
 @private
   vxPhone *phone;
   NSBundle *bundle;
-  NSMutableDictionary *persistentStore, *syncModes;
-  NSMutableArray *dataSources, *supportedEntities;
+  NSMutableDictionary *persistentStore, *dataSources, *supportedEntities;
   NSDictionary *phoneChanges;
   ISyncRecordSnapshot *snapshot;
   ISyncClient *client;
+  int phase;
+  BOOL needsTwoPhaseSync;
 }
 
 @property (retain) ISyncSessionDriver *sessionDriver;
@@ -33,11 +46,12 @@
 @property (retain) NSBundle *bundle;
 @property (retain) NSDictionary *phoneChanges;
 @property (retain) ISyncRecordSnapshot *snapshot;
-@property (retain) NSMutableArray *dataSources;
+@property (retain) NSMutableDictionary *dataSources;
 @property (retain) NSMutableDictionary *persistentStore;
-@property (retain) NSMutableArray *supportedEntities;
-@property (retain) NSMutableDictionary *syncModes;
+@property (retain) NSMutableDictionary *supportedEntities;
 @property (retain) ISyncClient *client;
+@property int phase;
+@property BOOL needsTwoPhaseSync;
 
 + (id) dataSourceWithPhone: (vxPhone *) phoneIn;
 - (id) initWithPhone: (vxPhone *) phoneIn;
@@ -72,6 +86,9 @@
 - (BOOL)deleteAllRecordsForEntityName: (NSString *) entityName error: (NSError **) outError;
 /* (R) Returns the client's preferred sync mode for the session. */
 - (ISyncSessionDriverMode) preferredSyncModeForEntityName: (NSString *) entity;
+
+- (BOOL) needsTwoPhaseSync;
+- (void) setPhase: (int) phase;
 @end
   
 #endif

@@ -1,3 +1,22 @@
+/* (-*- objc -*-)
+ * vxSync: vxPhone.m
+ * Copyright (C) 2010-2011 Nathan Hjelm
+ * v0.8.6
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU  General Public
+ * License as published by the Free Software Foundation; either
+ * version 3.0 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU  General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ */
 
 #include "VXSync.h"
 
@@ -179,30 +198,29 @@
       NSArray *locationComponents = [_location componentsSeparatedByString: @"::"];
       NSString *busLocation = [locationComponents objectAtIndex: 1];
       id <PhoneDevice> _device = [sources[i] phoneWithLocation: busLocation];
-      NSString *_identifier = [BREWefs identifierForDevice: _device];
+      BREWefs *_efs = [BREWefs efsWithDevice: _device];
+      NSString *_identifier = [_efs identifier];
       
       vxSync_log3(VXSYNC_LOG_INFO, @"checking again device at location %s (%s)\n", NS2CH(_location), NS2CH(_identifier));
       
       if ([_identifier isEqualToString: identifierIn]) {
-        BREWefs *_efs = [BREWefs efsWithDevice: _device];
+        vxSync_log3(VXSYNC_LOG_INFO, @"device found\n");
         
-        if (_efs) {
-          vxSync_log3(VXSYNC_LOG_INFO, @"device found\n");
-
-          [self setEfs: _efs];
-
-          (void) [self readPhonePreferences];
-          if (![self options])
-            vxSync_log3(VXSYNC_LOG_WARNING, @"could not read phone preferences. continuing anyway....\n");
-
-          if ([self matchPlugin]) {
-            vxSync_log3(VXSYNC_LOG_ERROR, @"no plugin matches model\n");
-
-            return nil;
-          }
-
-          return self;
+        [self setEfs: _efs];
+        
+        (void) [self readPhonePreferences];
+        if (![self options])
+          vxSync_log3(VXSYNC_LOG_WARNING, @"could not read phone preferences. continuing anyway....\n");
+        
+        if ([self matchPlugin]) {
+          vxSync_log3(VXSYNC_LOG_ERROR, @"no plugin matches model\n");
+          
+          return nil;
         }
+        
+        return self;
+      } else {
+        [_efs doneWithDevice];
       }
     }
   }

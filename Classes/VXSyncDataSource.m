@@ -2,9 +2,21 @@
  * vxSync: VXSyncDataSource.m
  * (C) 2009-2011 Nathan Hjelm
  *
- * v0.8.2
+ * v0.8.5
  *
- * Copying of this source file in part of whole without explicit permission is strictly prohibited.
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU  General Public
+ * License as published by the Free Software Foundation; either
+ * version 3.0 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU  General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
 #include "VXSync.h"
@@ -52,24 +64,28 @@ static BOOL notOnPhone (id key, id obj, BOOL *stop) {
     return nil;
   }
 
-/*  NSString *vxSyncPath = vxSyncBundlePath (); */
-  
+  if (([[phone getOption: @"calendar.sync"] boolValue] && VXSYNC_MODE_PHONE_OW == [[phone getOption: @"calendar.mode"] intValue]) ||
+      ([[phone getOption: @"contacts.sync"] boolValue] && VXSYNC_MODE_PHONE_OW == [[phone getOption: @"contacts.mode"] intValue]) ||
+      ([[phone getOption: @"notes.sync"] boolValue] && VXSYNC_MODE_PHONE_OW == [[phone getOption: @"notes.mode"] intValue])) {
+    self.needsTwoPhaseSync = YES;
+  } else
+    self.needsTwoPhaseSync = NO;
+
   [self setBundle: vxSyncBundle ()];
   
   vxSync_log3(VXSYNC_LOG_INFO, @"bundle = %s\n", NS2CH(bundle));
   vxSync_log3(VXSYNC_LOG_INFO, @"phone options = %s\n", NS2CH([phone options]));
   
-  [self setDataSources: [NSMutableArray array]];
-  [self setSupportedEntities: [NSMutableArray array]];
-  [self setSyncModes: [NSMutableDictionary dictionary]];
-
-  [self loadPersistentStore];
+  [self setSupportedEntities: [NSMutableDictionary dictionary]];
+  [self setPhase: 1];
   [self setClient: [[ISyncManager sharedManager] clientWithIdentifier: [self clientIdentifier]]];
 
+  [self loadPersistentStore];
+  
   return self;
 }
 
-@synthesize sessionDriver, phone, bundle, phoneChanges, snapshot, dataSources, persistentStore, supportedEntities, syncModes, client;
+@synthesize sessionDriver, phone, bundle, phoneChanges, snapshot, dataSources, persistentStore, supportedEntities, client, phase, needsTwoPhaseSync;
 
 - (void) dealloc {
   vxSync_log3(VXSYNC_LOG_INFO, @"dealloc called on VXSyncDataSource\n");
@@ -82,9 +98,8 @@ static BOOL notOnPhone (id key, id obj, BOOL *stop) {
   [self setDataSources: nil];
   [self setPersistentStore: nil];
   [self setSupportedEntities: nil];
-  [self setSyncModes: nil];
   [self setClient: nil];
-
+  
   [super dealloc];
 }
 
@@ -142,7 +157,7 @@ static BOOL notOnPhone (id key, id obj, BOOL *stop) {
 }
 
 - (void) applyChanges: (NSDictionary *) changesDictionary {
-  vxSync_log3(VXSYNC_LOG_DEBUG, @"applying change(s) to the persistent store: %s\n", NS2CH(changesDictionary));
+  vxSync_log3(VXSYNC_LOG_DEBUG, @"self = %p, applying change(s) to the persistent store: %s\n", self, NS2CH(changesDictionary));
   
   for (id entityName in [changesDictionary allKeys]) {
     NSArray *changes = [changesDictionary objectForKey: entityName];
@@ -179,6 +194,8 @@ static BOOL notOnPhone (id key, id obj, BOOL *stop) {
       }
     }
   }
+  
+  vxSync_log3(VXSYNC_LOG_DEBUG, @"persistent store after changes: %s\n", NS2CH(persistentStore));
 }
 
 - (int) updateRelation: (NSString *) relation reverseRelation: (NSString *) reverseRelation forRecord: (NSMutableDictionary *) record
@@ -286,16 +303,26 @@ static BOOL notOnPhone (id key, id obj, BOOL *stop) {
 - (NSDictionary *) loadChanges {
   NSMutableDictionary *changesDictionary = [NSMutableDictionary dictionary];
   id identifier, record, recordChanges;
+  NSDictionary *objects;
+  NSSet *oldOnPhone;
+  NSMutableSet *deletedRecords;
+  NSMutableArray *changes;
 
-  for (id dataSource in dataSources) {
-    NSDictionary *objects = [dataSource readRecords];
+  if (needsTwoPhaseSync && 1 == phase)
+    return changesDictionary;
+
+  for (id dataSourceDict in [dataSources allValues]) {
+    id dataSource = [dataSourceDict valueForKeyPath: @"dataSource"];
+    int mode = [[dataSourceDict valueForKeyPath: @"mode"] intValue];
+    
+    objects = [dataSource readRecords];
     
     printf ("Evaluating phone data\n");
 
     for (id entityName in objects) {
-      NSSet *oldOnPhone = [[persistentStore objectForKey: entityName] keysOfObjectsPassingTest: isOnPhone];
-      NSMutableSet *deletedRecords = [[oldOnPhone mutableCopy] autorelease];
-      NSMutableArray *changes = [NSMutableArray array];
+      oldOnPhone = (VXSYNC_MODE_PHONE_OW == mode) ? [NSSet setWithArray: [[persistentStore objectForKey: entityName] allKeys]] : [[persistentStore objectForKey: entityName] keysOfObjectsPassingTest: isOnPhone];
+      deletedRecords = [[oldOnPhone mutableCopy] autorelease];
+      changes = [NSMutableArray array];
       
       [deletedRecords minusSet: [NSSet setWithArray: [[objects objectForKey: entityName] allKeys]]];
 
@@ -339,6 +366,8 @@ static BOOL notOnPhone (id key, id obj, BOOL *stop) {
 
   identifiers = [records allKeys];
 
+  vxSync_log3(VXSYNC_LOG_INFO, @"self = %p, for entityName: %s, allKeys: %s\n", self, NS2CH(entityName), NS2CH(identifiers));
+
   for (NSString *identifier in identifiers) {
     NSMutableDictionary *newEntry = [[[records objectForKey: identifier] mutableCopy] autorelease];
     NSArray *keys = [newEntry allKeys];
@@ -365,6 +394,8 @@ static BOOL notOnPhone (id key, id obj, BOOL *stop) {
 - (NSArray *) changesForEntityName: (NSString *) entity moreComing: (BOOL *) moreComing error: (NSError **) outError {
   NSMutableArray *entityChanges = [NSMutableArray array];
   *moreComing = NO;
+
+  vxSync_log3(VXSYNC_LOG_INFO, @"entering...\n");
 
   for (ISyncChange *changes in [phoneChanges objectForKey: entity]) {
     NSMutableArray *changeArray = [NSMutableArray array];
@@ -399,11 +430,8 @@ static BOOL notOnPhone (id key, id obj, BOOL *stop) {
   changeRecord = [change record];
   changeIdentifier = [change recordIdentifier];
 
-  for (dataSource in dataSources) {
-    if ([[dataSource supportedEntities] indexOfObject: entityName] != NSNotFound)
-      break;
-  }
-
+  dataSource = [[dataSources objectForKey: [supportedEntities objectForKey: entityName]] valueForKeyPath: @"dataSource"];
+  
   if (!dataSource)
     /* entity not supported or disabled */
     return ISyncSessionDriverChangeIgnored;
@@ -464,14 +492,7 @@ static BOOL notOnPhone (id key, id obj, BOOL *stop) {
 
 /* (R) Deletes all records for the specified entity. */
 - (BOOL) deleteAllRecordsForEntityName: (NSString *)entityName error:(NSError **)outError {
-  id <LGData> dataSource;
-  NSUInteger index;
-
-  for (dataSource in dataSources) {
-    index = [[dataSource supportedEntities] indexOfObject: entityName];
-    if (index != NSNotFound)
-      break;
-  }
+  id <LGData> dataSource = [[dataSources objectForKey: [supportedEntities objectForKey: entityName]] valueForKeyPath: @"dataSource"];
 
   if ([dataSource deleteAllRecordsForEntityName: entityName]) {
     [persistentStore removeObjectForKey: entityName];
@@ -484,52 +505,66 @@ static BOOL notOnPhone (id key, id obj, BOOL *stop) {
 
 /* (O) Returns an array of NSString objects representing the names of entities this client wants to pull. */
 - (NSArray *)entityNamesToPull {
-  return supportedEntities;
+  return [supportedEntities allKeys];
 }
 
 /* (O) Returns an array of NSString objects representing the names of entities this client wants to sync. */
 - (NSArray *)entityNamesToSync {
-  return supportedEntities;
+  return [supportedEntities allKeys];
 }
 
 /* (R) Returns the client's preferred sync mode for the session. */
 - (ISyncSessionDriverMode) preferredSyncModeForEntityName: (NSString *) entity {
-  vxSync_log3(VXSYNC_LOG_INFO, @"returning mode %s for %s\n", NS2CH([syncModes objectForKey: entity]), NS2CH(entity));
-  return [[syncModes objectForKey: entity] intValue];
-}
+  NSDictionary *tmp = [dataSources objectForKey: [supportedEntities objectForKey: entity]];
+  int mode = [[tmp objectForKey: @"mode"] intValue];
+  int syncMode;
+  
+  if (!tmp)
+    /* this should NEVER happen! */
+    return 0;
+  
+  switch (mode) {
+    case VXSYNC_MODE_MERGE:
+      syncMode = [persistentStore objectForKey: entity] ? ISyncSessionDriverModeFast : ISyncSessionDriverModeSlow;
+      
+      break;
+    case VXSYNC_MODE_COMPUTER_OW:
+      syncMode = ISyncSessionDriverModeRefresh;
+      
+      break;
+    case VXSYNC_MODE_PHONE_OW:
+      syncMode = (1 == phase) ? ISyncSessionDriverModeRefresh : ISyncSessionDriverModeFast;
+      
+      break;
+    default:
+      return 0;
+  }
 
-- (void) setPreferredSyncMode: (ISyncSessionDriverMode) syncMode forEntityNames: (NSArray *) entityNames {
-  for (id entityName in entityNames)
-    [syncModes setObject: [NSNumber numberWithInt: syncMode] forKey: entityName];
+  vxSync_log3(VXSYNC_LOG_INFO, @"self = %p, returning syncMode %i (mode = %i, phase = %i) for %s\n", self, syncMode, mode, phase, NS2CH(entity));
+  return syncMode;
 }
 
 /* helper methods */
-- (int) setupDataSource: (id <LGData>) dataSource wipeEntities: (BOOL) wipeEntities {
+- (int) setupDataSource: (id <LGData>) dataSource mode: (int) mode {
   NSArray *entities = [dataSource supportedEntities];
-  int syncMode = ISyncSessionDriverModeFast;
-
-  if (wipeEntities) {
-    /* computer overwrites phone */
-    [dataSource deleteAllRecords];
-    syncMode = ISyncSessionDriverModeRefresh;
-  }
-
-  for (id entity in entities) {
-    if (wipeEntities)
-      [persistentStore removeObjectForKey: entity];
-    else if (![persistentStore objectForKey: entity])
-      syncMode = ISyncSessionDriverModeSlow;
-  }
+  
+  if ((needsTwoPhaseSync && 1 == phase) && VXSYNC_MODE_PHONE_OW != mode)
+    /* do nothing */
+    return 0;
 
   [dataSource setDelegate: self];
+  
+  if (VXSYNC_MODE_COMPUTER_OW == mode)
+    [dataSource deleteAllRecords];
 
-  [self setPreferredSyncMode: syncMode forEntityNames: entities];
-  [dataSources addObject: dataSource];
-  [supportedEntities addObjectsFromArray: entities];
+  for (id entity in entities)
+    [supportedEntities setObject: [dataSource dataSourceIdentifier] forKey: entity];
+
+  NSDictionary *tmp = [NSDictionary dictionaryWithObjectsAndKeys: dataSource, @"dataSource", [NSNumber numberWithInt: mode], @"mode", nil];
+  [dataSources setObject: tmp forKey: [dataSource dataSourceIdentifier]];
 
   return 0;
 }
-
 
 - (NSDate *) determineNextEventOccurenceForEvent: (NSDictionary *) event after: (NSDate *) date recurrences: (NSDictionary *) recurrences {
   NSDictionary *recurrence = nil;
@@ -598,7 +633,7 @@ static BOOL notOnPhone (id key, id obj, BOOL *stop) {
 
     vxSync_log3(VXSYNC_LOG_DEBUG, @"next occurrence date of %s: %s is of type %s\n", NS2CH(record), NS2CH(nextDate), NS2CH([nextDate class]));
 
-    if (calIsLimited && [nextDate compare: limitDate] == NSOrderedAscending) {
+    if (!nextDate || (calIsLimited && [nextDate compare: limitDate] == NSOrderedAscending)) {
       if ([[record objectForKey: VXKeyOnPhone] boolValue])
         [[changes objectForKey: @"delete"] addObject: record];
       continue;
@@ -776,15 +811,20 @@ static BOOL notOnPhone (id key, id obj, BOOL *stop) {
 
 /* delegate methods */
 - (BOOL) sessionDriver:(ISyncSessionDriver *)sender didRegisterClientAndReturnError:(NSError **)outError {
+  [self setDataSources: [NSMutableDictionary dictionary]];
+  
   if ([[phone getOption: @"notes.sync"] boolValue])
-    [self setupDataSource: [LGMemos sourceWithPhone: phone] wipeEntities: [[phone getOption: @"notes.mode"] intValue] == 1];
+    [self setupDataSource: [LGMemos sourceWithPhone: phone]
+                     mode: [[phone getOption: @"notes.mode"] intValue]];
 
   if ([[phone getOption: @"calendar.sync"] boolValue])
-    [self setupDataSource: [LGCalendar sourceWithPhone: phone] wipeEntities: [[phone getOption: @"calendar.mode"] intValue] == 1];
+    [self setupDataSource: [LGCalendar sourceWithPhone: phone]
+                     mode: [[phone getOption: @"calendar.mode"] intValue]];
 
   if ([[phone getOption: @"contacts.sync"] boolValue])
-    [self setupDataSource: [LGPhonebook sourceWithPhone: phone] wipeEntities: [[phone getOption: @"contacts.mode"] intValue] == 1];
-  
+    [self setupDataSource: [LGPhonebook sourceWithPhone: phone]
+                     mode: [[phone getOption: @"contacts.mode"] intValue]];
+
   return YES;
 }
 
@@ -796,10 +836,11 @@ static BOOL notOnPhone (id key, id obj, BOOL *stop) {
   Load data from enabled data sources and commit the changes to the persistent store.
 */
 - (BOOL)sessionDriver:(ISyncSessionDriver *)sender willPushAndReturnError:(NSError **)outError {  
-  /* load changes phones before pushing */
-  for (id entityName in supportedEntities)
-    if (![persistentStore objectForKey: entityName])
+  /* load changes from phone before pushing */
+  for (id entityName in [supportedEntities allKeys]) {
+    if (![persistentStore objectForKey: entityName] || [self preferredSyncModeForEntityName: entityName] == ISyncSessionDriverModeRefresh)
       [persistentStore setObject: [NSMutableDictionary dictionary] forKey: entityName];
+  }
   
   phoneChanges = [[self loadChanges] retain];
   [self applyChanges: phoneChanges];
@@ -817,46 +858,44 @@ static BOOL notOnPhone (id key, id obj, BOOL *stop) {
 */
 - (BOOL) sessionDriver: (ISyncSessionDriver *) sender didPullAndReturnError: (NSError **) outError {
   id <LGData> dataSource;
-
-  vxSync_log3(VXSYNC_LOG_INFO, @"pushing changes to phone: %s\n", NS2CH(persistentStore));
-
-  if ([supportedEntities indexOfObject: EntityCalendar] != NSNotFound) {
-    printf ("Writing calendar entries\n");
-    for (dataSource in dataSources) {
-      if ([[dataSource supportedEntities] indexOfObject: EntityCalendar] != NSNotFound)
-        break;
-    }
-
-    [self commitCalendarsAndEventsTo: dataSource];
-  }
-
-  if ([supportedEntities indexOfObject: EntityContact] != NSNotFound) {
-    printf ("Writing phonebook\n");
-    for (dataSource in dataSources) {
-      if ([[dataSource supportedEntities] indexOfObject: EntityContact] != NSNotFound)
-        break;
-    }
-
-    /* groups must be committed to the phone before contacts or some parent groups will not be synced */
-    [self commitGenericTo: dataSource entityNames: [NSArray arrayWithObject: EntityGroup]];
-    [self commitGenericTo: dataSource entityNames: [NSArray arrayWithObject: EntityContact]];
-  }
+  NSDictionary *tmp;
   
-  if ([supportedEntities indexOfObject: EntityNote] != NSNotFound) {
-    printf ("Writing notes\n");
-    for (dataSource in dataSources) {
-      if ([[dataSource supportedEntities] indexOfObject: EntityNote] != NSNotFound)
-        break;
+  if (!needsTwoPhaseSync || 2 == phase) {
+    vxSync_log3(VXSYNC_LOG_INFO, @"pushing changes to phone: %s\n", NS2CH(persistentStore));
+    
+    tmp = [dataSources objectForKey: [supportedEntities objectForKey: EntityCalendar]];
+    dataSource = [tmp valueForKeyPath: @"dataSource"];
+    if (dataSource) {
+      printf ("Writing calendar entries\n");
+      [self commitCalendarsAndEventsTo: dataSource];
     }
     
-    [self commitGenericTo: dataSource entityNames: [NSArray arrayWithObject: EntityNote]];
+    tmp = [dataSources objectForKey: [supportedEntities objectForKey: EntityContact]];
+    dataSource = [tmp valueForKeyPath: @"dataSource"];
+    if (dataSource) {
+      printf ("Writing phonebook\n");
+      
+      /* groups must be committed to the phone before contacts or some parent groups will not be synced */
+      [self commitGenericTo: dataSource entityNames: [NSArray arrayWithObject: EntityGroup]];
+      [self commitGenericTo: dataSource entityNames: [NSArray arrayWithObject: EntityContact]];
+    }
+    
+    tmp = [dataSources objectForKey: [supportedEntities objectForKey: EntityNote]];
+    dataSource = [tmp valueForKeyPath: @"dataSource"];
+    if (dataSource) {
+      printf ("Writing notes\n");
+      [self commitGenericTo: dataSource entityNames: [NSArray arrayWithObject: EntityNote]];
+    }
+    
+    printf ("Finishing...\n");
   }
-  
+
   return YES;
 }
 
 - (BOOL) sessionDriver: (ISyncSessionDriver *) sender didPushAndReturnError: (NSError **) outError {
-  [[NSUserDefaults standardUserDefaults] setPersistentDomain: persistentStore forName: [self clientIdentifier]];
+  if (needsTwoPhaseSync && 1 == phase)
+    [[NSUserDefaults standardUserDefaults] setPersistentDomain: persistentStore forName: [self clientIdentifier]];
   
   return YES;
 }
@@ -869,11 +908,14 @@ static BOOL notOnPhone (id key, id obj, BOOL *stop) {
   Actually commit changes to the phone now.
 */
 - (void) sessionDriverDidFinishSession: (ISyncSessionDriver *) sender {
-  id <LGData> dataSource;
-
-  for (dataSource in dataSources)
+  if (needsTwoPhaseSync && 1 == phase) {
+    /* do nothing. its up to the caller to start phase 2 */
+    return;
+  }
+  
+  for (id dataSource in [dataSources allValues])
     /* todo -- check return codes */
-    (void) [dataSource commitChanges];
+    (void) [[dataSource valueForKeyPath: @"dataSource"] commitChanges];
 
   [self writePersistentStore];
 }

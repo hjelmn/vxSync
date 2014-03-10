@@ -3,7 +3,19 @@
  * (C) 2009-2011 Nathan Hjelm
  * v0.8.2
  *
- * Copying of this source file in part of whole without explicit permission is strictly prohibited.
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU  General Public
+ * License as published by the Free Software Foundation; either
+ * version 3.0 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU  General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
 #include "VXSync.h"
@@ -91,9 +103,9 @@ static NSString *numberTypes[] = {@"none", @"mobile", @"home", @"work", @"mobile
 
 - (void) readICE {
   NSData *_iceData = [[phone efs] get_file_data_from: VXPBICEPath errorOut: nil];
-  if (!iceData)
+  if (![_iceData length])
     return;
-  memmove(iceData, [_iceData bytes], kMaxICE * sizeof (struct lg_ice_entry));
+  memcpy(iceData, [_iceData bytes], kMaxICE * sizeof (struct lg_ice_entry));
 }
 
 - (void) blankICEEntry: (unsigned int) aIndex {
@@ -112,10 +124,12 @@ static NSString *numberTypes[] = {@"none", @"mobile", @"home", @"work", @"mobile
 
 - (NSDictionary *) formatNumber: (NSDictionary *) numberRecord identifier: (NSString *) identifier {
   NSMutableDictionary *formattedRecord = [[numberRecord mutableCopy] autorelease];
-  NSData *value;
-
-  value = dataFromNumericPhonenumber([numberRecord objectForKey: @"value"]);
-  [formattedRecord setObject: numericPhonenumberFromData ([value subdataWithRange: NSMakeRange (0, [value length] > 48 ? 48 : [value length])]) forKey: @"value"];
+  /* format the phone number to include only the characters recognized by the phone then shorted it to fit */
+  NSString *unformattedNumber = unformatNumber([numberRecord objectForKey: @"value"]);
+  NSString *shortenedNumber = shortenString(unformattedNumber, NSASCIIStringEncoding, 49);
+  
+  /* re-format the number as we will would when reading from the phone */
+  [formattedRecord setObject: formattedNumber ([shortenedNumber cStringUsingEncoding: NSASCIIStringEncoding]) forKey: @"value"];
 
   return [[formattedRecord copy] autorelease];
 }
@@ -760,6 +774,8 @@ static NSString *numberTypes[] = {@"none", @"mobile", @"home", @"work", @"mobile
         [phonebookData setEntryPhoneNumberOfType: [[record objectForKey: VXKeyType] intValue] to: nil];
     } else if ([[record objectForKey: RecordEntityName] isEqualToString: EntityAddress])
       [phonebookData setEntryAddress: nil];
+    else if ([[record objectForKey: RecordEntityName] isEqualToString: EntityEmail])
+      [phonebookData setEntryEmail: nil index: [[record objectForKey: VXKeyParentIndex] intValue]];
   }
 
   /* Address, Email, and Name deletions are handled when the Contact is updated */

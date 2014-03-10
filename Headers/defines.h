@@ -1,9 +1,21 @@
 /* (-*- objc -*-)
  * vxSync: defines.h
- * Copyright (C) 2009-2010 Nathan Hjelm
- * v0.5.1
+ * Copyright (C) 2009-2011 Nathan Hjelm
+ * v0.8.5
  *
- * Copying of this source file in part of whole without explicit permission is strictly prohibited.
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU  General Public
+ * License as published by the Free Software Foundation; either
+ * version 3.0 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU  General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
 #if !defined(DEFINES_H)
@@ -110,4 +122,13 @@ enum { LGPhonebookFormatStandard, LGPhonebookFormatStandardU, LGPhonebookFormatE
 enum { LGGroupFormat1, LGGroupFormat2, LGGroupFormat3 };
 enum { LGPhonenumberFormat1, LGPhonenumberFormat2 };
 
+/* 
+ syncModes:
+   VXSYNC_MODE_MERGE       - Merge data from the phone and computer
+   VXSYNC_MODE_COMPUTER_OW - Computer data overwrites phone data
+   VXSYNC_MODE_PHONE_OW    - Phone data overwrites computer data
+ 
+ Note: these must be in the same order as the mode menus in the interface.
+*/
+enum syncModes { VXSYNC_MODE_MERGE, VXSYNC_MODE_COMPUTER_OW, VXSYNC_MODE_PHONE_OW }; 
 #endif

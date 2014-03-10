@@ -35,6 +35,8 @@
 		69859D7F12B438C200F89660 /* vx9700.vxphone in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 69859D4212B438BB00F89660 /* vx9700.vxphone */; };
 		69859D8012B438C200F89660 /* vx10000.vxphone in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 69859D4C12B438BB00F89660 /* vx10000.vxphone */; };
 		69859D8112B438C200F89660 /* vx11000.vxphone in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 69859D5612B438BB00F89660 /* vx11000.vxphone */; };
+		69B3E31C1350D32000432152 /* vn270.vxphone in Resources */ = {isa = PBXBuildFile; fileRef = 69B3E31B1350D32000432152 /* vn270.vxphone */; };
+		69B3E31D1350D5E200432152 /* vn270.vxphone in Copy Plugins */ = {isa = PBXBuildFile; fileRef = 69B3E31B1350D32000432152 /* vn270.vxphone */; };
 		69B9D93112BC3F42003C32DE /* add.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 69B9D92A12BC3F42003C32DE /* add.tiff */; };
 		69B9D93212BC3F42003C32DE /* addBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = 69B9D92B12BC3F42003C32DE /* addBlue.png */; };
 		69B9D93312BC3F42003C32DE /* bluetooth.png in Resources */ = {isa = PBXBuildFile; fileRef = 69B9D92C12BC3F42003C32DE /* bluetooth.png */; };
@@ -175,6 +177,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				69B3E31D1350D5E200432152 /* vn270.vxphone in Copy Plugins */,
 				69859D7112B438C200F89660 /* vx5400.vxphone in Copy Plugins */,
 				69859D7212B438C200F89660 /* vx5500.vxphone in Copy Plugins */,
 				69859D7312B438C200F89660 /* vx5600.vxphone in Copy Plugins */,
@@ -236,6 +239,7 @@
 		69859D5612B438BB00F89660 /* vx11000.vxphone */ = {isa = PBXFileReference; lastKnownFileType = folder; path = vx11000.vxphone; sourceTree = "<group>"; };
 		698D6D0B12CFB81E009349A2 /* ChangeLog.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = ChangeLog.rtf; sourceTree = "<group>"; };
 		69B34BD612CD51A20036B640 /* reset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = reset.m; sourceTree = "<group>"; };
+		69B3E31B1350D32000432152 /* vn270.vxphone */ = {isa = PBXFileReference; lastKnownFileType = folder; path = vn270.vxphone; sourceTree = "<group>"; };
 		69B9D92A12BC3F42003C32DE /* add.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = add.tiff; path = Resources/add.tiff; sourceTree = "<group>"; };
 		69B9D92B12BC3F42003C32DE /* addBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = addBlue.png; path = Resources/addBlue.png; sourceTree = "<group>"; };
 		69B9D92C12BC3F42003C32DE /* bluetooth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bluetooth.png; path = Resources/bluetooth.png; sourceTree = "<group>"; };
@@ -507,6 +511,7 @@
 		6985980212AF608A00F89660 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				69B3E31B1350D32000432152 /* vn270.vxphone */,
 				69859CB612B438BB00F89660 /* vx5400.vxphone */,
 				69859CC012B438BB00F89660 /* vx5500.vxphone */,
 				69859CCA12B438BB00F89660 /* vx5600.vxphone */,
@@ -726,6 +731,7 @@
 				69B9DAC612BC46C4003C32DE /* donate.png in Resources */,
 				69B9DD4812BC7A97003C32DE /* VXSyncSchema.syncschema in Resources */,
 				69FFA63D12CEB41B0086A6D1 /* vxSync.icns in Resources */,
+				69B3E31C1350D32000432152 /* vn270.vxphone in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -899,6 +905,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = vxSyncDevice;
+				SDKROOT = macosx10.8;
 			};
 			name = Debug;
 		};
@@ -921,6 +928,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = vxSyncDevice;
+				SDKROOT = macosx10.8;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -945,6 +953,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = vxBackup;
+				SDKROOT = macosx10.8;
 			};
 			name = Debug;
 		};
@@ -967,6 +976,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = vxBackup;
+				SDKROOT = macosx10.8;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -991,6 +1001,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = vxRestore;
+				SDKROOT = macosx10.8;
 			};
 			name = Debug;
 		};
@@ -1013,6 +1024,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = vxRestore;
+				SDKROOT = macosx10.8;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -1038,6 +1050,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = vxReset;
+				SDKROOT = macosx10.8;
 			};
 			name = Debug;
 		};
@@ -1061,6 +1074,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = vxReset;
+				SDKROOT = macosx10.8;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -1079,6 +1093,7 @@
 				INFOPLIST_FILE = "vxSync-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = vxSync;
+				SDKROOT = macosx10.8;
 			};
 			name = Debug;
 		};
@@ -1093,6 +1108,7 @@
 				INFOPLIST_FILE = "vxSync-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = vxSync;
+				SDKROOT = macosx10.8;
 			};
 			name = Release;
 		};
@@ -1104,7 +1120,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				SDKROOT = macosx10.5;
@@ -1118,7 +1134,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PREBINDING = NO;
 				SDKROOT = macosx10.5;
 			};

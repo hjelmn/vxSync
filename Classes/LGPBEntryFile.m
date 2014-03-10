@@ -11,7 +11,19 @@
  *  - 0.2.3 - Bug fixes
  *  - 0.2.0 - Initial release
  *
- * Copying of this source file in part of whole without explicit permission is strictly prohibited.
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU  General Public
+ * License as published by the Free Software Foundation; either
+ * version 3.0 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU  General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
 #include "LGPBEntryFile.h"
@@ -112,15 +124,20 @@ static NSString *numberTypes[] = {@"none", @"mobile", @"home", @"work", @"mobile
 
   [self readGroups];
   [self readSpeeds];
-  
-  fd = [[phone efs] open: VXPBEntryPath withFlags: O_RDONLY];
-  if (-1 == fd)
-    return -1;
 
-  vxSync_log3(VXSYNC_LOG_INFO, @"data file opened for reading. Will read phonebook up to index: %i\n", sessionLastIndex);
+  if ([[phone efs] stat: VXPBEntryPath to: NULL]) {
+    vxSync_log3(VXSYNC_LOG_INFO, @"phonebook data file not found. continuing with data from pb protocol");
+  } else {
+    fd = [[phone efs] open: VXPBEntryPath withFlags: O_RDONLY];
+    if (-1 == fd)
+      return -1;
+
+    vxSync_log3(VXSYNC_LOG_INFO, @"data file opened for reading. Will read phonebook up to index: %i\n", sessionLastIndex);
+  }
 
   for (i = 0 ; i <= sessionLastIndex ; i ++) {
     [[phone efs] read: fd to: bytes count: recordLength];
+    /* TODO -- update to work with phones that don't have the standard pim data */
     if (OSReadLittleInt32 (bytes, idOffset) != (UInt32)-1) {
       NSMutableDictionary *newContact = [NSMutableDictionary dictionary];
       UInt16 ringtoneIndex, pictureIndex;
@@ -311,7 +328,7 @@ static NSString *numberTypes[] = {@"none", @"mobile", @"home", @"work", @"mobile
 }
 
 @synthesize phone, supportsIM, supportsStreetAddress, supportsFavorites, supportsNotes, groups, dataDelegate, speeds, favorites;
-@synthesize toDelete, contactGroupLimit;
+@synthesize toDelete, contactGroupLimit, numberLength;
 
 static NSString *imServices[] = {@"aim", @"yahoo", @"msn", nil};
 
@@ -935,7 +952,7 @@ static NSString *imServices[] = {@"aim", @"yahoo", @"msn", nil};
   pbpEmailOffset         =  45;
   pbpNumberOffset        = 149;
   pbpPrimaryNumberOffset = 394;
-  numberLength           =  49;
+  self.numberLength      =  49;
   
   idOffset         =  23;
   nameEncoding     =  NSISOLatin1StringEncoding;
@@ -1025,7 +1042,7 @@ static NSString *imServices[] = {@"aim", @"yahoo", @"msn", nil};
     [cleanedNumber getCString: pbData->numbers[typeIndex] maxLength: sizeof (pbData->numbers[typeIndex]) encoding: NSASCIIStringEncoding];
   }
   pbData->primary_number = OSSwapHostToLittleInt16 ([[contact objectForKey: @"primary number"] unsignedShortValue]);
-  lgDateFromDate([NSDate date], pbData->mod_date);
+  [[NSDate date] lgDate: pbData->mod_date];
   
   if (streetAddress) {
     [[streetAddress objectForKey: @"street"] getCString: pbData->street maxLength: sizeof (pbData->street) encoding: NSISOLatin1StringEncoding];
@@ -1199,7 +1216,7 @@ static NSString *imServices[] = {@"aim", @"yahoo", @"msn", nil};
     [cleanedNumber getCString: pbData->numbers[typeIndex] maxLength: sizeof (pbData->numbers[typeIndex]) encoding: NSASCIIStringEncoding];
   }
   pbData->primary_number = OSSwapHostToLittleInt16 ([[contact objectForKey: @"primary number"] unsignedShortValue]);
-  lgDateFromDate([NSDate date], pbData->mod_date);
+  [[NSDate date] lgDate: pbData->mod_date];
   
   if (streetAddress) {
     [[streetAddress objectForKey: @"street"] getCString: pbData->street maxLength: sizeof (pbData->street) encoding: NSISOLatin1StringEncoding];

@@ -3,7 +3,19 @@
  * Copyright (C) 2010-2011 Nathan Hjelm
  * v0.8.2
  *
- * Copying of this source file in part of whole without explicit permission is strictly prohibited.
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU  General Public
+ * License as published by the Free Software Foundation; either
+ * version 3.0 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU  General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
 #include <stdlib.h>
@@ -120,7 +132,7 @@ static NSString *levelMessage[] = {@"ERROR", @"WARNING", @"INFO", @"DEBUG", @"DA
   ssize_t len;
   char *str = NULL;
 
-  format2 = [NSString stringWithFormat: @"%@ %s(%i) %@: %@", self.prog, func, line, level > 0 ? levelMessage[level] : @"INFO", format];
+  format2 = [NSString stringWithFormat: @"%@ %s(%i) %@: %@", self.prog, func, line, level >= 0 ? levelMessage[level] : @"INFO", format];
   len = vasprintf (&str, [format2 UTF8String], arg);
 
   if (len < 1 || !str)
@@ -190,6 +202,13 @@ static NSString *levelMessage[] = {@"ERROR", @"WARNING", @"INFO", @"DEBUG", @"DA
 
   [controller addObject: logLine];
   
+  [lock unlock];
+}
+
+- (void) clearLog {
+  [lock lock];
+  [lineCounts removeAllObjects];
+  [controller removeObjects: [controller arrangedObjects]];
   [lock unlock];
 }
 

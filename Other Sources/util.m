@@ -1,9 +1,21 @@
 /* (-*- objc -*-)
  * vxSync: util.m
  * (C) 2009-2011 Nathan Hjelm
- * v0.8.2
+ * v0.8.5
  *
- * Copying of this source file in part of whole without explicit permission is strictly prohibited.
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU  General Public
+ * License as published by the Free Software Foundation; either
+ * version 3.0 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU  General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
 #include "util.h"
@@ -12,81 +24,67 @@
 
 #define kBundleDomain @"com.enansoft.vxSync"
 
-NSDate *dateFromBREWTime (int timeVal) {
-  return [NSDate dateWithTimeIntervalSince1970: timeVal + 315964800 - [[NSTimeZone localTimeZone] secondsFromGMT]];
+@implementation NSDate (BREW)
+
++ (id) dateWithTimeIntervalSinceBREWEpochUTC: (int) seconds {
+  return [NSDate dateWithTimeIntervalSince1970: seconds + 315964800 - [[NSTimeZone localTimeZone] secondsFromGMT]];
 }
 
-NSDate *dateFromBREWLocalTime (int timeVal) {
-  return [NSDate dateWithTimeIntervalSince1970: timeVal + 315964800];
++ (id) dateWithTimeIntervalSinceBREWEpochLocal: (int) seconds {
+  return [NSDate dateWithTimeIntervalSince1970: seconds + 315964800];
 }
 
-u_int32_t BREWTimeFromDate (NSDate *date) {
-  return [date timeIntervalSince1970] - 315964800 + [[NSTimeZone localTimeZone] secondsFromGMT];
++ (id) dateWithLGCalendarDate: (u_int32_t) lgCalDate {
+  u_int16_t components[6] = {lgCalDate >> 20, (lgCalDate >> 16) & 0xf, (lgCalDate >> 11) & 0x1f, (lgCalDate >> 6) & 0x1f, lgCalDate & 0x3f, 0};
+  return [NSDate dateWithLGDateLocal: components];
 }
 
-u_int32_t BREWLocalTimeFromDate (NSDate *date) {
-  return [date timeIntervalSince1970] - 315964800;
-}
-
-NSDate *dateFromLGCalendarDate (u_int32_t LGCalDate) {
-  NSDateComponents *dateComponents = [[[NSDateComponents alloc] init] autorelease];
-  [dateComponents setYear:   LGCalDate >> 20];
-  [dateComponents setMonth:  (LGCalDate >> 16) & 0xf];
-  [dateComponents setDay:    (LGCalDate >> 11) & 0x1f];
-  [dateComponents setHour:   (LGCalDate >> 6) & 0x1f];
-  [dateComponents setMinute: LGCalDate & 0x3f];
-  [dateComponents setSecond: 0];
-  return [[NSCalendar currentCalendar] dateFromComponents: dateComponents];
-}
-
-NSCalendarDate *calendarDateFromLGCalendarDate (u_int32_t LGCalDate) {
-  return [dateFromLGCalendarDate(LGCalDate) dateWithCalendarFormat: nil timeZone: nil];
-}
-
-u_int32_t LGCalendarDateFromDate (NSDate *date) {
-  NSCalendar *cal = [NSCalendar currentCalendar];
-  NSDateComponents *comps = [cal components: (NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate: date];
-
-  if ([comps year] > 4095)
-    [comps setYear: 4095];
-
-  return ([comps year] << 20) | ([comps month] << 16) | ([comps day] << 11) | ([comps hour] << 6) | [comps minute];
-}
-
-NSDate *dateFromLGDateUTC (u_int16_t dateData[6]) {
++ (id) dateWithLGDate: (u_int16_t[6]) dateData timeZone: (NSTimeZone *) timeZone {
   NSDateComponents *comps = [[[NSDateComponents alloc] init] autorelease];
   NSCalendar *UTCCalendar = [NSCalendar currentCalendar];
-
-  [UTCCalendar setTimeZone: [NSTimeZone timeZoneWithName: @"UTC"]];
-
+  
+  [UTCCalendar setTimeZone: timeZone];
+  
   [comps setYear: dateData[0]];
   [comps setMonth: dateData[1]];
   [comps setDay: dateData[2]];
   [comps setHour: dateData[3]];
   [comps setMinute: dateData[4]];
   [comps setSecond: dateData[5]];
-
+  
   return [UTCCalendar dateFromComponents: comps];
 }
 
-
-NSDate *dateFromLGDate (u_int16_t dateData[6]) {
-  NSDateComponents *comps = [[[NSDateComponents alloc] init] autorelease];
-
-  [comps setYear: dateData[0]];
-  [comps setMonth: dateData[1]];
-  [comps setDay: dateData[2]];
-  [comps setHour: dateData[3]];
-  [comps setMinute: dateData[4]];
-  [comps setSecond: dateData[5]];
-
-  return [[NSCalendar currentCalendar] dateFromComponents: comps];
++ (id) dateWithLGDateLocal: (u_int16_t[6]) dateData {
+  return [NSDate dateWithLGDate: dateData timeZone: [NSTimeZone localTimeZone]];
 }
 
-void lgDateFromDate (NSDate * date, u_int16_t dateData[6]) {
-  NSCalendar *cal = [NSCalendar currentCalendar];
-  NSDateComponents *comps = [cal components: (NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate: date];
++ (id) dateWithLGDateUTC: (u_int16_t[6]) dateData {
+  return [NSDate dateWithLGDate: dateData timeZone: [NSTimeZone timeZoneWithName: @"UTC"]];
+}
 
+- (u_int32_t) timeIntervalSinceBREWEpochUTC {
+  return [self timeIntervalSince1970] - 315964800 + [[NSTimeZone localTimeZone] secondsFromGMT];
+}
+
+- (u_int32_t) timeIntervalSinceBREWEpochLocal {
+  return [self timeIntervalSince1970] - 315964800;
+}
+
+- (u_int32_t) LGCalendarDate {
+  NSCalendar *cal = [NSCalendar currentCalendar];
+  NSDateComponents *comps = [cal components: (NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate: self];
+  
+  if ([comps year] > 4095)
+    [comps setYear: 4095];
+  
+  return ([comps year] << 20) | ([comps month] << 16) | ([comps day] << 11) | ([comps hour] << 6) | [comps minute];
+}
+
+- (void) lgDate: (u_int16_t[6]) dateData {
+  NSCalendar *cal = [NSCalendar currentCalendar];
+  NSDateComponents *comps = [cal components: (NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate: self];
+  
   dateData[0] = [comps year];
   dateData[1] = [comps month];
   dateData[2] = [comps day];
@@ -95,140 +93,52 @@ void lgDateFromDate (NSDate * date, u_int16_t dateData[6]) {
   dateData[5] = [comps second];
 }
 
+@end
 
-static u_char charToDigit (char b) {
-  if (b >= '0' && b <= '9')
-    return b - '0';
-
-  switch (b) {
-  case '+':
-    return 0x0e;
-  case 'P':
-    return 0x0d;
-  case 'W':
-    return 0x0c;
-  case '#':
-    return 0x0b;
-  case '*':
-    return 0x0a;
-  }
-   
-  /* not found */
-  return 0xff;
-}
-
-NSData *dataFromNumericPhonenumber (NSString *phoneNumber) {
-  NSString *tNumber = numericalPhoneNumber (phoneNumber);
-  int i, j;
-  u_char hDigit, nextDigit;
-  u_char localBuffer[25];
-  
-  bzero (localBuffer, 25);
-
-  for (i = 0, j = 0 ; i < [tNumber length] && j < 24 ; i++) {
-    hDigit = charToDigit ([tNumber characterAtIndex: i]);
-
-    if (hDigit != 0xff) {
-      if (j % 2)
-				localBuffer[j/2] = nextDigit | hDigit;
-      else
-				nextDigit = hDigit << 4;
-      j++;
-    } /* else not a supported digit */
-  }
-
-  localBuffer[j/2] = (j % 2) ? (nextDigit | 0x0f) : 0xf0;
-
-  return [NSData dataWithBytes: localBuffer length: 25];
-}
-
-static char digitToCharMapping[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '*', '#', 'W', 'P', '+', '\0'};
-
-NSString *numericPhonenumberFromData (NSData *phoneNumberData) {
-  char localBuffer[51];
-  unsigned char *dataBytes = (unsigned char *) [phoneNumberData bytes];
-  int i, j;
-  char ch1, ch2;
-
-  bzero (localBuffer, 51);
-
-  for (i = 0, j = 0 ; i < [phoneNumberData length] && j < 50 ; i++) {
-    ch1 = digitToCharMapping[dataBytes[i] >> 4];
-    ch2 = digitToCharMapping[dataBytes[i] & 0x0f];
-
-    localBuffer[j++] = ch1;
-
-    if (ch1 == '\0')
-      break;
-
-    localBuffer[j++] = ch2;
-
-    if (ch2 == '\0')
-      break;
-  }
-
-  return formattedNumber (localBuffer);
+NSCalendarDate *calendarDateFromLGCalendarDate (u_int32_t LGCalDate) {
+  return [[NSDate dateWithLGCalendarDate: LGCalDate] dateWithCalendarFormat: nil timeZone: nil];
 }
 
 /* remove formatting characters from phone number */
 NSString *unformatNumber (NSString *input) {
-  NSArray *intermed = [input componentsSeparatedByCharactersInSet: [NSCharacterSet characterSetWithCharactersInString: @"()- "]];
-  return [intermed componentsJoinedByString: @""];
+  return [[[input uppercaseString] componentsSeparatedByCharactersInSet:[[NSCharacterSet characterSetWithCharactersInString:@"0123456789#*+PW"] invertedSet]] componentsJoinedByString:@""];
+#if 0
+  NSMutableString *strippedString = [NSMutableString string];
+  int i;
+  
+  for (i = 0; i < [input length]; i++) {
+    char digit = [input characterAtIndex:i];
+    if (isdigit(digit) || '#' == digit || '*' == digit || '+' == digit || 'P' == digit || 'W' == digit) {
+      [strippedString appendFormat:@"%c", digit];
+    }
+  }
+  
+  return [[strippedString copy] autorelease];
+#endif
 }
 
-NSString *numericalPhoneNumber (NSString *input) {
-  NSMutableData *stringData = [NSMutableData dataWithLength: [input length]];
-  unsigned char *inputBytes = (unsigned char *)[input UTF8String];
-  unsigned char *bytes = [stringData mutableBytes];
-  int i, j;
+NSString *formattedNumber (const char *input) {
+  NSMutableString *fNumber = [NSMutableString stringWithCString: input encoding: NSASCIIStringEncoding];
+  size_t length = [fNumber length];
   
-  for (i = 0, j = 0 ; i < [input length] ; i++) {
-    char byte = tolower(inputBytes[i]);
-    
-    if (byte >= 'a' && byte <= 'o')
-      byte = '1' + (byte - 'a') / 3;
-    else if (byte >= 'p' && byte <= 's')
-      byte = '7';
-    else if (byte >= 't' && byte <= 'v')
-      byte = '8';
-    else if (byte >= 'w' && byte <= 'z')
-      byte = '9';
-
-    if ((byte >= '0' && byte <= '9') || byte == '*' || byte == '#' || byte == 'W' || byte == 'P' || byte == '+' || byte == ' ' || byte == '(' || byte == ')')
-      bytes[j++] = byte;
+  if ([fNumber rangeOfCharacterFromSet: [NSCharacterSet characterSetWithCharactersInString:@"#*+PW"]].location == NSNotFound) {
+    switch (length) {
+      case 11:
+        [fNumber insertString: @"-" atIndex: 1]; /* x-xxxxxxxxxx   */
+        [fNumber insertString: @"-" atIndex: 5]; /* x-xxx-xxxxxxx  */
+        [fNumber insertString: @"-" atIndex: 9]; /* x-xxx-xxx-xxxx */
+        break;
+      case 10:
+        [fNumber insertString: @"-" atIndex: 3]; /* xxx-xxxxxxx  */
+        [fNumber insertString: @"-" atIndex: 7]; /* xxx-xxx-xxxx */
+        break;
+      case 7:
+        [fNumber insertString: @"-" atIndex: 3]; /* xxx-xxxx */
+      default:
+        break;
+    }
   }
-  
-  return [[[NSString alloc] initWithData: stringData encoding: NSASCIIStringEncoding] autorelease];
-}
-
-
-NSString *formattedNumber (char *input) {
-  char localBuffer[20];
-  int i, j;
-
-  /* supported number formattings */
-  switch (strlen (input)) {
-  case 11:
-    snprintf (localBuffer, 20, "0 (000) 000-0000");
-    break;
-  case 10:
-    snprintf (localBuffer, 20, "(000) 000-0000");
-    break;
-  case 7:
-    snprintf (localBuffer, 20, "000-0000");
-    break;
-  default:
-    return [NSString stringWithUTF8String: input];
-  }
-  
-  for (i = 0, j = 0 ; i < strlen (localBuffer) && j < 20 ; i++) {
-    while (localBuffer[j] != '0' && j < 20) j++;
-
-    if (j < 20)
-      localBuffer[j++] = input[i];
-  }
-
-  return [NSString stringWithUTF8String: localBuffer];
+  return [[fNumber copy] autorelease];
 }
 
 void splitName (NSString *fullName, NSMutableDictionary *store) {
@@ -259,18 +169,15 @@ NSString *shortenString (NSString *theString, NSStringEncoding theEncoding, int 
   if (!theString)
     return nil;
   
+  vxSync_log3(VXSYNC_LOG_INFO, @"shortening string %s to a max length of %d\n", theString, maxLength);
+  
   if ([stringData length] >= maxLength)
     stringData = [stringData subdataWithRange: NSMakeRange(0, maxLength-1)];
   
   return [[[NSString alloc] initWithData: stringData encoding: theEncoding] autorelease];
 }
 
-NSString *vxSyncBundlePath (void) {
-  return [[NSBundle bundleWithIdentifier: kBundleDomain] bundlePath];
-}
-
 NSBundle *vxSyncBundle (void) {
-//  NSString *vxSyncPath = vxSyncBundlePath ();
   NSBundle *bundle;
 
   bundle = [NSBundle bundleWithIdentifier: kBundleDomain];
@@ -516,3 +423,19 @@ int ppp_unescape_inplace(u_int8_t *msg, size_t len) {
   return count;
 }
 @end
+
+#if defined(UTIL_UNIT_TEST)
+int main (void) {
+  NSAutoreleasePool *releasePool = [[NSAutoreleasePool alloc] init];
+  NSString *formattedString = @"111-1111";
+  NSString *unformattedString = unformatNumber(formattedString);
+  
+  printf ("formatted  : %s\n", [formattedString UTF8String]);
+  printf ("unformatted: %s\n", [unformattedString UTF8String]);
+  printf ("reformatted: %s\n", [formattedNumber([unformattedString cStringUsingEncoding: NSASCIIStringEncoding]) UTF8String]);
+
+  [releasePool release];
+  
+  return 0;
+}
+#endif

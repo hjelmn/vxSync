@@ -2,8 +2,19 @@
  *  vxSyncAppDelegate.h
  *  vxSync
  *
- *  Created by Nathan Hjelm on 12/5/10.
- *  Copyright 2010 __MyCompanyName__. All rights reserved.
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU  General Public
+ * License as published by the Free Software Foundation; either
+ * version 3.0 of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU  General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
 #import "VXSync.h"
@@ -31,7 +42,7 @@ void set_disconnected (NSMutableDictionary *device);
   IBOutlet NSArrayController *calendarController, *groupController;
   IBOutlet NSTextField *btScanStatus, *actionStatus;
   IBOutlet NSCollectionView *addView;
-  IBOutlet NSPanel *errorPanel;
+  IBOutlet NSPanel *errorPanel, *preferencePanel;
   IBOutlet NSTextView *errorText;
   
   IBOutlet NSPanel        *addPanel;
@@ -39,6 +50,8 @@ void set_disconnected (NSMutableDictionary *device);
   IBOutlet NSArrayController *logDataController;
   IBOutlet NSTableView *logTableView;
   IBOutlet NSTableColumn *logTableColumn;
+
+  IBOutlet NSNumber *disableSyncAlerts, *syncAlertIndex;
 @private
   NSDictionary *fUnknownDevices;
   bool isBusy;
@@ -68,6 +81,11 @@ void set_disconnected (NSMutableDictionary *device);
 @property (assign) IBOutlet NSTableView *logTableView;
 @property (assign) IBOutlet NSTableColumn *logTableColumn;
 
+@property (assign) IBOutlet NSNumber *disableSyncAlerts;
+@property (assign) IBOutlet NSNumber *syncAlertIndex;
+@property (assign) IBOutlet NSPanel *preferencePanel;
+
+
 - (void) applicationWillFinishLaunching:(NSNotification *)aNotification;
 - (void) applicationDidFinishLaunching:(NSNotification *)aNotification;
 
@@ -91,6 +109,11 @@ void set_disconnected (NSMutableDictionary *device);
 - (IBAction) doHideErrorLog: (id) sender;
 
 - (IBAction) logLevelChanged: (id) sender;
+- (IBAction) clearErrorLog: (id) sender;
+
+- (IBAction) preferencesChanged: (id) sender;
+- (IBAction) openPreferenceSheet: (id) sender;
+- (IBAction) closePreferenceSheet: (id) sender;
 
 @end
 
